@@ -27,6 +27,14 @@ Route::get('/admin', function () {
     return view('dashboardadmin');
 });
 
+Route::get('/', function () {
+    return view('dashboardlanding');
+});
+
+Route::get('/about', function () {
+    return view('landingpage.section.about');
+});
+
 //pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index']);
 Route::get('/pemasukan/add', [PemasukanController::class, 'create']);
