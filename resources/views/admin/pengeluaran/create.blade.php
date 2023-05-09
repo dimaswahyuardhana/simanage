@@ -20,7 +20,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabel Pengeluaran</h5>
                             <a href="{{ url('/pengeluaran/add') }}">
-                                <button type="button" class="btn btn-info">+ TAMBAH DATA</button>
+                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> TAMBAH
+                                    DATA</button>
                             </a>
                             <br>
 
@@ -43,7 +44,7 @@
                                             <td>
                                                 <a href="/pengeluaran/{{ $item->id }}/edit"
                                                     class="btn btn-xs btn-warning"><i
-                                                        class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                        class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="/pengeluaran/{{ $item->id }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>

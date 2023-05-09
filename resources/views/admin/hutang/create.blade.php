@@ -20,7 +20,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabel Hutang</h5>
                             <a href="{{ url('/hutang/add') }}">
-                                <button type="button" class="btn btn-info">+ TAMBAH DATA</button>
+                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> TAMBAH
+                                    DATA</button>
                             </a>
                             <br>
 
@@ -36,9 +37,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($dsa as $sda)
                                         <tr>
-
+                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $no++ }}</td>
+                                            <a href="/hutang/{{ $item->id }}/edit"
+                                                class="btn btn-xs btn-warning"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="/hutang/{{ $item->id }}/delete"
+                                                class="btn btn-xs btn-danger"
+                                                onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->

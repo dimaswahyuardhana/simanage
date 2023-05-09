@@ -20,7 +20,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabel Pemasukan</h5>
                             <a href="{{ url('/pemasukan/add') }}">
-                                <button type="button" class="btn btn-info">+ TAMBAH DATA</button>
+                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> TAMBAH
+                                    DATA</button>
                             </a>
                             <br>
 
