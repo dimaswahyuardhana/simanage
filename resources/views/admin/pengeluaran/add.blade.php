@@ -17,7 +17,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">TAMBAH DATA PENGELUARAN </h5>
+                            <h5 class="card-title">TAMBAH DATA PENGELUARAN</h5>
 
                             <!-- General Form Elements -->
                             <form method="POST" action="{{ url('/pengeluaran') }}">

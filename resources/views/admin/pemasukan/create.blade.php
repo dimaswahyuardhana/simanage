@@ -42,10 +42,11 @@
                                             <td>Rp{{ $item->JumlahPemasukan }}</td>
                                             <td>
                                                 <a href="/pemasukan/{{ $item->id }}/edit"
-                                                    class="btn btn-xs btn-warning">Edit</a>
+                                                    class="btn btn-xs btn-warning"><i
+                                                        class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                                 <a href="/pemasukan/{{ $item->id }}/delete"
                                                     class="btn btn-xs btn-danger"
-                                                    onclick="return confirm('Are u Sure?');">Delete</a>
+                                                    onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

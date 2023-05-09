@@ -17,7 +17,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">TAMBAH DATA PEMASUKAN </h5>
+                            <h5 class="card-title">TAMBAH DATA PEMASUKAN</h5>
 
                             <!-- General Form Elements -->
                             <form method="POST" action="{{ url('/pemasukan') }}">
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">TAMBAH</button>
+                                        <button type="submit" class="btn btn-info">TAMBAH</button>
                                         <a class="btn btn-danger" href="{{ url('/pemasukan') }}">BATAL</a>
                                     </div>
                                 </div>

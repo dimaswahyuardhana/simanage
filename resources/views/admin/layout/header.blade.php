@@ -29,6 +29,9 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('template/assets/css/style.css') }}" rel="stylesheet">
 
+  {{-- Icon --}}
+  <script src="https://kit.fontawesome.com/da733aa572.js" crossorigin="anonymous"></script>
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.5.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
