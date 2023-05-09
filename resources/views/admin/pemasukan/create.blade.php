@@ -26,7 +26,7 @@
                             <br>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr class>
                                         <th scope="col">NO.</th>

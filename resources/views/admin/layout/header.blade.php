@@ -69,7 +69,7 @@
           </a>
         </li><!-- End Search Icon-->
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/login') }}">
-            <span class="d-none d-md-block">LOGIN</span>
+            <span class="d-none d-md-block me-5">LOGIN</span>
         </a>
 
 
