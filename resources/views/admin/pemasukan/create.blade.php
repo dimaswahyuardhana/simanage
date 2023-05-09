@@ -43,7 +43,7 @@
                                             <td>
                                                 <a href="/pemasukan/{{ $item->id }}/edit"
                                                     class="btn btn-xs btn-warning"><i
-                                                        class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                        class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="/pemasukan/{{ $item->id }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
