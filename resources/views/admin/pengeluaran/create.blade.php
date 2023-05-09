@@ -28,16 +28,27 @@
                             <table class="table">
                                 <thead>
                                     <tr class>
-                                        <th scope="col">NO</th>
+                                        <th scope="col">NO.</th>
                                         <th scope="col">KETERANGAN PENGELUARAN</th>
                                         <th scope="col">JUMLAH PENGELUARAN</th>
                                         <th scope="col">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($expenditures as $item)
                                         <tr>
-
+                                            <th>{{ $no++ }}.</th>
+                                            <td>{{ $item->KeteranganPengeluaran }}</td>
+                                            <td>Rp{{ $item->JumlahPengeluaran }}</td>
+                                            <td>
+                                                <a href="/pengeluaran/{{ $item->id }}/edit"
+                                                    class="btn btn-xs btn-warning">Edit</a>
+                                                <a href="/pengeluaran/{{ $item->id }}/delete"
+                                                    class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('Are u Sure?');">Delete</a>
+                                            </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->

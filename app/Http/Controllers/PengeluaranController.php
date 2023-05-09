@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expenditure;
 use Illuminate\Http\Request;
 
 class PengeluaranController extends Controller
@@ -13,7 +14,9 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        return view('admin.pengeluaran.create');
+        $expenditures = Expenditure::all();
+        $no = 1;
+        return view('admin.pengeluaran.create', compact('expenditures', 'no'));
     }
 
     /**
@@ -34,7 +37,18 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'KeteranganPengeluaran' => 'required|string|max:256',
+            'JumlahPengeluaran' => 'required|numeric|max:999999999999',
+        ], [
+            'KeteranganPengeluaran.required' => 'Keterangan Pengeluaran harus diisi',
+            'JumlahPengeluaran.required' => 'Jumlah Pengeluaran harus diisi',
+            'JumlahPengeluaran.numeric' => 'Jumlah Pengeluaran harus berupa angka',
+            'JumlahPengeluaran.max' => 'Jumlah Pengeluaran maksimal diisi dengan 12 digit',
+        ]);
+
+        Expenditure::create($validated);
+        return redirect('/pengeluaran');
     }
 
     /**
@@ -56,7 +70,8 @@ class PengeluaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $expenditure['expenditure'] = Expenditure::find($id);
+        return view('admin.pengeluaran.edit', $expenditure);
     }
 
     /**
@@ -68,7 +83,18 @@ class PengeluaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'KeteranganPengeluaran' => 'required|string|max:256',
+            'JumlahPengeluaran' => 'required|numeric|max:999999999999',
+        ], [
+            'KeteranganPengeluaran.required' => 'Keterangan Pengeluaran harus diisi',
+            'JumlahPengeluaran.required' => 'Jumlah Pengeluaran harus diisi',
+            'JumlahPengeluaran.numeric' => 'Jumlah Pengeluaran harus berupa angka',
+            'JumlahPengeluaran.max' => 'Jumlah Pengeluaran maksimal diisi dengan 12 digit',
+        ]);
+
+        Expenditure::where('id', $id)->update($validated);
+        return redirect('/pengeluaran');
     }
 
     /**
@@ -79,6 +105,7 @@ class PengeluaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Expenditure::destroy(($id));
+        return redirect('/pengeluaran');
     }
 }

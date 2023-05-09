@@ -38,21 +38,26 @@ Route::get('/about', function () {
 
 //pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index']);
-
 // add pemasukan
 Route::get('/pemasukan/add', [PemasukanController::class, 'create']);
 Route::post('/pemasukan', [PemasukanController::class, 'store']);
-
 // edit pemasukan
 Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit']);
 Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
-
 // delete pemasukan
 Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
 
 //pengeluaran
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
+Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
+// add pengeluaran
 Route::get('/pengeluaran/add', [PengeluaranController::class, 'create']);
+Route::post('/pengeluaran', [PengeluaranController::class, 'store']);
+// edit pengeluaran
+Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit']);
+Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update']);
+// delete pengeluaran
+Route::get('pengeluaran/{id}/delete', [PengeluaranController::class, 'destroy']);
 
 //karyawan
 Route::get('/karyawan', [KaryawanController::class, 'index']);

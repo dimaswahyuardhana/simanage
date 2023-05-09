@@ -20,7 +20,8 @@
                             <h5 class="card-title">TAMBAH DATA PENGELUARAN </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="{{ url('/pengeluaran') }}">
+                            <form method="POST" action="/pengeluaran/{{ $expenditure->id }}">
+                                @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="KeteranganPengeluaran" class="col-sm-2 col-form-label">Keterangan
@@ -28,7 +29,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('KeteranganPengeluaran') is-invalid @enderror"
-                                            id="KeteranganPengeluaran" name="KeteranganPengeluaran">
+                                            id="KeteranganPengeluaran" name="KeteranganPengeluaran" value="{{ $expenditure->KeteranganPengeluaran }}">
                                         @error('KeteranganPengeluaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -42,7 +43,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('JumlahPengeluaran') is-invalid @enderror"
-                                            id="JumlahPengeluaran" name="JumlahPengeluaran">
+                                            id="JumlahPengeluaran" name="JumlahPengeluaran" value="{{ $expenditure->JumlahPengeluaran }}">
                                         @error('JumlahPengeluaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
