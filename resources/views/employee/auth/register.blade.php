@@ -59,11 +59,11 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account as Admin</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Create an Account as Employee</h5>
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" action='/register/admin' method="post">
+                  <form class="row g-3 needs-validation" action='/register/Employee' method="post">
                     @csrf
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">EMAIL</label>
@@ -90,9 +90,9 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="yourUsername" class="form-label">Company Name</label>
-                        <input type="text" name="company_name"  class="form-control @error('name') is-invalid @enderror" id="company_name" required>
-                        @error('company_name')
+                        <label for="yourUsername" class="form-label">Company Code</label>
+                        <input type="password" name="id_company"  class="form-control @error('name') is-invalid @enderror" id="id_company" required>
+                        @error('id_company')
                             <div id="companyNameHelp" class="form-text">{{ $message }}</div>
                         @enderror
                     </div>

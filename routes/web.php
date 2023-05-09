@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,21 @@ Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit']);
 Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
 // delete pemasukan
 Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
+
+//Login
+Route::get('/login',[LoginController::class,'index']);
+//Login END
+
+//Register Admin
+Route::get('/register/admin',[LoginController::class,'indexRegisAdmin']);
+Route::post('/register/admin',[LoginController::class,'registrasiAdmin']);
+//Register Admin END
+
+//Register Employees
+Route::get('/register/Employee',[LoginController::class,'indexRegisEmployee']);
+Route::post('/register/Employee',[LoginController::class,'registrasiEmployee']);
+//END Register Employees
+
 
 //pengeluaran
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);

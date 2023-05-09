@@ -14,7 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">MANAGEMEN DATA KARYAWAN</a></li>
                     <li class="nav-item"><a class="nav-link" href="#team">ABSENSI</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <a class="btn btn-primary" href="#" role="button">LOGIN</a>
+                    <a class="btn btn-primary" href="{{ url('/login') }}" role="button">LOGIN</a>
                 </ul>
             </div>
         </div>
