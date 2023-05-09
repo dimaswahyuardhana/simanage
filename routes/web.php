@@ -23,6 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
 Route::get('/admin', function () {
     return view('dashboardadmin');
 });
@@ -37,7 +38,17 @@ Route::get('/about', function () {
 
 //pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index']);
+
+// add pemasukan
 Route::get('/pemasukan/add', [PemasukanController::class, 'create']);
+Route::post('/pemasukan', [PemasukanController::class, 'store']);
+
+// edit pemasukan
+Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit']);
+Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
+
+// delete pemasukan
+Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
 
 //pengeluaran
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);

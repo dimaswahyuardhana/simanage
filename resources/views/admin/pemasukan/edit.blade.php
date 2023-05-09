@@ -27,7 +27,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('SumberPendapatan') is-invalid @enderror"
-                                            id="SumberPendapatan" name="SumberPendapatan">
+                                            id="SumberPendapatan" name="SumberPendapatan" value="{{ $income->SumberPendapatan }}">
                                         @error('SumberPendapatan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -40,7 +40,7 @@
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('JumlahPemasukan') is-invalid @enderror"
-                                            id="JumlahPemasukan" name="JumlahPemasukan">
+                                            id="JumlahPemasukan" name="JumlahPemasukan" value="{{ $income->JumlahPemasukan }}">
                                         @error('JumlahPemasukan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
             $table->string('SumberPendapatan');
-            $table->decimal('JumlahPemasukkan', 10, 2);
+            $table->decimal('JumlahPemasukan', 12, 2);
             $table->timestamps();
         });
     }

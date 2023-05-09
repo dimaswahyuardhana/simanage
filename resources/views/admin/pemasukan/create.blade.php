@@ -35,9 +35,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($incomes as $item)
                                         <tr>
-
+                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $item->SumberPendapatan }}</td>
+                                            <td>Rp{{ $item->JumlahPemasukan }}</td>
+                                            <td>
+                                                <a href="/pemasukan/{{ $item->id }}/edit"
+                                                    class="btn btn-xs btn-warning">Edit</a>
+                                                <a href="/pemasukan/{{ $item->id }}/delete"
+                                                    class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('Are u Sure?');">Delete</a>
+                                            </td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->
