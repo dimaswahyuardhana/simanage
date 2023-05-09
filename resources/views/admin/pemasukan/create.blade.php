@@ -28,7 +28,7 @@
                             <table class="table">
                                 <thead>
                                     <tr class>
-                                        <th scope="col">NO</th>
+                                        <th scope="col">NO.</th>
                                         <th scope="col">SUMBER PENDAPATAN</th>
                                         <th scope="col">JUMLAH PEMASUKAN</th>
                                         <th scope="col">AKSI</th>
