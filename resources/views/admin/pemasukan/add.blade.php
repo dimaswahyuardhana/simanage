@@ -51,6 +51,7 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary">TAMBAH</button>
+                                        <a class="btn btn-danger" href="{{ url('/pemasukan') }}">BATAL</a>
                                     </div>
                                 </div>
 

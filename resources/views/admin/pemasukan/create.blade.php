@@ -37,7 +37,7 @@
                                 <tbody>
                                     @foreach ($incomes as $item)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <th>{{ $no++ }}.</th>
                                             <td>{{ $item->SumberPendapatan }}</td>
                                             <td>Rp{{ $item->JumlahPemasukan }}</td>
                                             <td>

@@ -83,7 +83,18 @@ class PemasukanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'SumberPendapatan' => 'required|string|max:256',
+            'JumlahPemasukan' => 'required|numeric|max:999999999999',
+        ], [
+            'SumberPendapatan.required' => 'Sumber Pendapatan harus diisi',
+            'JumlahPemasukan.required' => 'Jumlah Pemasukan harus diisi',
+            'JumlahPemasukan.numeric' => 'Jumlah Pemasukan harus berupa angka',
+            'JumlahPemasukan.max' => 'Jumlah Pemasukan maksimal diisi dengan 12 digit',
+        ]);
+
+        Income::where('id', $id)->update($validated);
+        return redirect('/pemasukan');
     }
 
     /**

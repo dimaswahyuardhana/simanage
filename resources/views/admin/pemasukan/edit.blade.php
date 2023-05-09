@@ -20,7 +20,8 @@
                             <h5 class="card-title">TAMBAH DATA PEMASUKAN </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="{{ url('/pemasukan') }}">
+                            <form method="POST" action="/pemasukan/{{ $income->id }}">
+                                @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="SumberPendapatan" class="col-sm-2 col-form-label">Sumber Pendapatan</label>
@@ -50,7 +51,8 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">TAMBAH</button>
+                                        <button type="submit" class="btn btn-primary">UBAH</button>
+                                        <a class="btn btn-danger" href="{{ url('/pemasukan') }}">BATAL</a>
                                     </div>
                                 </div>
 
