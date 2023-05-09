@@ -20,7 +20,7 @@
                             <h5 class="card-title">TAMBAH DATA HUTANG </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="{{ url('/hutang') }}">
+                            <form method="POST" action="#">
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="keterangan_hutang" class="col-sm-2 col-form-label">Keterangan Hutang</label>
