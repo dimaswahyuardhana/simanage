@@ -40,12 +40,13 @@
                                 <tbody>
                                     @foreach ($monthlies as $item)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
-                                            <th>{{ $item->incomes }}</th>
-                                            <th>{{ $item->expenditures }}</th>
-                                            <th>{{ $item->debts }}</th>
+                                            <th>{{ $no++ }}.</th>
+                                            <td>{{ $item->incomes }}</td>
+                                            <td>{{ $item->expenditures }}</td>
+                                            <td>{{ $item->debts }}</td>
+                                            @endforeach
+                                            <th>Total</th>
                                         </tr>
-                                    @endforeach
                                     <tr>
 
                                     </tr>
