@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BulananController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -97,6 +98,9 @@ Route::get('/register/Employee', [LoginController::class, 'indexRegisEmployee'])
 Route::post('/register/Employee', [LoginController::class, 'registrasiEmployee']);
 // END Register Employees
 
+
+// bulanan
+Route::get('/bulanan', [BulananController::class, 'index']);
 
 // laporan
 Route::get('/laporan', [LaporanController::class, 'index']);

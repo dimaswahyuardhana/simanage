@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('financial_statements', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_pemasukkan');
-            $table->foreign('id_pemasukkan')->references('id')->on('incomes');
-            $table->unsignedBigInteger('id_pengeluaran');
-            $table->foreign('id_pengeluaran')->references('id')->on('expenditures');
-            $table->unsignedBigInteger('id_hutang');
-            $table->foreign('id_hutang')->references('id')->on('debts');
-            $table->date('Tanggal_Laporan');
-            $table->timestamps();
-        });
+        // Schema::create('financial_statements', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('id_pemasukan');
+        //     $table->foreign('id_pemasukan')->references('id')->on('incomes');
+        //     $table->unsignedBigInteger('id_pengeluaran');
+        //     $table->foreign('id_pengeluaran')->references('id')->on('expenditures');
+        //     $table->unsignedBigInteger('id_hutang');
+        //     $table->foreign('id_hutang')->references('id')->on('debts');
+        //     $table->date('Tanggal_Laporan');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('financial_statements');
+        // Schema::dropIfExists('financial_statements');
     }
 };
