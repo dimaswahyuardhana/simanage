@@ -37,17 +37,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dsa as $sda)
+                                    @foreach ($debts as $item)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $no++ }}</td>
-                                            <a href="/hutang/{{ $item->id }}/edit"
-                                                class="btn btn-xs btn-warning"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="/hutang/{{ $item->id }}/delete"
-                                                class="btn btn-xs btn-danger"
-                                                onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
+                                            <th>{{ $no++ }}.</th>
+                                            <td>{{ $item->keterangan_hutang }}</td>
+                                            <td>Rp{{ $item->jumlah_hutang }}</td>
+                                            <td>date</td>
+                                            <td>
+                                                <a href="/hutang/{{ $item->id }}/edit" class="btn btn-xs btn-warning"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="/hutang/{{ $item->id }}/delete" class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

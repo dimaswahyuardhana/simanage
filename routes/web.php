@@ -49,17 +49,17 @@ Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
 Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
 
 //Login
-Route::get('/login',[LoginController::class,'index']);
+Route::get('/login', [LoginController::class, 'index']);
 //Login END
 
 //Register Admin
-Route::get('/register/admin',[LoginController::class,'indexRegisAdmin']);
-Route::post('/register/admin',[LoginController::class,'registrasiAdmin']);
+Route::get('/register/admin', [LoginController::class, 'indexRegisAdmin']);
+Route::post('/register/admin', [LoginController::class, 'registrasiAdmin']);
 //Register Admin END
 
 //Register Employees
-Route::get('/register/Employee',[LoginController::class,'indexRegisEmployee']);
-Route::post('/register/Employee',[LoginController::class,'registrasiEmployee']);
+Route::get('/register/Employee', [LoginController::class, 'indexRegisEmployee']);
+Route::post('/register/Employee', [LoginController::class, 'registrasiEmployee']);
 //END Register Employees
 
 
@@ -81,7 +81,15 @@ Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 
 //hutang
 Route::get('/hutang', [HutangController::class, 'index']);
+Route::get('/hutang', [HutangController::class, 'index']);
+// add hutang
 Route::get('/hutang/add', [HutangController::class, 'create']);
+Route::post('/hutang', [HutangController::class, 'store']);
+// edit hutang
+Route::get('/hutang/{id}/edit', [HutangController::class, 'edit']);
+Route::put('/hutang/{id}', [HutangController::class, 'update']);
+// delete hutang
+Route::get('hutang/{id}/delete', [HutangController::class, 'destroy']);
 
 //laporan
 Route::get('/laporan', [LaporanController::class, 'index']);
