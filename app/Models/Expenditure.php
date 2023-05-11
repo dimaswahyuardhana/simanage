@@ -15,6 +15,6 @@ class Expenditure extends Model
 
     public function expenditures()
     {
-        //
+        return $this->hasMany(Monthly::class);
     }
 }

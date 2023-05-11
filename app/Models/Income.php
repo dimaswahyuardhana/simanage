@@ -15,6 +15,6 @@ class Income extends Model
 
     public function incomes()
     {
-        //
+        return $this->hasMany(Monthly::class);
     }
 }
