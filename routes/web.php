@@ -42,6 +42,10 @@ Route::get('/manajemen', function () {
     return view('landingpage.section.manajemen');
 });
 
+Route::get('/absen', function () {
+    return view('landingpage.section.absensi');
+});
+
 // pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index']);
 // add pemasukan
