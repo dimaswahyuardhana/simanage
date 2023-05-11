@@ -12,7 +12,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/manajemen') }}">MANAGEMEN DATA KARYAWAN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">ABSENSI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/absen') }}">ABSENSI</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <a class="btn btn-primary" href="{{ url('/login') }}" role="button">LOGIN</a>
                 </ul>
