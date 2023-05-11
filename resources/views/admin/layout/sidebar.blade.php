@@ -25,6 +25,13 @@
       </li><!-- End Blank Page Nav -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/hutang') }}">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>DATA HUTANG</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/karyawan') }}">
           <i class="bi bi-newspaper"></i>
           <span>DATA KARYAWAN</span>
@@ -32,17 +39,19 @@
       </li><!-- End Blank Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/hutang') }}">
+        <a class="nav-link collapsed" href="{{ url('/bulanan') }}">
           <i class="bi bi-layout-text-window-reverse"></i>
-          <span>DATA HUTANG</span>
+          <span>LAPORAN BULANAN</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/laporan') }}">
           <i class="bi bi-layout-text-window-reverse"></i>
           <span>LAPORAN KEUANGAN</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/login') }}">
           <i class="bi bi-box-arrow-in-right"></i>
