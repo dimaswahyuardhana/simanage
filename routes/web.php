@@ -54,7 +54,6 @@ Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
 
 // pengeluaran
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
-Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
 // add pengeluaran
 Route::get('/pengeluaran/add', [PengeluaranController::class, 'create']);
 Route::post('/pengeluaran', [PengeluaranController::class, 'store']);
@@ -66,7 +65,6 @@ Route::get('pengeluaran/{id}/delete', [PengeluaranController::class, 'destroy'])
 
 
 // hutang
-Route::get('/hutang', [HutangController::class, 'index']);
 Route::get('/hutang', [HutangController::class, 'index']);
 // add hutang
 Route::get('/hutang/add', [HutangController::class, 'create']);

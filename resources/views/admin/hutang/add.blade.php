@@ -38,8 +38,8 @@
                                 <div class="row mb-3">
                                     <label for="jumlah_hutang" class="col-sm-2 col-form-label">Jumlah Hutang</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control"
-                                            @error('jumlah_hutang') is-invalid @enderror id="jumlah_hutang"
+                                        <input type="text"
+                                            class="form-control @error('jumlah_hutang') is-invalid @enderror id="jumlah_hutang"
                                             name="jumlah_hutang">
                                         @error('jumlah_hutang')
                                             <div class="invalid-feedback">
