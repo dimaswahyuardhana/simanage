@@ -41,7 +41,7 @@ Route::get('/manajemen', function () {
     return view('landingpage.section.manajemen');
 });
 
-//pemasukan
+// pemasukan
 Route::get('/pemasukan', [PemasukanController::class, 'index']);
 // add pemasukan
 Route::get('/pemasukan/add', [PemasukanController::class, 'create']);
@@ -52,22 +52,7 @@ Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
 // delete pemasukan
 Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
 
-//Login
-Route::get('/login', [LoginController::class, 'index']);
-//Login END
-
-//Register Admin
-Route::get('/register/admin', [LoginController::class, 'indexRegisAdmin']);
-Route::post('/register/admin', [LoginController::class, 'registrasiAdmin']);
-//Register Admin END
-
-//Register Employees
-Route::get('/register/Employee', [LoginController::class, 'indexRegisEmployee']);
-Route::post('/register/Employee', [LoginController::class, 'registrasiEmployee']);
-//END Register Employees
-
-
-//pengeluaran
+// pengeluaran
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
 Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
 // add pengeluaran
@@ -79,11 +64,8 @@ Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update']);
 // delete pengeluaran
 Route::get('pengeluaran/{id}/delete', [PengeluaranController::class, 'destroy']);
 
-//karyawan
-Route::get('/karyawan', [KaryawanController::class, 'index']);
-Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 
-//hutang
+// hutang
 Route::get('/hutang', [HutangController::class, 'index']);
 Route::get('/hutang', [HutangController::class, 'index']);
 // add hutang
@@ -95,7 +77,26 @@ Route::put('/hutang/{id}', [HutangController::class, 'update']);
 // delete hutang
 Route::get('hutang/{id}/delete', [HutangController::class, 'destroy']);
 
-//laporan
+// karyawan
+Route::get('/karyawan', [KaryawanController::class, 'index']);
+Route::get('/karyawan/add', [KaryawanController::class, 'create']);
+
+// Login
+Route::get('/login', [LoginController::class, 'index']);
+// Login END
+
+// Register Admin
+Route::get('/register/admin', [LoginController::class, 'indexRegisAdmin']);
+Route::post('/register/admin', [LoginController::class, 'registrasiAdmin']);
+// Register Admin END
+
+// Register Employees
+Route::get('/register/Employee', [LoginController::class, 'indexRegisEmployee']);
+Route::post('/register/Employee', [LoginController::class, 'registrasiEmployee']);
+// END Register Employees
+
+
+// laporan
 Route::get('/laporan', [LaporanController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
