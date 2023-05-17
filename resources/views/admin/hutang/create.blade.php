@@ -44,9 +44,9 @@
                                             <td>Rp{{ $item->jumlah_hutang }}</td>
                                             <td>date</td>
                                             <td>
-                                                <a href="/hutang/{{ $item->id }}/edit" class="btn btn-xs btn-warning"><i
+                                                <a href="/hutang/{{ $item->id_debt }}/edit" class="btn btn-xs btn-warning"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/hutang/{{ $item->id }}/delete" class="btn btn-xs btn-danger"
+                                                <a href="/hutang/{{ $item->id_debt }}/delete" class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>

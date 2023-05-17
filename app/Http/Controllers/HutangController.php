@@ -68,9 +68,9 @@ class HutangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_debt)
     {
-        $debt['debt'] = Debt::find($id);
+        $debt['debt'] = Debt::find($id_debt);
         return view('admin.hutang.edit', $debt);
     }
 
@@ -81,7 +81,7 @@ class HutangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_debt)
     {
         $validated = $request->validate([
             'keterangan_hutang' => 'required|string|max:256',
@@ -93,7 +93,7 @@ class HutangController extends Controller
             'jumlah_hutang.max' => 'Jumlah Hutang maksimal diisi dengan 12 digit',
         ]);
 
-        Debt::where('id', $id)->update($validated);
+        Debt::where('id_debt', $id_debt)->update($validated);
         return redirect('/hutang');
     }
 
@@ -103,9 +103,9 @@ class HutangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_debt)
     {
-        Debt::destroy(($id));
+        Debt::destroy(($id_debt));
         return redirect('/hutang');
     }
 }

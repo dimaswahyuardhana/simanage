@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class company extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'ID_admin';
+    protected $primaryKey = 'id_company';
     protected $fillable = [
                 'id_company',
                 'company_name',

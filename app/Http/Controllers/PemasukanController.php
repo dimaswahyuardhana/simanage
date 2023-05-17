@@ -68,9 +68,9 @@ class PemasukanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_income)
     {
-        $income['income'] = Income::find($id);
+        $income['income'] = Income::find($id_income);
         return view('admin.pemasukan.edit', $income);
     }
 
@@ -81,7 +81,7 @@ class PemasukanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_income)
     {
         $validated = $request->validate([
             'SumberPendapatan' => 'required|string|max:256',
@@ -93,7 +93,7 @@ class PemasukanController extends Controller
             'JumlahPemasukan.max' => 'Jumlah Pemasukan maksimal diisi dengan 12 digit',
         ]);
 
-        Income::where('id', $id)->update($validated);
+        Income::where('id_income', $id_income)->update($validated);
         return redirect('/pemasukan');
     }
 
@@ -103,9 +103,9 @@ class PemasukanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_income)
     {
-        Income::destroy(($id));
+        Income::destroy(($id_income));
         return redirect('/pemasukan');
     }
 }

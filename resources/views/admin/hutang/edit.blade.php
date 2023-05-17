@@ -20,7 +20,7 @@
                             <h5 class="card-title">TAMBAH DATA HUTANG </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="/hutang/{{ $debt->id }}">
+                            <form method="POST" action="/hutang/{{ $debt->id_debt }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="row mb-3">

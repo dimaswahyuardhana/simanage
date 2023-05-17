@@ -30,11 +30,8 @@
                                         <th scope="col">PENGELUARAN</th>
                                         <th scope="col">HUTANG</th>
                                         <th scope="col">TANGGAL LAPORAN</th>
-                                        <th scope="col">TOTAL PEMASUKAN</th>
-                                        <th scope="col">TOTAL PENGELUARAN</th>
-                                        <th scope="col">TOTAL HUTANG</th>
-                                        <th scope="col">SALDO AKHIR</th>
-                                        <th scope="col">AKSI</th>
+                                        <th scope="col">LABA</th>
+                                        <th scope="col">DETAIL</th>
                                     </tr>
                                 </thead>
                                 <tbody>

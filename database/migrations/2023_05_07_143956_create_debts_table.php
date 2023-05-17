@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('debts', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_debt');
             $table->string('keterangan_hutang');
             $table->decimal('jumlah_hutang', 10, 2); // kolom 'jumlah_hutang' dengan panjang 10 digit dan 2 digit di belakang koma
+            $table->string('id_company');
             $table->timestamps();
         });
     }

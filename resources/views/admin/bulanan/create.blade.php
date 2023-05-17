@@ -19,36 +19,29 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabel Keuangan</h5>
-                            <br>
 
                             <!-- Default Table -->
                             <table class="table">
                                 <thead>
                                     <tr class>
-                                        <th scope="col">NO</th>
                                         <th scope="col">PEMASUKAN</th>
                                         <th scope="col">PENGELUARAN</th>
                                         <th scope="col">HUTANG</th>
-                                        {{-- <th scope="col">TANGGAL LAPORAN</th>
-                                        <th scope="col">TOTAL PEMASUKAN</th>
-                                        <th scope="col">TOTAL PENGELUARAN</th>
-                                        <th scope="col">TOTAL HUTANG</th>
-                                        <th scope="col">SALDO AKHIR</th>
-                                        <th scope="col">AKSI</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($monthlies as $item)
+                                    @foreach ($data as $item)
                                         <tr>
-                                            <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->incomes }}</td>
-                                            <td>{{ $item->expenditures }}</td>
-                                            <td>{{ $item->debts }}</td>
-                                            @endforeach
-                                            <th>Total</th>
+                                            <td>Rp{{ $item->jumlah_pemasukan }}</td>
+                                            <td>Rp{{ $item->jumlah_pengeluaran }}</td>
+                                            <td>Rp{{ $item->jumlah_hutang }}</td>
                                         </tr>
+                                    @endforeach
+                                    <th style="text-align: center; border-top:2px solid black; border-bottom:2px solid black" colspan="3">Total</th>
                                     <tr>
-
+                                        <td>Rp{{ $total_pemasukan }}</td>
+                                        <td>Rp{{ $total_pengeluaran }}</td>
+                                        <td>Rp{{ $total_hutang }}</td>
                                     </tr>
                                 </tbody>
                             </table>

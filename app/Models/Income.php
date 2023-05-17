@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Income extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_income';
     protected $fillable = [
-        'SumberPendapatan',
-        'JumlahPemasukan'
+        'sumber_pemasukan',
+        'jumlah_pemasukan'
     ];
 
-    public function incomes()
-    {
-        return $this->hasMany(Monthly::class);
-    }
+    // public function incomes()
+    // {
+    //     return $this->hasMany(Monthly::class);
+    // }
 }

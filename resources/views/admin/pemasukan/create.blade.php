@@ -39,13 +39,13 @@
                                     @foreach ($incomes as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->SumberPendapatan }}</td>
-                                            <td>Rp{{ $item->JumlahPemasukan }}</td>
+                                            <td>{{ $item->sumber_pemasukan }}</td>
+                                            <td>Rp{{ $item->jumlah_pemasukan }}</td>
                                             <td>
-                                                <a href="/pemasukan/{{ $item->id }}/edit"
+                                                <a href="/pemasukan/{{ $item->id_income }}/edit"
                                                     class="btn btn-xs btn-warning"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/pemasukan/{{ $item->id }}/delete"
+                                                <a href="/pemasukan/{{ $item->id_income }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                             </td>

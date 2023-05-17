@@ -23,13 +23,13 @@
                             <form method="POST" action="{{ url('/pengeluaran') }}">
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="KeteranganPengeluaran" class="col-sm-2 col-form-label">Keterangan
+                                    <label for="keterangan_pengeluaran" class="col-sm-2 col-form-label">Keterangan
                                         Pengeluaran</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('KeteranganPengeluaran') is-invalid @enderror"
-                                            id="KeteranganPengeluaran" name="KeteranganPengeluaran">
-                                        @error('KeteranganPengeluaran')
+                                            class="form-control @error('keterangan_pengeluaran') is-invalid @enderror"
+                                            id="keterangan_pengeluaran" name="keterangan_pengeluaran">
+                                        @error('keterangan_pengeluaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -37,13 +37,13 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="JumlahPengeluaran" class="col-sm-2 col-form-label">Jumlah
+                                    <label for="jumlah_pengeluaran" class="col-sm-2 col-form-label">Jumlah
                                         Pengeluaran</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('JumlahPengeluaran') is-invalid @enderror"
-                                            id="JumlahPengeluaran" name="JumlahPengeluaran">
-                                        @error('JumlahPengeluaran')
+                                            class="form-control @error('jumlah_pengeluaran') is-invalid @enderror"
+                                            id="jumlah_pengeluaran" name="jumlah_pengeluaran">
+                                        @error('jumlah_pengeluaran')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
