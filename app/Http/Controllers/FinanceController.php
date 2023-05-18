@@ -54,7 +54,7 @@ class FinanceController extends Controller
 
         Finance::create($validated);
 
-        return redirect('/keuangan');
+        return redirect('/keuangan')->with('success', 'Data berhasil di Tambah');
     }
 
     /**
@@ -104,7 +104,7 @@ class FinanceController extends Controller
 
         Finance::where('id_finance', $id_finance)->update([$validated]);
 
-        return redirect('/keuangan');
+        return redirect('/keuangan')->with('success', 'Data berhasil di Ubah');
     }
 
     /**
@@ -116,6 +116,6 @@ class FinanceController extends Controller
     public function destroy($id_finance)
     {
         Finance::destroy($id_finance);
-        return redirect('/keuangan');
+        return redirect('/keuangan')->with('success', 'Data berhasil di Hapus');
     }
 }

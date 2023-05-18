@@ -13,6 +13,6 @@ class Category extends Model
 
     public function finances()
     {
-        return $this->hasMany(Finance::class);
+        return $this->hasMany(Finance::class, 'id_kategori');
     }
 }
