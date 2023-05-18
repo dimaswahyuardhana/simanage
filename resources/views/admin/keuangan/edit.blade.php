@@ -55,7 +55,9 @@
                                             aria-label="default select example" name="id_kategori">
                                             <option selected>Pilih Kategori</option>
                                             @foreach ($categories as $item)
-                                                <option value="{{ $item->id_kategori }}">{{ $item->kategori }}</option>
+                                                <option value="{{ $item->id_kategori }}" {{ $finance->id_kategori == $item->id_kategori ? 'selected' : '' }}>
+                                                    {{ $item->kategori }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('kategori')

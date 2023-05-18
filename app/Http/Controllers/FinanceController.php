@@ -102,7 +102,7 @@ class FinanceController extends Controller
             'id_kategori.required' => 'Kategori harus diisi',
         ]);
 
-        Finance::where('id_finance', $id_finance)->update([$validated]);
+        Finance::where('id_finance', $id_finance)->update($validated);
 
         return redirect('/keuangan')->with('success', 'Data berhasil di Ubah');
     }
