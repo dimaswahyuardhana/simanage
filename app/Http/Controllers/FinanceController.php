@@ -53,6 +53,7 @@ class FinanceController extends Controller
         ]);
 
         Finance::create($validated);
+
         return redirect('/keuangan');
     }
 
@@ -73,9 +74,12 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Finance $finance)
+    public function edit($id_finance)
     {
-        //
+        $data['categories'] = Category::all();
+        $data['finance'] = Finance::find($id_finance);
+
+        return view('admin.keuangan.edit', $data);
     }
 
     /**
@@ -85,9 +89,22 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Finance $finance)
+    public function update(Request $request, $id_finance)
     {
-        //
+        $validated = $request->validate([
+            'keterangan' => 'required',
+            'jumlah_uang' => 'required|numeric',
+            'id_kategori' => 'required'
+        ], [
+            'keterangan.required' => 'Keterangan harus diisi',
+            'jumlah_uang.required' => 'Jumlah Uang harus diisi',
+            'jumlah_uang.numeric' => 'Jumlah Uang harus berupa angka',
+            'id_kategori.required' => 'Kategori harus diisi',
+        ]);
+
+        Finance::where('id_finance', $id_finance)->update([$validated]);
+
+        return redirect('/keuangan');
     }
 
     /**

@@ -42,13 +42,13 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>{{ $item->jumlah_uang }}</td>
-                                            <td>{{ $item->category->kategori }}</td>
+                                            <td>{{ $item->category->id_kategori }}</td>
                                             <td>{{ $item->updated_at }}</td>
                                             <td>
-                                                <a href="/pemasukan/{{ $item->id_income }}/edit"
+                                                <a href="/keuangan/{{ $item->id_finance }}/edit"
                                                     class="btn btn-xs btn-warning"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/pemasukan/{{ $item->id_income }}/delete"
+                                                <a href="/keuangan/{{ $item->id_finance }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                             </td>

@@ -55,9 +55,14 @@
                                             aria-label="default select example" name="id_kategori">
                                             <option selected>Pilih Kategori</option>
                                             @foreach ($categories as $item)
-                                                <option {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $item->kategori }}</option>
+                                                <option value="{{ $item->id_kategori }}">{{ $item->kategori }}</option>
                                             @endforeach
                                         </select>
+                                        @error('kategori')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-3">

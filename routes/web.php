@@ -53,10 +53,10 @@ Route::get('/keuangan', [FinanceController::class, 'index']);
 Route::get('/keuangan/add', [FinanceController::class, 'create']);
 Route::post('/keuangan', [FinanceController::class, 'store']);
 // edit keuangan
-Route::get('/keuangan/{id}/edit', [FinanceController::class, 'edit']);
-Route::put('/keuangan/{id}', [FinanceController::class, 'update']);
+Route::get('/keuangan/{id_finance}/edit', [FinanceController::class, 'edit']);
+Route::put('/keuangan/{id_finance}', [FinanceController::class, 'update']);
 // delete keuangan
-Route::get('keuangan/{id}/delete', [FinanceController::class, 'destroy']);
+Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
 
 // // pemasukan
 // Route::get('/pemasukan', [PemasukanController::class, 'index']);

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('finances', function (Blueprint $table) {
             $table->id('id_finance');
             $table->string('keterangan');
-            $table->decimal('jumlah_uang', 15, 2);
+            $table->decimal('jumlah_uang', 15, 2)->default(0);
             $table->foreignId('id_kategori');
             $table->foreign('id_kategori')->references('id_kategori')->on('categories');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
