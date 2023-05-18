@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('expenditures', function (Blueprint $table) {
-            $table->id();
-            $table->string('KeteranganPengeluaran');
-            $table->decimal('JumlahPengeluaran', 10, 2);
+            $table->id('id_expenditure');
+            $table->string('keterangan_pengeluaran');
+            $table->decimal('jumlah_pengeluaran', 10, 2);
+            $table->string('id_company');
             $table->timestamps();
         });
     }

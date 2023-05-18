@@ -7,42 +7,57 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-
+      </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/keuangan') }}">
+          <i class="bi bi-box-arrow-in-up"></i>
+          <span>Keuangan</span>
+        </a>
+      </li>
+
+      {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/pemasukan') }}">
           <i class="bi bi-box-arrow-in-up"></i>
-          <span>PEMASUKAN</span>
+          <span>Pemasukan</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/pengeluaran') }}">
           <i class="bi-box-arrow-down"></i>
-          <span>PENGELUARAN</span>
+          <span>Pengeluaran</span>
         </a>
-      </li><!-- End Blank Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/karyawan') }}">
-          <i class="bi bi-newspaper"></i>
-          <span>DATA KARYAWAN</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/hutang') }}">
           <i class="bi bi-layout-text-window-reverse"></i>
-          <span>DATA HUTANG</span>
+          <span>Data Hutang</span>
+        </a>
+      </li> --}}
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/karyawan') }}">
+          <i class="bi bi-newspaper"></i>
+          <span>Data Karyawan</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/bulanan') }}">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Laporan Bulanan</span>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/laporan') }}">
           <i class="bi bi-layout-text-window-reverse"></i>
-          <span>LAPORAN KEUANGAN</span>
+          <span>Laporan Keuangan</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/login') }}">
           <i class="bi bi-box-arrow-in-right"></i>

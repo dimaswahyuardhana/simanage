@@ -6,8 +6,8 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/pengeluaran') }}">Pengeluaran</a></li>
-                    <li class="breadcrumb-item active">Tambah Data Pengeluaran</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/hutang') }}">Hutang</a></li>
+                    <li class="breadcrumb-item active">Tambah Data Hutang</li>
                 </ol>
             </nav>
         </div>
@@ -17,20 +17,20 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">TAMBAH DATA PENGELUARAN </h5>
+                            <h5 class="card-title">TAMBAH DATA HUTANG </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="/pengeluaran/{{ $expenditure->id_expenditure }}">
+                            <form method="POST" action="/hutang/{{ $debt->id_debt }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="keterangan_pengeluaran" class="col-sm-2 col-form-label">Keterangan
-                                        Pengeluaran</label>
+                                    <label for="keterangan_hutang" class="col-sm-2 col-form-label">Keterangan Hutang</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('keterangan_pengeluaran') is-invalid @enderror"
-                                            id="keterangan_pengeluaran" name="keterangan_pengeluaran" value="{{ $expenditure->keterangan_pengeluaran }}">
-                                        @error('keterangan_pengeluaran')
+                                            class="form-control @error('keterangan_hutang') is-invalid @enderror"
+                                            id="keterangan_hutang" name="keterangan_hutang"
+                                            value="{{ $debt->keterangan_hutang }}">
+                                        @error('keterangan_hutang')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -38,13 +38,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="jumlah_pengeluaran" class="col-sm-2 col-form-label">Jumlah
-                                        Pengeluaran</label>
+                                    <label for="jumlah_hutang" class="col-sm-2 col-form-label">Jumlah Hutang</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('jumlah_pengeluaran') is-invalid @enderror"
-                                            id="jumlah_pengeluaran" name="jumlah_pengeluaran" value="{{ $expenditure->jumlah_pengeluaran }}">
-                                        @error('jumlah_pengeluaran')
+                                            class="form-control @error('jumlah_hutang') is-invalid @enderror id="jumlah_hutang"
+                                            name="jumlah_hutang" value="{{ $debt->jumlah_hutang }}">
+                                        @error('jumlah_hutang')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -52,9 +51,15 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="tanggal" class="col-sm-2 col-form-label">Tanggal Hutang</label>
                                     <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-info">UBAH</button>
-                                        <a class="btn btn-danger" href="{{ url('/pengeluaran') }}">BATAL</a>
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-info">TAMBAH</button>
+                                        <a class="btn btn-danger" href="{{ url('/hutang') }}">BATAL</a>
                                     </div>
                                 </div>
 

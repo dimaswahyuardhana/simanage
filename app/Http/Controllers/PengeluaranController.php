@@ -68,9 +68,9 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_expenditure)
     {
-        $expenditure['expenditure'] = Expenditure::find($id);
+        $expenditure['expenditure'] = Expenditure::find($id_expenditure);
         return view('admin.pengeluaran.edit', $expenditure);
     }
 
@@ -81,7 +81,7 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_expenditure)
     {
         $validated = $request->validate([
             'KeteranganPengeluaran' => 'required|string|max:256',
@@ -93,7 +93,7 @@ class PengeluaranController extends Controller
             'JumlahPengeluaran.max' => 'Jumlah Pengeluaran maksimal diisi dengan 12 digit',
         ]);
 
-        Expenditure::where('id', $id)->update($validated);
+        Expenditure::where('id_expenditure', $id_expenditure)->update($validated);
         return redirect('/pengeluaran');
     }
 
@@ -103,9 +103,9 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_expenditure)
     {
-        Expenditure::destroy(($id));
+        Expenditure::destroy(($id_expenditure));
         return redirect('/pengeluaran');
     }
 }

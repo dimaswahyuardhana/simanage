@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FinancialStatement extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_financial_statement';
 }

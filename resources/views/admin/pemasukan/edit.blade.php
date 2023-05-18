@@ -20,16 +20,16 @@
                             <h5 class="card-title">TAMBAH DATA PEMASUKAN </h5>
 
                             <!-- General Form Elements -->
-                            <form method="POST" action="/pemasukan/{{ $income->id }}">
+                            <form method="POST" action="/pemasukan/{{ $income->id_income }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="SumberPendapatan" class="col-sm-2 col-form-label">Sumber Pendapatan</label>
+                                    <label for="sumber_pemasukan" class="col-sm-2 col-form-label">Sumber Pendapatan</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('SumberPendapatan') is-invalid @enderror"
-                                            id="SumberPendapatan" name="SumberPendapatan" value="{{ $income->SumberPendapatan }}">
-                                        @error('SumberPendapatan')
+                                            class="form-control @error('sumber_pemasukan') is-invalid @enderror"
+                                            id="sumber_pemasukan" name="sumber_pemasukan" value="{{ $income->sumber_pemasukan }}">
+                                        @error('sumber_pemasukan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -37,12 +37,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="JumlahPemasukan" class="col-sm-2 col-form-label">Jumlah Pemasukan</label>
+                                    <label for="jumlah_pemasukan" class="col-sm-2 col-form-label">Jumlah Pemasukan</label>
                                     <div class="col-sm-10">
                                         <input type="text"
-                                            class="form-control @error('JumlahPemasukan') is-invalid @enderror"
-                                            id="JumlahPemasukan" name="JumlahPemasukan" value="{{ $income->JumlahPemasukan }}">
-                                        @error('JumlahPemasukan')
+                                            class="form-control @error('jumlah_pemasukan') is-invalid @enderror"
+                                            id="jumlah_pemasukan" name="jumlah_pemasukan" value="{{ $income->jumlah_pemasukan }}">
+                                        @error('jumlah_pemasukan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

@@ -3,11 +3,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>PENGELUARAN</h1>
+            <h1>KEUANGAN</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Pengeluaran</li>
+                    <li class="breadcrumb-item active">Keuangan</li>
                 </ol>
             </nav>
         </div>
@@ -18,10 +18,9 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Tabel Pengeluaran</h5>
-                            <a href="{{ url('/pengeluaran/add') }}">
-                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> TAMBAH
-                                    DATA</button>
+                            <h5 class="card-title">Tabel Keuangan</h5>
+                            <a href="{{ url('/keuangan/add') }}">
+                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> Tambah Data</button>
                             </a>
                             <br>
 
@@ -29,23 +28,27 @@
                             <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr class>
-                                        <th scope="col">NO.</th>
-                                        <th scope="col">KETERANGAN PENGELUARAN</th>
-                                        <th scope="col">JUMLAH PENGELUARAN</th>
-                                        <th scope="col">AKSI</th>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Keterangan</th>
+                                        <th scope="col">Jumlah</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($expenditures as $item)
+                                    @foreach ($data as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->keterangan_pengeluaran }}</td>
-                                            <td>Rp{{ $item->jumlah_pengeluaran }}</td>
+                                            <td>{{ $item->keterangan }}</td>
+                                            <td>{{ $item->jumlah_uang }}</td>
+                                            <td>{{ $item->category->kategori }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->updated_at)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}</td>
                                             <td>
-                                                <a href="/pengeluaran/{{ $item->id_expenditure }}/edit"
+                                                <a href="/keuangan/{{ $item->id_finance }}/edit"
                                                     class="btn btn-xs btn-warning"><i
                                                         class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/pengeluaran/{{ $item->id_expenditure }}/delete"
+                                                <a href="/keuangan/{{ $item->id_finance }}/delete"
                                                     class="btn btn-xs btn-danger"
                                                     onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
                                             </td>

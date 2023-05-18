@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Expenditure extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_expenditure';
     protected $fillable = [
-        'KeteranganPengeluaran',
-        'JumlahPengeluaran'
+        'keterangan_pengeluaran',
+        'jumlah_pengeluaran'
     ];
 
-    public function expenditures()
-    {
-        //
-    }
+    // public function expenditures()
+    // {
+    //     return $this->hasMany(Monthly::class);
+    // }
 }
