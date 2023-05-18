@@ -43,7 +43,7 @@
                                             <td>{{ $item->keterangan }}</td>
                                             <td>{{ $item->jumlah_uang }}</td>
                                             <td>{{ $item->category->kategori }}</td>
-                                            <td>{{ $item->updated_at }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->updated_at)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}</td>
                                             <td>
                                                 <a href="/keuangan/{{ $item->id_finance }}/edit"
                                                     class="btn btn-xs btn-warning"><i
