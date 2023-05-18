@@ -113,8 +113,9 @@ class FinanceController extends Controller
      * @param  \App\Models\Finance  $finance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Finance $finance)
+    public function destroy($id_finance)
     {
-        //
+        Finance::destroy($id_finance);
+        return redirect('/keuangan');
     }
 }

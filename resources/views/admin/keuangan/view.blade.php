@@ -42,7 +42,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>{{ $item->jumlah_uang }}</td>
-                                            <td>{{ $item->category->id_kategori }}</td>
+                                            <td>{{ $item->category->kategori }}</td>
                                             <td>{{ $item->updated_at }}</td>
                                             <td>
                                                 <a href="/keuangan/{{ $item->id_finance }}/edit"

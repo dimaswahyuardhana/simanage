@@ -10,10 +10,6 @@ class Category extends Model
     use HasFactory;
 
     protected $primaryKey = 'id_kategori';
-    protected $fillable = [
-        'id_kategori',
-        'kategori'
-    ];
 
     public function finances()
     {

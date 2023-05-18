@@ -14,7 +14,6 @@ class Finance extends Model
     protected $fillable = [
         'keterangan',
         'jumlah_uang',
-        'kategori',
         'id_kategori'
     ];
 

@@ -68,7 +68,7 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-info">Simpan</button>
-                                        <a class="btn btn-danger" href="{{ url('/pemasukan') }}">Batal</a>
+                                        <a class="btn btn-danger" href="{{ url('/keuangan') }}">Batal</a>
                                     </div>
                                 </div>
 
