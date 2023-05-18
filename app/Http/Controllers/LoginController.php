@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\company;
-use Faker\Provider\ar_EG\Company as Ar_EGCompany;
+use App\Models\role;
 
 class LoginController extends Controller
 {
@@ -24,7 +24,9 @@ class LoginController extends Controller
     }
 
     public function registrasiAdmin(Request $request){
-        $id_role = 1;
+        $id_role = role::select('id_role')
+                        ->where('roles','Admin')
+                        ->get();
         $idCompany = Str::random(1).uniqid();
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
@@ -40,7 +42,7 @@ class LoginController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'id_company' => $idCompany,
-            'id_role'=> $id_role,
+            'id_role'=> $id_role[0]->id_role,
             'password' => $request['password']
         ]);
 
@@ -48,7 +50,9 @@ class LoginController extends Controller
     }
 
     public function registrasiEmployee(Request $request){
-        $id_role = 2;
+        $id_role = role::select('id_role')
+                    ->where('roles','Karyawan')
+                    ->get();
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'max:100', 'email', 'unique:users,email'],
@@ -59,7 +63,7 @@ class LoginController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'id_company' => $request['id_company'],
-            'id_role'=> $id_role,
+            'id_role'=> $id_role[0]->id_role,
             'password' => $request['password']
         ]);
 
