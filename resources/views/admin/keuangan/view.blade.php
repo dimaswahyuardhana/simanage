@@ -20,7 +20,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Tabel Keuangan</h5>
                             <a href="{{ url('/keuangan/add') }}">
-                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> Tambah Data</button>
+                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> Tambah
+                                    Data</button>
                             </a>
                             <br>
 
@@ -43,7 +44,8 @@
                                             <td>{{ $item->keterangan }}</td>
                                             <td>{{ $item->jumlah_uang }}</td>
                                             <td>{{ $item->category->kategori }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item->updated_at)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->updated_at)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}
+                                            </td>
                                             <td>
                                                 <a href="/keuangan/{{ $item->id_finance }}/edit"
                                                     class="btn btn-xs btn-warning"><i
@@ -54,6 +56,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <th colspan="2" style="text-align: center">Total</th>
+                                        <th>{{ $totalUang }}</th>
+                                        <td colspan="3"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->

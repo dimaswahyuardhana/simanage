@@ -18,7 +18,21 @@ class FinanceController extends Controller
         $no = 1;
         $data = Finance::with('category')->get();
 
-        return view('admin.keuangan.view', compact('no', 'data'));
+        $totalPemasukan = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'pemasukan');
+        })->sum('jumlah_uang');
+
+        $totalPengeluaran = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'pengeluaran');
+        })->sum('jumlah_uang');
+
+        $totalHutang = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'hutang');
+        })->sum('jumlah_uang');
+
+        $totalUang = $totalPemasukan - $totalPengeluaran - $totalHutang;
+
+        return view('admin.keuangan.view', compact('no', 'data', 'totalUang'));
     }
 
     /**
