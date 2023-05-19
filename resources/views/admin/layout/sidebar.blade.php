@@ -10,34 +10,6 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/keuangan') }}">
-          <i class="bi bi-box-arrow-in-up"></i>
-          <span>Keuangan</span>
-        </a>
-      </li>
-
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/pemasukan') }}">
-          <i class="bi bi-box-arrow-in-up"></i>
-          <span>Pemasukan</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/pengeluaran') }}">
-          <i class="bi-box-arrow-down"></i>
-          <span>Pengeluaran</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/hutang') }}">
-          <i class="bi bi-layout-text-window-reverse"></i>
-          <span>Data Hutang</span>
-        </a>
-      </li> --}}
-
-      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/karyawan') }}">
           <i class="bi bi-newspaper"></i>
           <span>Data Karyawan</span>
@@ -45,9 +17,9 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/bulanan') }}">
-          <i class="bi bi-layout-text-window-reverse"></i>
-          <span>Laporan Bulanan</span>
+        <a class="nav-link collapsed" href="{{ url('/keuangan') }}">
+          <i class="bi bi-box-arrow-in-up"></i>
+          <span>Keuangan</span>
         </a>
       </li>
 
