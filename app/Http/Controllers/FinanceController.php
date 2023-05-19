@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Finance;
 use App\Models\FinancialStatement;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class FinanceController extends Controller
 {
@@ -173,7 +174,7 @@ class FinanceController extends Controller
             'total_pengeluaran' => $total_pengeluaran,
             'total_hutang' => $total_hutang,
             'laba' => $laba,
-            'tanggal' => now()->toDateString()
+            'tanggal' => now()
         ]);
 
         // Menghapus data yang telah diarsipkan dari tabel finances
@@ -181,6 +182,6 @@ class FinanceController extends Controller
             $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
         })->delete();
 
-        return redirect('/keuangan')->with('success', 'Data berhasil di Arsipkan.');
+        return redirect('/laporan')->with('success', 'Data berhasil di Arsipkan.');
     }
 }

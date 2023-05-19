@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('total_pengeluaran');
             $table->bigInteger('total_hutang');
             $table->bigInteger('laba');
-            $table->date('tanggal');
+            $table->datetime('tanggal');
             $table->timestamps();
         });
     }

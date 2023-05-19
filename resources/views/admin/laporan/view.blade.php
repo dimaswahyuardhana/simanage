@@ -37,11 +37,11 @@
                                 <tbody>
                                     @foreach ($data as $key => $item)
                                         <tr>
-                                            <th>{{ $no++ }}</th>
+                                            <th>{{ $no++ }}.</th>
                                             <td>{{ $item->total_pemasukan }}</td>
                                             <td>{{ $item->total_pengeluaran }}</td>
                                             <td>{{ $item->total_hutang }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item->tanggal)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}
+                                            <td>{{ \Carbon\Carbon::parse($item->tanggal)->locale('id')->isoFormat('LLL') }}
                                             </td>
                                             <td>{{ $item->laba }}</td>
                                         </tr>
