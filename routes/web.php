@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BulananController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -100,11 +101,8 @@ Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 // login
 Route::get('/login', [LoginController::class, 'index']);
 
-// laporan bulanan
-Route::get('/bulanan', [BulananController::class, 'index']);
-
 // laporan keuangan
-Route::get('/laporan', [LaporanController::class, 'index']);
+Route::get('/laporan', [FinancialStatementController::class, 'index']);
 
 // register admin
 Route::get('/register/admin', [LoginController::class, 'indexRegisAdmin']);

@@ -39,7 +39,7 @@
                             <!-- Default Table -->
                             <table class="table" style="vertical-align: middle">
                                 <thead>
-                                    <tr class>
+                                    <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Jumlah Uang</th>

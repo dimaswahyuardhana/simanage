@@ -14,7 +14,10 @@ class FinancialStatementController extends Controller
      */
     public function index()
     {
-        //
+        $no = 1;
+        $data = FinancialStatement::all();
+
+        return view('admin.laporan.view', compact('no', 'data'));
     }
 
     /**

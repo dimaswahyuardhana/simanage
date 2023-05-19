@@ -24,20 +24,28 @@
                             <!-- Default Table -->
                             <table class="table">
                                 <thead>
-                                    <tr class>
-                                        <th scope="col">NO</th>
-                                        <th scope="col">PEMASUKAN</th>
-                                        <th scope="col">PENGELUARAN</th>
-                                        <th scope="col">HUTANG</th>
-                                        <th scope="col">TANGGAL LAPORAN</th>
-                                        <th scope="col">LABA</th>
-                                        <th scope="col">DETAIL</th>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Pemasukan</th>
+                                        <th scope="col">Pengeluaran</th>
+                                        <th scope="col">Hutang</th>
+                                        <th scope="col">Tanggal Masuk</th>
+                                        <th scope="col">Laba</th>
+                                        {{-- <th scope="col">Detail</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($data as $key => $item)
                                         <tr>
-
+                                            <th>{{ $no++ }}</th>
+                                            <td>{{ $item->total_pemasukan }}</td>
+                                            <td>{{ $item->total_pengeluaran }}</td>
+                                            <td>{{ $item->total_hutang }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tanggal)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}
+                                            </td>
+                                            <td>{{ $item->laba }}</td>
                                         </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Default Table Example -->

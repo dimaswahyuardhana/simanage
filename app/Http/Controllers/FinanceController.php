@@ -181,6 +181,6 @@ class FinanceController extends Controller
             $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
         })->delete();
 
-        return redirect('/keuangan')->with('success', 'Data berhasil diarsipkan.');
+        return redirect('/keuangan')->with('success', 'Data berhasil di Arsipkan.');
     }
 }
