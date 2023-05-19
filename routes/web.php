@@ -58,6 +58,8 @@ Route::put('/keuangan/{id_finance}', [FinanceController::class, 'update']);
 // delete keuangan
 Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
 
+Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
+
 // // pemasukan
 // Route::get('/pemasukan', [PemasukanController::class, 'index']);
 // // add pemasukan

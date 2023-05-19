@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('financial_statements', function (Blueprint $table) {
             $table->id('id_financial_statement');
-            $table->decimal('total_pemasukan', 10, 2);
-            $table->decimal('total_pengeluaran', 10, 2);
-            $table->decimal('total_hutang', 10, 2);
-            $table->decimal('laba', 10, 2);
-            $table->date('tanggal_laporan');
-            $table->string('id_company');
+            $table->bigInteger('total_pemasukan');
+            $table->bigInteger('total_pengeluaran');
+            $table->bigInteger('total_hutang');
+            $table->bigInteger('laba');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('financial_statements');
+        Schema::dropIfExists('financial_statements');
     }
 };

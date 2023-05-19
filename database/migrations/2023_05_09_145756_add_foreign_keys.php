@@ -18,21 +18,21 @@ return new class extends Migration
             $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::table('incomes', function (Blueprint $table) {
-            $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        });
+        // Schema::table('incomes', function (Blueprint $table) {
+        //     $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
 
-        Schema::table('expenditures', function (Blueprint $table) {
-            $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        });
+        // Schema::table('expenditures', function (Blueprint $table) {
+        //     $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
 
-        Schema::table('debts', function (Blueprint $table) {
-            $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        });
+        // Schema::table('debts', function (Blueprint $table) {
+        //     $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
 
-        Schema::table('financial_statements', function (Blueprint $table) {
-            $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        });
+        // Schema::table('financial_statements', function (Blueprint $table) {
+        //     $table->foreign('id_company')->references('id_company')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

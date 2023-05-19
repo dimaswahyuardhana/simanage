@@ -19,10 +19,21 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabel Keuangan</h5>
-                            <a href="{{ url('/keuangan/add') }}">
-                                <button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i> Tambah
-                                    Data</button>
-                            </a>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <a href="{{ url('/keuangan/add') }}">
+                                        <button type="button" class="btn btn-info">
+                                            <i class="fa-solid fa-plus"></i> Tambah Data
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success" id="arsipkanDataBtn"
+                                        data-url="{{ route('keuangan.arsipkan') }}">
+                                        Arsipkan Data <i class="fa-regular fa-folder-open"></i>
+                                    </button>
+                                </div>
+                            </div>
                             <br>
 
                             <!-- Default Table -->
@@ -71,4 +82,18 @@
             </div>
         </section>
     </main>
+    <script>
+        document.getElementById('arsipkanDataBtn').addEventListener('click', function() {
+            var url = this.getAttribute('data-url');
+            axios.post(url)
+                .then(function(response) {
+                    // Handle response jika diperlukan
+                    window.location.reload(); // Contoh: refresh halaman setelah pengarsipan berhasil
+                })
+                .catch(function(error) {
+                    // Handle error jika diperlukan
+                    console.error(error);
+                });
+        });
+    </script>
 @endsection

@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class FinancialStatement extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_financial_statement';
+
+    protected $table = 'financial_statements';
+
+    protected $fillable = [
+        'id_finance',
+        'total_pemasukan',
+        'total_pengeluaran',
+        'total_hutang',
+        'laba',
+        'tanggal',
+    ];
 }

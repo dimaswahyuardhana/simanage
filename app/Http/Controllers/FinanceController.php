@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Finance;
+use App\Models\FinancialStatement;
 use Illuminate\Http\Request;
 
 class FinanceController extends Controller
@@ -147,5 +148,39 @@ class FinanceController extends Controller
     {
         Finance::destroy($id_finance);
         return redirect('/keuangan')->with('success', 'Data berhasil di Hapus');
+    }
+
+    public function arsipkan(Request $request)
+    {
+        // Mengambil data dari tabel finances
+        $total_pemasukan = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'pemasukan');
+        })->sum('jumlah_uang');
+
+        $total_pengeluaran = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'pengeluaran');
+        })->sum('jumlah_uang');
+
+        $total_hutang = Finance::whereHas('category', function ($query) {
+            $query->where('kategori', 'hutang');
+        })->sum('jumlah_uang');
+
+        $laba = $total_pemasukan - $total_pengeluaran - $total_hutang;
+
+        // Memasukkan data ke dalam tabel financial_statements
+        FinancialStatement::create([
+            'total_pemasukan' => $total_pemasukan,
+            'total_pengeluaran' => $total_pengeluaran,
+            'total_hutang' => $total_hutang,
+            'laba' => $laba,
+            'tanggal' => now()->toDateString()
+        ]);
+
+        // Menghapus data yang telah diarsipkan dari tabel finances
+        Finance::whereHas('category', function ($query) {
+            $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
+        })->delete();
+
+        return redirect('/keuangan')->with('success', 'Data berhasil diarsipkan.');
     }
 }
