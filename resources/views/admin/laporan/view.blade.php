@@ -22,15 +22,15 @@
                             <br>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Pemasukan</th>
                                         <th scope="col">Pengeluaran</th>
                                         <th scope="col">Hutang</th>
-                                        <th scope="col">Tanggal Masuk</th>
                                         <th scope="col">Laba</th>
+                                        <th scope="col">Tanggal Masuk</th>
                                         {{-- <th scope="col">Detail</th> --}}
                                     </tr>
                                 </thead>
@@ -38,12 +38,12 @@
                                     @foreach ($data as $key => $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->total_pemasukan }}</td>
-                                            <td>{{ $item->total_pengeluaran }}</td>
-                                            <td>{{ $item->total_hutang }}</td>
+                                            <td>{{ $formatted_total_pemasukan[$key] }}</td>
+                                            <td>{{ $formatted_total_pengeluaran[$key] }}</td>
+                                            <td>{{ $formatted_total_hutang[$key] }}</td>
+                                            <td>{{ $formatted_laba[$key] }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->tanggal)->locale('id')->isoFormat('LLL') }}
                                             </td>
-                                            <td>{{ $item->laba }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

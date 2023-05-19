@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Finance;
 use App\Models\FinancialStatement;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class FinanceController extends Controller
 {
@@ -21,7 +20,6 @@ class FinanceController extends Controller
         $data = Finance::with('category')->get();
 
         $jumlah_uang = Finance::select('jumlah_uang')->get();
-
         $formatted_jumlah_uang = [];
         foreach ($jumlah_uang as $jumlah_uang) {
             $formatted_jumlah_uang[] = $this->formatMoney($jumlah_uang->jumlah_uang);

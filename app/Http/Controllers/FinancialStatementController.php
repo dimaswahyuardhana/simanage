@@ -17,7 +17,38 @@ class FinancialStatementController extends Controller
         $no = 1;
         $data = FinancialStatement::all();
 
-        return view('admin.laporan.view', compact('no', 'data'));
+        $total_pemasukan = FinancialStatement::select('total_pemasukan')->get();
+        $formatted_total_pemasukan = [];
+        foreach ($total_pemasukan as $total_pemasukan) {
+            $formatted_total_pemasukan[] = $this->formatMoney($total_pemasukan->total_pemasukan);
+        }
+
+        $total_pengeluaran = FinancialStatement::select('total_pengeluaran')->get();
+        $formatted_total_pengeluaran = [];
+        foreach ($total_pengeluaran as $total_pengeluaran) {
+            $formatted_total_pengeluaran[] = $this->formatMoney($total_pengeluaran->total_pengeluaran);
+        }
+
+        $total_hutang = FinancialStatement::select('total_hutang')->get();
+        $formatted_total_hutang = [];
+        foreach ($total_hutang as $total_hutang) {
+            $formatted_total_hutang[] = $this->formatMoney($total_hutang->total_hutang);
+        }
+
+        $laba = FinancialStatement::select('laba')->get();
+        $formatted_laba = [];
+        foreach ($laba as $laba) {
+            $formatted_laba[] = $this->formatMoney($laba->laba);
+        }
+
+        return view('admin.laporan.view', compact('no', 'data', 'formatted_total_pemasukan', 'formatted_total_pengeluaran','formatted_total_hutang', 'formatted_laba'));
+    }
+
+    public function formatMoney($amount)
+    {
+        $formattedAmount = 'Rp ' . number_format($amount, 2, ',', '.');
+
+        return $formattedAmount;
     }
 
     /**
