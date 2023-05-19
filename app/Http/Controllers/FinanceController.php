@@ -18,21 +18,37 @@ class FinanceController extends Controller
         $no = 1;
         $data = Finance::with('category')->get();
 
-        $totalPemasukan = Finance::whereHas('category', function ($query) {
+        $jumlah_uang = Finance::select('jumlah_uang')->get();
+
+        $formatted_jumlah_uang = [];
+        foreach ($jumlah_uang as $jumlah_uang) {
+            $formatted_jumlah_uang[] = $this->formatMoney($jumlah_uang->jumlah_uang);
+        }
+
+        $total_pemasukan = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pemasukan');
         })->sum('jumlah_uang');
 
-        $totalPengeluaran = Finance::whereHas('category', function ($query) {
+        $total_pengeluaran = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pengeluaran');
         })->sum('jumlah_uang');
 
-        $totalHutang = Finance::whereHas('category', function ($query) {
+        $total_hutang = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'hutang');
         })->sum('jumlah_uang');
 
-        $totalUang = $totalPemasukan - $totalPengeluaran - $totalHutang;
+        $total_uang = $total_pemasukan - $total_pengeluaran - $total_hutang;
 
-        return view('admin.keuangan.view', compact('no', 'data', 'totalUang'));
+        $formatted_total_uang = $this->formatMoney($total_uang);
+
+        return view('admin.keuangan.view', compact('no', 'data', 'formatted_jumlah_uang', 'formatted_total_uang'));
+    }
+
+    public function formatMoney($amount)
+    {
+        $formattedAmount = 'Rp ' . number_format($amount, 2, ',', '.');
+
+        return $formattedAmount;
     }
 
     /**

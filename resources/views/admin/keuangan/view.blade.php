@@ -31,18 +31,18 @@
                                     <tr class>
                                         <th scope="col">No.</th>
                                         <th scope="col">Keterangan</th>
-                                        <th scope="col">Jumlah</th>
+                                        <th scope="col">Jumlah Uang</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $item)
+                                    @foreach ($data as $key => $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->keterangan }}</td>
-                                            <td>{{ $item->jumlah_uang }}</td>
+                                            <td>{{ $formatted_jumlah_uang[$key] }}</td>
                                             <td>{{ $item->category->kategori }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->updated_at)->tz('Asia/Jakarta')->locale('id')->isoFormat('LLL') }}
                                             </td>
@@ -57,8 +57,8 @@
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <th colspan="2" style="text-align: center">Total</th>
-                                        <th>{{ $totalUang }}</th>
+                                        <th colspan="2" style="text-align: center">Total Uang</th>
+                                        <th>{{ $formatted_total_uang }}</th>
                                         <td colspan="3"></td>
                                     </tr>
                                 </tbody>
