@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\company;
 use Faker\Provider\ar_EG\Company as Ar_EGCompany;
@@ -43,7 +45,7 @@ class LoginController extends Controller
             'email' => $request['email'],
             'id_company' => $idCompany,
             'id_role'=> $id_role,
-            'password' => $request['password']
+            'password' => Hash::make($request['password'])
         ]);
 
         return redirect('/login');
@@ -62,8 +64,37 @@ class LoginController extends Controller
             'email' => $request['email'],
             'id_company' => $request['id_company'],
             'id_role'=> $id_role,
-            'password' => $request['password']
+            'password' => Hash::make($request['password'])
         ]);
+
+        return redirect('/login');
+    }
+
+    public function login(Request $request){
+        //dd($request);
+        $credentials = $request->validate([
+            'email' => ['required', 'string', 'max:100', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($credentials)){
+            //dd(Auth::user());
+            $request->session()->regenerate();
+            return redirect()->intended('/admin');
+        }
+
+        return back()->withErrors([
+            'email' => 'Email and Password invalid'
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return redirect('/login');
     }

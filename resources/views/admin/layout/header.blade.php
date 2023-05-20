@@ -74,9 +74,32 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
+        @auth
+        <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="dropdown-item d-flex align-items-center">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </form>
+
+            </li>
+
+          </ul>
+        </li>
+        @endauth
+        @guest
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/login') }}">
             <span class="d-none d-md-block me-5">LOGIN</span>
         </a>
+        @endguest
 
 
       </ul>
