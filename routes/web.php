@@ -54,10 +54,9 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 // admin
-// Route::middleware(['loginAs'])->group(function () {
+Route::middleware(['loginAs'])->group(function () {
     Route::get('/admin', function () {
-        return view('dashboardadmin');
-    });
+        return view('dashboardadmin');});
 
     // keuangan
     Route::get('/keuangan', [FinanceController::class, 'index']);
@@ -78,10 +77,18 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
     // laporan keuangan
     Route::get('/laporan', [FinancialStatementController::class, 'index']);
-// });
+});
 
 // employee
-Route::middleware(['loginAs'])->group(function () {
+Route::middleware(['loginAsEmployee'])->group(function () {
+    Route::get('/manajemen', function () {
+        return view('landingpage.section.manajemen');
+    });
+
+    Route::get('/absen', function () {
+        return view('landingpage.section.absensi');
+    });
+
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

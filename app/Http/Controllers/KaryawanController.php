@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class KaryawanController extends Controller
 {
@@ -13,6 +15,12 @@ class KaryawanController extends Controller
      */
     public function index()
     {
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::select('*')
+                    ->where('id_role','!=',1)
+                    ->where('id_company',$perusahaan)
+                    ->get();
+        // dd($dataKaryawan);
         return view('admin.karyawan.create');
     }
 

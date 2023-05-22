@@ -78,11 +78,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)){
-            //dd(Auth::user());
-            $request->session()->regenerate();
-            return redirect()->intended('/admin');
+            if(Auth::user()->id_role == 1){
+                $request->session()->regenerate();
+                return redirect()->intended('/admin');
+            }
+            if(Auth::user()->id_role == 2){
+                $request->session()->regenerate();
+                return redirect()->intended('/manajemen');
+            }
         }
-
         return back()->withErrors([
             'email' => 'Email and Password invalid'
         ])->onlyInput('email');
