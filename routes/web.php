@@ -23,15 +23,6 @@ use App\Http\Middleware\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-
-Route::get('/admin', function () {
-    return view('dashboardadmin');
-});
 
 Route::get('/', function () {
     return view('dashboardlanding');
@@ -48,67 +39,6 @@ Route::get('/manajemen', function () {
 Route::get('/absen', function () {
     return view('landingpage.section.absensi');
 });
-// Route::group(['middleware' => 'id_role:1'], function ()  {
-// keuangan
-Route::get('/keuangan', [FinanceController::class, 'index']);
-// add keuangan
-Route::get('/keuangan/add', [FinanceController::class, 'create']);
-Route::post('/keuangan', [FinanceController::class, 'store']);
-// edit keuangan
-Route::get('/keuangan/{id_finance}/edit', [FinanceController::class, 'edit']);
-Route::put('/keuangan/{id_finance}', [FinanceController::class, 'update']);
-// delete keuangan
-Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
-
-Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
-
-// // pemasukan
-// Route::get('/pemasukan', [PemasukanController::class, 'index']);
-// // add pemasukan
-// Route::get('/pemasukan/add', [PemasukanController::class, 'create']);
-// Route::post('/pemasukan', [PemasukanController::class, 'store']);
-// // edit pemasukan
-// Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit']);
-// Route::put('/pemasukan/{id}', [PemasukanController::class, 'update']);
-// // delete pemasukan
-// Route::get('pemasukan/{id}/delete', [PemasukanController::class, 'destroy']);
-
-// // pengeluaran
-// Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
-// // add pengeluaran
-// Route::get('/pengeluaran/add', [PengeluaranController::class, 'create']);
-// Route::post('/pengeluaran', [PengeluaranController::class, 'store']);
-// // edit pengeluaran
-// Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit']);
-// Route::put('/pengeluaran/{id}', [PengeluaranController::class, 'update']);
-// // delete pengeluaran
-// Route::get('pengeluaran/{id}/delete', [PengeluaranController::class, 'destroy']);
-
-// // hutang
-// Route::get('/hutang', [HutangController::class, 'index']);
-// // add hutang
-// Route::get('/hutang/add', [HutangController::class, 'create']);
-// Route::post('/hutang', [HutangController::class, 'store']);
-// // edit hutang
-// Route::get('/hutang/{id}/edit', [HutangController::class, 'edit']);
-// Route::put('/hutang/{id}', [HutangController::class, 'update']);
-// // delete hutang
-// Route::get('hutang/{id}/delete', [HutangController::class, 'destroy']);
-
-// karyawan
-Route::get('/karyawan', [KaryawanController::class, 'index']);
-Route::get('/karyawan/add', [KaryawanController::class, 'create']);
-
-
-
-// laporan keuangan
-Route::get('/laporan', [FinancialStatementController::class, 'index']);
-// });
-
-// login
-Route::get('/login', [LoginController::class, 'index']);
-
-
 
 // register admin
 Route::get('/register/admin', [LoginController::class, 'indexRegisAdmin']);
@@ -118,14 +48,40 @@ Route::post('/register/admin', [LoginController::class, 'registrasiAdmin']);
 Route::get('/register/Employee', [LoginController::class, 'indexRegisEmployee']);
 Route::post('/register/Employee', [LoginController::class, 'registrasiEmployee']);
 
+// login
+Route::get('/login', [LoginController::class, 'index']);
+
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-// Route::middleware(['loginAs'])-> group(function (){
-//     // Route::post('/logins', [LoginController::class, 'login'])->name('login');
-//     Route::get('/keuangan', [FinanceController::class, 'index']);
+
+// admin
+// Route::middleware(['loginAs'])->group(function () {
+    Route::get('/admin', function () {
+        return view('dashboardadmin');
+    });
+
+    // keuangan
+    Route::get('/keuangan', [FinanceController::class, 'index']);
+    // add keuangan
+    Route::get('/keuangan/add', [FinanceController::class, 'create']);
+    Route::post('/keuangan', [FinanceController::class, 'store']);
+    // edit keuangan
+    Route::get('/keuangan/{id_finance}/edit', [FinanceController::class, 'edit']);
+    Route::put('/keuangan/{id_finance}', [FinanceController::class, 'update']);
+    // delete keuangan
+    Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
+
+    Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
+
+    // karyawan
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
+    Route::get('/karyawan/add', [KaryawanController::class, 'create']);
+
+    // laporan keuangan
+    Route::get('/laporan', [FinancialStatementController::class, 'index']);
 // });
+
+// employee
+Route::middleware(['loginAs'])->group(function () {
+});
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-
-
-//Route::get('/login', [AuthController::class, 'login'])->name('login');
-//Route::get('/register', [AuthController::class, 'register'])->name('register');

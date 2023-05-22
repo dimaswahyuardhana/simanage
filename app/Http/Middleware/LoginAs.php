@@ -16,16 +16,19 @@ class LoginAs
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next) //, $loginAs
+    public function handle(Request $request, Closure $next) // $loginAs
     {
         // dd(Auth::user());
         if (auth()->user()->id_role==1 && auth()->check()){
             dd('admin');
-        }
+            return $next($request);
+        } else redirect('/login');
+
 
         if (auth()->user()->id_role==2 && auth()->check()){
             dd('employee');
-        }
+            return $next($request);
+        } else redirect('/login');
 
         // if (auth()->user()->loginAs == $loginAs && auth()->check()){
         //     if ($role == 'admin'){
@@ -37,6 +40,5 @@ class LoginAs
         // }
 
 
-        return $next($request);
     }
 }
