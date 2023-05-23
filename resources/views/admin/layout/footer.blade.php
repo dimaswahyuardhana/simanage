@@ -37,10 +37,40 @@
 
 </body>
 
+{{-- Script Toastr --}}
 <script>
     @if (Session::has('success'))
     toastr.success('{{ Session::get('success') }}');
     @endif
+</script>
+
+{{-- Script Axios --}}
+<script>
+    document.getElementById('arsipkanDataBtn').addEventListener('click', function() {
+        var url = this.getAttribute('data-url');
+        axios.post(url)
+            .then(function(response) {
+                // Handle response jika diperlukan
+                window.localStorage.setItem('notificationMessage', 'Data berhasil di Arsipkan.');
+                window.location.href = '/laporan';
+            })
+            .catch(function(error) {
+                // Handle error jika diperlukan
+                console.error(error);
+            });
+    });
+</script>
+<script>
+    // Mengambil pesan notifikasi dari localStorage
+    var notificationMessage = window.localStorage.getItem('notificationMessage');
+
+    // Menghapus pesan notifikasi dari localStorage setelah diambil
+    window.localStorage.removeItem('notificationMessage');
+
+    // Menampilkan notifikasi toastr jika ada pesan
+    if (notificationMessage) {
+        toastr.success(notificationMessage);
+    }
 </script>
 
 </html>

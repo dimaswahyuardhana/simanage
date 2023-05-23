@@ -179,7 +179,5 @@ class FinanceController extends Controller
         Finance::whereHas('category', function ($query) {
             $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
         })->delete();
-
-        return redirect('/laporan')->with('success', 'Data berhasil di Arsipkan.');
     }
 }

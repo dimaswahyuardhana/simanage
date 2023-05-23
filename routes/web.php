@@ -56,7 +56,11 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // admin
 Route::middleware(['loginAs'])->group(function () {
     Route::get('/admin', function () {
-        return view('dashboardadmin');});
+        return view('dashboardadmin');
+    });
+    // karyawan
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
+    Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 
     // keuangan
     Route::get('/keuangan', [FinanceController::class, 'index']);
@@ -68,12 +72,8 @@ Route::middleware(['loginAs'])->group(function () {
     Route::put('/keuangan/{id_finance}', [FinanceController::class, 'update']);
     // delete keuangan
     Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
-
+    // arsipkan keuangan
     Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
-
-    // karyawan
-    Route::get('/karyawan', [KaryawanController::class, 'index']);
-    Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 
     // laporan keuangan
     Route::get('/laporan', [FinancialStatementController::class, 'index']);
@@ -88,7 +88,6 @@ Route::middleware(['loginAsEmployee'])->group(function () {
     Route::get('/absen', function () {
         return view('landingpage.section.absensi');
     });
-
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

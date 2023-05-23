@@ -82,18 +82,4 @@
             </div>
         </section>
     </main>
-    <script>
-        document.getElementById('arsipkanDataBtn').addEventListener('click', function() {
-            var url = this.getAttribute('data-url');
-            axios.post(url)
-                .then(function(response) {
-                    // Handle response jika diperlukan
-                    window.location.reload(); // Contoh: refresh halaman setelah pengarsipan berhasil
-                })
-                .catch(function(error) {
-                    // Handle error jika diperlukan
-                    console.error(error);
-                });
-        });
-    </script>
 @endsection
