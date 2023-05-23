@@ -41,7 +41,7 @@
 
 </body>
 
-{{-- Script Toastr --}}
+{{-- Notification Toastr --}}
 <script>
     @if (Session::has('success'))
         toastr.success('{{ Session::get('success') }}');
@@ -51,7 +51,7 @@
     @endif
 </script>
 
-{{-- Script Axios --}}
+{{-- Button Axios --}}
 <script>
     document.getElementById('arsipkanDataBtn').addEventListener('click', function() {
         var url = this.getAttribute('data-url');
