@@ -184,9 +184,16 @@ class FinanceController extends Controller
                 $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
             })->delete();
 
-            return redirect('/laporan')->with('success', 'Data berhasil di Arsipkan.');
-        } else {
-            return redirect()->back()->with('error', 'Tidak ada Data yang dapat di Arsipkan.');
+            return response()->json([
+                'total_pemasukan' => $total_pemasukan,
+                'total_pengeluaran' => $total_pengeluaran,
+                'total_hutang' => $total_hutang
+            ]);
+            // return redirect('/laporan')->with('success', 'Data berhasil di Arsipkan.');
         }
+        // else {
+        //     return redirect()->back()->with('error', 'Tidak ada Data yang dapat di Arsipkan.');
+        //     return response()->json(['error' => 'Tidak ada Data yang dapat di Arsipkan.'], 400);
+        // }
     }
 }
