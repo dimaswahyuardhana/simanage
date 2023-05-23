@@ -51,27 +51,6 @@
     @endif
 </script>
 
-{{-- Button Axios --}}
-<script>
-    document.getElementById('arsipkanDataBtn').addEventListener('click', function() {
-        var url = this.getAttribute('data-url');
-        axios.post(url)
-            .then(function(response) {
-                // Handle response jika diperlukan
-                if (response.data.total_pemasukan || response.data.total_pengeluaran || response.data
-                    .total_hutang) {
-                    window.location.href = '/laporan';
-                    window.localStorage.setItem('notificationMessage', 'Data berhasil di Arsipkan.');
-                } else {
-                    throw new Error(toastr.error('Tidak ada Data yang dapat di Arsipkan.'));
-                }
-            })
-            .catch(function(error) {
-                // Handle error jika diperlukan
-                // console.error(error);
-            });
-    });
-</script>
 <script>
     // Mengambil pesan notifikasi dari localStorage
     var notificationMessage = window.localStorage.getItem('notificationMessage');
