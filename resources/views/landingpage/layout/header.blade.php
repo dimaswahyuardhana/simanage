@@ -15,5 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('landing/css/styles.css') }}" rel="stylesheet" />
+        {{-- Calendar --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dycalendarjs@1.2.1/css/dycalendar.css">
+        <link rel="stylesheet" href={{ asset('landing/css/calendar.css') }}>
     </head>
 

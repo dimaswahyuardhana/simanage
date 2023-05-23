@@ -8,6 +8,7 @@ use App\Http\Controllers\HutangController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BulananController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\LoginController;
@@ -88,6 +89,7 @@ Route::middleware(['loginAsEmployee'])->group(function () {
     Route::get('/absen', function () {
         return view('landingpage.section.absensi');
     });
+    Route::get('/absen', [CalendarController::class, 'index']);
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
