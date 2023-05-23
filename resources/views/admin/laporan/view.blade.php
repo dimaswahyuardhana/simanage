@@ -19,9 +19,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabel Keuangan</h5>
-                            <br>
-
-                            <!-- Default Table -->
                             <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>

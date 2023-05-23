@@ -166,18 +166,27 @@ class FinanceController extends Controller
 
         $laba = $total_pemasukan - $total_pengeluaran - $total_hutang;
 
-        // Memasukkan data ke dalam tabel financial_statements
-        FinancialStatement::create([
-            'total_pemasukan' => $total_pemasukan,
-            'total_pengeluaran' => $total_pengeluaran,
-            'total_hutang' => $total_hutang,
-            'laba' => $laba,
-            'tanggal' => now()
-        ]);
+        // Memeriksa apakah setidaknya satu data memiliki nilai
+        if ($total_pemasukan || $total_pengeluaran || $total_hutang) {
+            $laba = $total_pemasukan - $total_pengeluaran - $total_hutang;
 
-        // Menghapus data yang telah diarsipkan dari tabel finances
-        Finance::whereHas('category', function ($query) {
-            $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
-        })->delete();
+            // Memasukkan data ke dalam tabel financial_statements
+            FinancialStatement::create([
+                'total_pemasukan' => $total_pemasukan,
+                'total_pengeluaran' => $total_pengeluaran,
+                'total_hutang' => $total_hutang,
+                'laba' => $laba,
+                'tanggal' => now()
+            ]);
+
+            // Menghapus data yang telah diarsipkan dari tabel finances
+            Finance::whereHas('category', function ($query) {
+                $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
+            })->delete();
+
+            return redirect('/laporan')->with('success', 'Data berhasil di Arsipkan.');
+        } else {
+            return redirect()->back()->with('error', 'Tidak ada Data yang dapat di Arsipkan.');
+        }
     }
 }
