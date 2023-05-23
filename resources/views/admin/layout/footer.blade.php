@@ -68,7 +68,7 @@
             })
             .catch(function(error) {
                 // Handle error jika diperlukan
-                console.error(error);
+                // console.error(error);
             });
     });
 </script>
