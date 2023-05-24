@@ -145,9 +145,9 @@ table {
     border: 1px solid white;
 }
 
-body.background-dark {
+/* .box.background-dark {
     background: #181818;
-}
+} */
 
 .container_calendar.dark .dycalendar {
     background: #29292B;

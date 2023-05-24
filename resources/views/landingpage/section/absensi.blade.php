@@ -93,6 +93,9 @@
                             <span class="circle"></span>
                         </div>
                     </div>
+                    {{-- Calendar Script --}}
+                    <script src="https://cdn.jsdelivr.net/npm/dycalendarjs@1.2.1/js/dycalendar.js"></script>
+                    <script src="{{ asset('landing/js/scripts_calendar.js') }}"></script>
                 </div>
 
             </center>
