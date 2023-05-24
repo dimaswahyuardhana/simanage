@@ -19,7 +19,7 @@
             <!-- https://startbootstrap.com/solution/contact-forms-->
             <!-- to get an API token!-->
             <center>
-                <form action="#" method="#" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                {{-- <form action="#" method="#" id="contactForm" data-sb-form-api-token="API_TOKEN">
                     <div class="row align-items-stretch mb-5 col-md-6">
                         <div class="form-group ">
                             <label class="control-label " style="color: white" for="name">
@@ -82,17 +82,44 @@
                         <div class="text-center text-danger mb-3">Error sending message!</div>
                     </div>
 
-                </form>
+                </form> --}}
 
                 <div class="box">
                     <div class="container_calendar">
 
                         <div class="dycalendar" id="dycalendar"></div>
 
+                        <div class="mt-5">
+                            <form method="POST" action="{{ route('absent') }}" enctype="multipart/form-data">
+                                @csrf
+                                <label>
+                                    <input type="radio" name="status" value="hadir">
+                                    Hadir
+                                </label>
+                                <label>
+                                    <input type="radio" name="status" value="izin">
+                                    Izin
+                                </label>
+                                <label>
+                                    <input type="radio" name="status" value="sakit">
+                                    Sakit
+                                </label><br>
+                                <label>
+                                    Keterangan
+                                    <textarea name="keterangan"></textarea>
+                                </label>
+                                <br>
+                                <button class="btn btn-info mt-3">Submit</button>
+                            </form>
+
+                        </div>
+
                         <div class="toggle-btn">
                             <span class="circle"></span>
                         </div>
+
                     </div>
+
                     {{-- Calendar Script --}}
                     <script src="https://cdn.jsdelivr.net/npm/dycalendarjs@1.2.1/js/dycalendar.js"></script>
                     <script src="{{ asset('landing/js/scripts_calendar.js') }}"></script>

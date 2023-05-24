@@ -1,14 +1,9 @@
 <?php
 
+use App\Http\Controllers\AbsentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PemasukanController;
-use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\HutangController;
-use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BulananController;
-use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\LoginController;
@@ -89,7 +84,8 @@ Route::middleware(['loginAsEmployee'])->group(function () {
     Route::get('/absen', function () {
         return view('landingpage.section.absensi');
     });
-    Route::get('/absen', [CalendarController::class, 'index']);
+    Route::get('/absent', [AbsentController::class, 'index']);
+    Route::post('/absent', [AbsentController::class, 'absent'])->name('absent');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
