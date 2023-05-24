@@ -7,7 +7,7 @@
     box-sizing: border-box;
 } */
 
-.calendar {
+.box {
     background: #F5F8FF;
     display: flex;
     justify-content: center;
@@ -56,7 +56,7 @@ table {
     border-spacing: 15px;
 }
 
-.dycalendar-month-calendar {
+.dycalendar-month-container_calendar {
     font-size: 35px;
 }
 
@@ -133,13 +133,13 @@ table {
     color: black;
 }
 
-.calendar.dark .toggle-btn {
+.container_calendar.dark .toggle-btn {
     background: #29292B;
     border: 1px solid white;
     transition: all .2s ease;
 }
 
-.calendar.dark .toggle-btn .circle {
+.container_calendar.dark .toggle-btn .circle {
     left: 40px;
     background: #29292B;
     border: 1px solid white;
@@ -149,36 +149,36 @@ body.background-dark {
     background: #181818;
 }
 
-.calendar.dark .dycalendar {
+.container_calendar.dark .dycalendar {
     background: #29292B;
     color: white;
 }
 
-.calendar.dark .dycalendar table td:hover {
+.container_calendar.dark .dycalendar table td:hover {
     background: rgba(248, 248, 255, 0.1);
 }
 
-.calendar.dark .dycalendar-prev-next-btn.next-btn {
+.container_calendar.dark .dycalendar-prev-next-btn.next-btn {
     color: white;
 }
 
-.calendar.dark .dycalendar-prev-next-btn.prev-btn {
+.container_calendar.dark .dycalendar-prev-next-btn.prev-btn {
     color: white;
 }
 
-.calendar.dark .dycalendar-prev-next-btn.next-btn:hover {
+.container_calendar.dark .dycalendar-prev-next-btn.next-btn:hover {
     background: rgba(248, 248, 255, 0.1);
 }
 
-.calendar.dark .dycalendar-prev-next-btn.prev-btn:hover {
+.container_calendar.dark .dycalendar-prev-next-btn.prev-btn:hover {
     background: rgba(248, 248, 255, 0.1);
 }
 
-.calendar.dark .dycalendar .dycalendar-today-date:hover {
+.container_calendar.dark .dycalendar .dycalendar-today-date:hover {
     background: #5e94eb;
 }
 
-.calendar.dark .circle:before {
+.container_calendar.dark .circle:before {
     content: '\f185';
     font-family: fontAwesome;
     font-size: 30px;

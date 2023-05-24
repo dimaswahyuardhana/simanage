@@ -27,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dycalendarjs@1.2.1/js/dycalendar.js"></script>
     <script>
         /*codingmaker_*/
-        let container = document.querySelector(".container");
+        let container_calendar = document.querySelector(".container_calendar");
         let toggleBtn = document.querySelector('.toggle-btn');
 
         dycalendar.draw({
@@ -40,7 +40,7 @@
         });
 
         toggleBtn.onclick = () => {
-            container.classList.toggle('dark');
+            container_calendar.classList.toggle('dark');
             document.body.classList.toggle('background-dark');
         };
     </script>

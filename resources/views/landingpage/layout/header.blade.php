@@ -17,6 +17,6 @@
         <link href="{{ asset('landing/css/styles.css') }}" rel="stylesheet" />
         {{-- Calendar --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dycalendarjs@1.2.1/css/dycalendar.css">
-        <link rel="stylesheet" href={{ asset('landing/css/calendar.css') }}>
+        <link rel="stylesheet" href="{{ asset('landing/css/calendar.css') }}">
     </head>
 

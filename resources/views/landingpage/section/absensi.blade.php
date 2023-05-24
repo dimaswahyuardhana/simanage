@@ -84,12 +84,14 @@
 
                 </form>
 
-                <div class="calendar">
+                <div class="box">
+                    <div class="container_calendar">
 
-                    <div class="dycalendar" id="dycalendar"></div>
+                        <div class="dycalendar" id="dycalendar"></div>
 
-                    <div class="toggle-btn">
-                        <span class="circle"></span>
+                        <div class="toggle-btn">
+                            <span class="circle"></span>
+                        </div>
                     </div>
                 </div>
 
