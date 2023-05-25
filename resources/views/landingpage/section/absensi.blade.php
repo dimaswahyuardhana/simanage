@@ -91,6 +91,7 @@
 
                         <div class="mt-5">
                             <form method="POST" action="{{ route('absent') }}" enctype="multipart/form-data">
+                                @method('PUT')
                                 @csrf
                                 <label>
                                     <input type="radio" name="status" value="hadir">
@@ -108,7 +109,6 @@
                                     Keterangan
                                     <textarea name="keterangan"></textarea>
                                 </label>
-                                <br>
                                 <button class="btn btn-info mt-3">Submit</button>
                             </form>
 

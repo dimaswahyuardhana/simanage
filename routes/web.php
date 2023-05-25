@@ -85,7 +85,7 @@ Route::middleware(['loginAsEmployee'])->group(function () {
         return view('landingpage.section.absensi');
     });
     Route::get('/absent', [AbsentController::class, 'index']);
-    Route::post('/absent', [AbsentController::class, 'absent'])->name('absent');
+    Route::put('/absent', [AbsentController::class, 'absent'])->name('absent');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
