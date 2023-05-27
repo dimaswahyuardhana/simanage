@@ -7,7 +7,7 @@ use App\Http\Controllers\DataAbsensiController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfileContoller;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +75,8 @@ Route::middleware(['loginAsEmployee'])->group(function () {
     Route::get('/data_absensi', [DataAbsensiController::class, 'index']);
 
 
-    Route::get('/profile', [ProfileContoller::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::put('/profile/{id}', [ProfileController::class, 'update']);
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

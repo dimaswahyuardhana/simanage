@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ProfileContoller extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class ProfileContoller extends Controller
      */
     public function index()
     {
-        return view('landingpage.section.profile');
+        $profile = auth()->user();
+
+        return view('landingpage.section.profile', compact('profile'));
     }
 
     /**
@@ -70,29 +71,24 @@ class ProfileContoller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $profile = Auth::whereHas('user', function ($query) {
-            $query->where('id', auth()->id()); // Menggunakan user yang sedang digunakan saat ini
-        })->get();
-
-        $profile = $request->validate([
+        $validated = $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
-            'jabatan' => 'required',
-            'nomor_telepon' => 'required',
-            'alamat' => 'required',
+            // 'email' => 'required|email',
+            // 'jabatan' => 'required',
+            // 'nomor_telepon' => 'required',
+            // 'alamat' => 'required',
         ], [
             'name.required' => 'Nama harus diisi',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Email harus dengan format example@example.com',
-            'jabatan.required' => 'Jabatan harus diisi',
-            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
-            'alamat.required' => 'Alamat harus diisi',
+            // 'email.required' => 'Email harus diisi',
+            // 'email.email' => 'Email harus dengan format example@example.com',
+            // 'jabatan.required' => 'Jabatan harus diisi',
+            // 'nomor_telepon.required' => 'Nomor Telepon harus diisi',
+            // 'alamat.required' => 'Alamat harus diisi',
         ]);
 
-        User::where('id', $id)->update($profile);
+        User::where('id', $id)->update($validated);
 
         return redirect('/profile')->with('success', 'Profile berhasil di Update');
-
     }
 
     /**
