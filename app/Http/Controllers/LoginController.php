@@ -84,7 +84,7 @@ class LoginController extends Controller
             }
             if(Auth::user()->id_role == 2){
                 $request->session()->regenerate();
-                return redirect()->intended('/manajemen');
+                return redirect()->intended('/absent');
             }
         }
         return back()->withErrors([

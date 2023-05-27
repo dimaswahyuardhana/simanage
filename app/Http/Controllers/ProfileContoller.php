@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use app\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class KaryawanController extends Controller
+class ProfileContoller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $no = 1;
-        $perusahaan = Auth::user()->id_company;
-        $dataKaryawan = User::select('*')
-                    ->where('id_role', '!=',1)
-                    ->where('id_company', $perusahaan)
-                    ->get();
-        // dd($dataKaryawan);
-        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan'));
+        return view('landingpage.section.profile');
     }
 
     /**
@@ -32,7 +25,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('admin.karyawan.add');
+        //
     }
 
     /**
@@ -77,7 +70,29 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = Auth::whereHas('user', function ($query) {
+            $query->where('id', auth()->id()); // Menggunakan user yang sedang digunakan saat ini
+        })->get();
+
+        $profile = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'jabatan' => 'required',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
+        ], [
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus dengan format example@example.com',
+            'jabatan.required' => 'Jabatan harus diisi',
+            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
+        ]);
+
+        User::where('id', $id)->update($profile);
+
+        return redirect('/profile')->with('success', 'Profile berhasil di Update');
+
     }
 
     /**

@@ -3,11 +3,11 @@
 use App\Http\Controllers\AbsentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataAbsensiController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\LoginController;
-use App\Http\Middleware\Auth;
+use App\Http\Controllers\ProfileContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +26,6 @@ Route::get('/', function () {
 
 Route::get('/about', function () {
     return view('landingpage.section.about');
-});
-
-Route::get('/manajemen', function () {
-    return view('landingpage.section.manajemen');
-});
-
-Route::get('/absen', function () {
-    return view('landingpage.section.absensi');
 });
 
 // register admin
@@ -77,15 +69,13 @@ Route::middleware(['loginAs'])->group(function () {
 
 // employee
 Route::middleware(['loginAsEmployee'])->group(function () {
-    Route::get('/manajemen', function () {
-        return view('landingpage.section.manajemen');
-    });
-
-    Route::get('/absen', function () {
-        return view('landingpage.section.absensi');
-    });
     Route::get('/absent', [AbsentController::class, 'index']);
     Route::put('/absent', [AbsentController::class, 'absent'])->name('absent');
+
+    Route::get('/data_absensi', [DataAbsensiController::class, 'index']);
+
+
+    Route::get('/profile', [ProfileContoller::class, 'index']);
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
