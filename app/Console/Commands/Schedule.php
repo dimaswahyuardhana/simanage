@@ -37,7 +37,6 @@ class Schedule extends Command
         foreach ($users as $user) {
             $absent = new Absent();
             $absent->id_user = $user->id;
-            $absent->time_in = time(now());
             $absent->status = 'alpha';
             $user->absents()->save($absent);
         }

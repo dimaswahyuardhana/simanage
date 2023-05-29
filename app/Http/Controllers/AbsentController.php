@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absent;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,27 +57,25 @@ class AbsentController extends Controller
      * @param  \App\Models\Absent  $absent
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id_user)
-    // {
-    //     $data['users'] = User::all();
-    //     $data['absent'] = Absent::where('id_user', $id_user)->first();
-
-    //     return view('landingpage.section.absensi', $data);
-    // }
+    public function edit($id)
+    {
+        //
+    }
 
     public function absent(Request $request)
     {
         $user = Auth::user();
 
-        // Cek apakah user sudah absen hari ini
+        // Cek apakah user sudah absent hari ini
         $absent = Absent::where('id_user', $user->id)
             ->where('time_in', '!=', NULL)
             ->first();
 
         if ($absent) {
-            dd('tidak diupdate');
-            // Jika sudah absen, kirimkan respons dengan pesan error
-            return response()->json(['error' => 'Anda sudah Absen hari ini']);
+            // dd('tidak diupdate');
+            // Jika sudah absent, kirimkan respons dengan pesan error
+            // return response()->json(['error' => 'Anda sudah Absent hari ini']);
+            return redirect('/absent')->with('error', 'Anda sudah Absent hari ini');
         } else {
             // dd('diupdate');
             $validated = $request->validate([
@@ -94,7 +91,7 @@ class AbsentController extends Controller
                 ->whereRaw('date(created_at) = CURRENT_DATE()')
                 ->update($validated);
 
-            return redirect('/absen')->with('success', 'Absen berhasil');
+            return redirect('/absent')->with('success', 'Absent berhasil');
         }
 
         // $data = Absent::select('*')

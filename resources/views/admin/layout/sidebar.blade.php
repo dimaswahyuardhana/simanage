@@ -10,6 +10,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/jabatan') }}">
+          <i class="bi bi-newspaper"></i>
+          <span>Jabatan</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/karyawan') }}">
           <i class="bi bi-newspaper"></i>
           <span>Data Karyawan</span>

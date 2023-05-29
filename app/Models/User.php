@@ -22,10 +22,10 @@ class User extends Authenticatable
         'email',
         'password',
         'id_company',
-        'jabatan',
         'nomor_telepon',
         'alamat',
         'id_role',
+        'id_jabatan',
     ];
 
     /**
@@ -50,5 +50,10 @@ class User extends Authenticatable
     public function absents()
     {
         return $this->hasMany(Absent::class, 'id_user');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
 }

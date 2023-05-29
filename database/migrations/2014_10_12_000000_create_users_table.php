@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('id_company');
-            $table->string('jabatan')->nullable();
             $table->string('nomor_telepon')->nullable();
             $table->string('alamat')->nullable();
             $table->unsignedBigInteger('id_role');

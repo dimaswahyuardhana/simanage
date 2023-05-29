@@ -27,10 +27,10 @@
                                     <tr class>
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama Karyawan</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Jabatan</th>
                                         <th scope="col">Nomor Telepon</th>
                                         <th scope="col">Alamat</th>
-                                        <th scope="col">Email</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -39,9 +39,10 @@
                                     <tr>
                                         <th>{{ $no++ }}.</th>
                                         <td>{{ $item->name }}</td>
-                                        {{-- <th>{{ $item-> }}</th>
-                                        <th>{{ $item-> }}</th>
-                                        <th>{{ $item-> }}</th> --}}
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->jabatan->jabatan }}</td>
+                                        <td>{{ $item->nomor_telepon }}</td>
+                                        <td>{{ $item->alamat }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

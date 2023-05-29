@@ -13,10 +13,10 @@
             </div>
             <center>
                 <div class="box">
-                    <form method="POST" action="/profile/{{ $profile->id }}">
+                    <form method="POST" action="/profile">
                         @method('PUT')
                         @csrf
-                        <div class="row mb-3">
+                        <div class="row mb-3 ps-5 pe-5" style="text-align: left">
                             <label for="name" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -27,11 +27,46 @@
                                     </div>
                                 @enderror
                             </div>
+                            <label for="email" class="col-sm-2 col-form-label mt-3">Email</label>
+                            <div class="col-sm-10 mt-3">
+                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                    id="email" name="email" value="{{ $profile->email }}">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <label for="jabatan" class="col-sm-2 col-form-label mt-3">Jabatan</label>
+                            <div class="col-sm-10 mt-3">
+                                <input type="text" class="form-control" disabled id="jabatan" name="jabatan"
+                                    value="{{ $profile->jabatan }}">
+                            </div>
+                            <label for="nomor_telepon" class="col-sm-2 col-form-label mt-3">Nomor Telepon</label>
+                            <div class="col-sm-10 mt-3">
+                                <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror"
+                                    id="nomor_telepon" name="nomor_telepon" value="{{ $profile->nomor_telepon }}">
+                                @error('nomor_telepon')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <label for="alamat" class="col-sm-2 col-form-label mt-3">Alamat</label>
+                            <div class="col-sm-10 mt-3">
+                                <textarea name="alamat" id="alamat" cols="25" rows="3"
+                                    class="form-control @error('alamat') is-invalid @enderror">{{ $profile->alamat }}</textarea>
+                                @error('alamat')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-info">Update</button>
-                                <a class="btn btn-danger" href="{{ url('/absent') }}">Batal</a>
+                                <a class="btn btn-danger" href="{{ url('/') }}">Batal</a>
                             </div>
                         </div>
 

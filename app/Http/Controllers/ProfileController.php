@@ -69,24 +69,22 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required',
-            // 'email' => 'required|email',
-            // 'jabatan' => 'required',
-            // 'nomor_telepon' => 'required',
-            // 'alamat' => 'required',
+            'email' => 'required|email',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
         ], [
             'name.required' => 'Nama harus diisi',
-            // 'email.required' => 'Email harus diisi',
-            // 'email.email' => 'Email harus dengan format example@example.com',
-            // 'jabatan.required' => 'Jabatan harus diisi',
-            // 'nomor_telepon.required' => 'Nomor Telepon harus diisi',
-            // 'alamat.required' => 'Alamat harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus dengan format example@example.com',
+            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
         ]);
 
-        User::where('id', $id)->update($validated);
+        User::where('id', auth()->user()->id)->update($validated);
 
         return redirect('/profile')->with('success', 'Profile berhasil di Update');
     }

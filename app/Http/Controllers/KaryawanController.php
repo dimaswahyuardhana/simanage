@@ -17,10 +17,11 @@ class KaryawanController extends Controller
     {
         $no = 1;
         $perusahaan = Auth::user()->id_company;
-        $dataKaryawan = User::select('*')
-                    ->where('id_role', '!=',1)
-                    ->where('id_company', $perusahaan)
-                    ->get();
+        $dataKaryawan = User::with('jabatan')
+            ->select()
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->get();
         // dd($dataKaryawan);
         return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan'));
     }

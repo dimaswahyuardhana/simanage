@@ -6,6 +6,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DataAbsensiController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 
@@ -46,6 +47,18 @@ Route::middleware(['loginAs'])->group(function () {
     Route::get('/admin', function () {
         return view('dashboardadmin');
     });
+
+    // jabatan
+    Route::get('/jabatan', [JabatanController::class, 'index']);
+    // add jabatan
+    Route::get('/jabatan/add', [JabatanController::class, 'create']);
+    Route::post('/jabatan', [JabatanController::class, 'store']);
+    // edit jabatan
+    Route::get('/jabatan/{id_jabatan}/edit', [JabatanController::class, 'edit']);
+    Route::put('/jabatan/{id_jabatan}', [JabatanController::class, 'update']);
+    // delete jabatan
+    Route::get('jabatan/{id_jabatan}/delete', [JabatanController::class, 'destroy']);
+
     // karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index']);
     Route::get('/karyawan/add', [KaryawanController::class, 'create']);
@@ -76,7 +89,7 @@ Route::middleware(['loginAsEmployee'])->group(function () {
 
 
     Route::get('/profile', [ProfileController::class, 'index']);
-    Route::put('/profile/{id}', [ProfileController::class, 'update']);
+    Route::put('/profile', [ProfileController::class, 'update']);
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

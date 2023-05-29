@@ -28,7 +28,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 <th>{{ $no++ }}.</th>
-                                <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LL') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->keterangan }}</td>
                             </tr>
