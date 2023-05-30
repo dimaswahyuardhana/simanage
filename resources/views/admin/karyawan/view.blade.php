@@ -71,21 +71,4 @@
             </div>
         </section>
     </main>
-
-    {{-- <script>
-        function gantiJabatan() {
-            var x = document.getElementsByClassName('dropdown');
-            // var form = x.closest('form');
-            var form = document.querySelector('form[action="karyawan/jabatan/edit/'
-                {{ $item->id }} '"]');
-            if (x) {
-                if (form) {
-                    // console.log('ganti');
-                    console.log('form[action="karyawan/jabatan/edit/'
-                        {{ $item->id }} '"]');
-                    // form.submit();
-                }
-            }
-        }
-    </script> --}}
 @endsection
