@@ -42,10 +42,11 @@
                                             <td>{{ $item->email }}</td>
                                             {{-- <td>{{ $item->jabatan->jabatan }}</td> --}}
                                             <td>
-                                                <form action="karyawan/jabatan/edit/{{ $item->id }}" method="POST">
+                                                <form id="updateForm{{ $item->id }}"
+                                                    action="karyawan/jabatan/edit/{{ $item->id }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    <select name="jabatan">
+                                                    <select name="jabatan" id="jabatanSelect{{ $item->id }}">
                                                         @foreach ($jabatan as $nama_jabatan)
                                                             <option value="{{ $nama_jabatan->id_jabatan }}"
                                                                 {{ $nama_jabatan->id_jabatan == $item->id_jabatan ? 'selected' : '' }}>
@@ -71,4 +72,14 @@
             </div>
         </section>
     </main>
+
+    <script>
+        // Mendengarkan perubahan pada elemen select
+        document.querySelectorAll('[id^="jabatanSelect"]').forEach((select) => {
+            select.addEventListener('change', function() {
+                const formId = this.id.replace('jabatanSelect', 'updateForm');
+                document.getElementById(formId).submit(); // Mengirimkan formulir saat perubahan terjadi
+            });
+        });
+    </script>
 @endsection
