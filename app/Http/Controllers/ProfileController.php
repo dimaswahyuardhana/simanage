@@ -14,7 +14,16 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profile = auth()->user();
+        // $profile=auth()->user();
+        // $jabatan=auth()->user()::;
+
+        $profile = User::select('*')
+            ->join('jabatans','users.id_jabatan','=','jabatans.id_jabatan')
+            ->where('users.id_jabatan','=',auth()->user()->id_jabatan)
+            ->where('id','=',auth()->user()->id)
+            ->get();
+
+        // dd($profile);
 
         return view('landingpage.section.profile', compact('profile'));
     }

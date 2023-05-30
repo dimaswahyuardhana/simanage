@@ -36,14 +36,30 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($dataKaryawan as $item)
-                                    <tr>
-                                        <th>{{ $no++ }}.</th>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->jabatan->jabatan }}</td>
-                                        <td>{{ $item->nomor_telepon }}</td>
-                                        <td>{{ $item->alamat }}</td>
-                                    </tr>
+                                        <tr>
+                                            <th>{{ $no++ }}.</th>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            {{-- <td>{{ $item->jabatan->jabatan }}</td> --}}
+                                            <td>
+                                                <form action="karyawan/jabatan/edit/{{ $item->id }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <select name="jabatan">
+                                                        @foreach ($jabatan as $nama_jabatan)
+                                                            <option value="{{ $nama_jabatan->id_jabatan }}"
+                                                                {{ $nama_jabatan->id_jabatan == $item->id_jabatan ? 'selected' : '' }}>
+                                                                {{ $nama_jabatan->jabatan }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </form>
+
+                                                {{-- {{ dd($nama_jabatan->id_jabatan, $item->id_jabatan) }} --}}
+                                            </td>
+                                            <td>{{ $item->nomor_telepon }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -55,4 +71,21 @@
             </div>
         </section>
     </main>
+
+    {{-- <script>
+        function gantiJabatan() {
+            var x = document.getElementsByClassName('dropdown');
+            // var form = x.closest('form');
+            var form = document.querySelector('form[action="karyawan/jabatan/edit/'
+                {{ $item->id }} '"]');
+            if (x) {
+                if (form) {
+                    // console.log('ganti');
+                    console.log('form[action="karyawan/jabatan/edit/'
+                        {{ $item->id }} '"]');
+                    // form.submit();
+                }
+            }
+        }
+    </script> --}}
 @endsection

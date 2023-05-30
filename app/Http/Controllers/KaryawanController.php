@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use app\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,10 @@ class KaryawanController extends Controller
             ->where('id_role', '!=', 1)
             ->where('id_company', $perusahaan)
             ->get();
+
+        $jabatan = Jabatan::all();
         // dd($dataKaryawan);
-        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan'));
+        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan', 'jabatan'));
     }
 
     /**
@@ -78,7 +81,9 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id', $id)->update(['id_jabatan' => $request->input('jabatan')]);
+
+        return redirect('/karyawan');
     }
 
     /**
