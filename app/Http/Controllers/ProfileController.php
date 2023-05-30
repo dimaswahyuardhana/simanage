@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use app\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class KaryawanController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +14,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $no = 1;
-        $perusahaan = Auth::user()->id_company;
-        $dataKaryawan = User::with('jabatan')
-            ->select()
-            ->where('id_role', '!=', 1)
-            ->where('id_company', $perusahaan)
-            ->get();
-        // dd($dataKaryawan);
-        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan'));
+        $profile = auth()->user();
+
+        return view('landingpage.section.profile', compact('profile'));
     }
 
     /**
@@ -33,7 +26,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('admin.karyawan.add');
+        //
     }
 
     /**
@@ -76,9 +69,24 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'nomor_telepon' => 'required',
+            'alamat' => 'required',
+        ], [
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus dengan format example@example.com',
+            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
+        ]);
+
+        User::where('id', auth()->user()->id)->update($validated);
+
+        return redirect('/profile')->with('success', 'Profile berhasil di Update');
     }
 
     /**

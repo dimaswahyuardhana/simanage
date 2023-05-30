@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absent;
 use Illuminate\Http\Request;
-use app\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class KaryawanController extends Controller
+class DataAbsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,10 @@ class KaryawanController extends Controller
     public function index()
     {
         $no = 1;
-        $perusahaan = Auth::user()->id_company;
-        $dataKaryawan = User::with('jabatan')
-            ->select()
-            ->where('id_role', '!=', 1)
-            ->where('id_company', $perusahaan)
-            ->get();
-        // dd($dataKaryawan);
-        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan'));
+        $data = Absent::whereHas('user', function ($query) {
+            $query->where('id', auth()->id()); // Menggunakan user yang sedang digunakan saat ini
+        })->get();
+        return view('landingpage.section.data_absensi', compact('no', 'data'));
     }
 
     /**
@@ -33,7 +28,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('admin.karyawan.add');
+        //
     }
 
     /**

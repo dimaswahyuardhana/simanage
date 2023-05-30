@@ -29,7 +29,6 @@ class Schedule extends Command
      */
     public function handle()
     {
-        // Mendapatkan daftar pengguna yang belum melakukan absen
         $users = User::select('id')
             ->where('id_role', '!=', 1)
             ->get();
@@ -40,10 +39,6 @@ class Schedule extends Command
             $absent->id_user = $user->id;
             $absent->status = 'alpha';
             $user->absents()->save($absent);
-
-            // Absent::create([
-            //     'id_user' => $user -> id
-            // ]);
         }
     }
 }

@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('id_company');
-            $table->unsignedBigInteger('id_role');
             $table->string('password');
+            $table->string('id_company');
+            $table->string('nomor_telepon')->nullable();
+            $table->string('alamat')->nullable();
+            $table->unsignedBigInteger('id_role');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,9 +20,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'id_company',
-        'id_role',
         'password',
+        'id_company',
+        'nomor_telepon',
+        'alamat',
+        'id_role',
+        'id_jabatan',
     ];
 
     /**
@@ -47,5 +50,10 @@ class User extends Authenticatable
     public function absents()
     {
         return $this->hasMany(Absent::class, 'id_user');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
 }

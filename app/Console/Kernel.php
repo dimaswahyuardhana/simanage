@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('schedule:check-attendance')->dailyAt('01:06'); // Ganti dengan jam yang diinginkan, misalnya 08:00.
+        $schedule->command('schedule:check-attendance')->dailyAt('03:35');
     }
 
     /**

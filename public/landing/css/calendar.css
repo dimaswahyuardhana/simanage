@@ -8,12 +8,15 @@
 } */
 
 .box {
-    background: #F5F8FF;
+    background: #f1f5fc;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
+    padding-top: 30px;
     overflow: hidden;
+    border-radius: 50px;
+
 }
 
 .dycalendar {
