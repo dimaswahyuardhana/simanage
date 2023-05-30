@@ -54,7 +54,7 @@ Route::middleware(['loginAs'])->group(function () {
     Route::get('/admin', function () {
         return view('dashboardadmin');
     });
-    // karyawan
+    // Check Data Karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index']);
     Route::get('/karyawan/add', [KaryawanController::class, 'create']);
 
