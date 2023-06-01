@@ -38,6 +38,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/profileAdmin') }}">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/login') }}">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Login</span>

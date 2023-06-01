@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->string('id_company')->primary();
             $table->string('company_name');
+            $table->double('longitude')->default(0);
+            $table->double('latitude')->default(0);
             $table->timestamps();
         });
     }

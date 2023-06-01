@@ -40,7 +40,6 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
-                                            {{-- <td>{{ $item->jabatan->jabatan }}</td> --}}
                                             <td>
                                                 <form id="updateForm{{ $item->id }}"
                                                     action="karyawan/jabatan/edit/{{ $item->id }}" method="POST">
@@ -60,6 +59,7 @@
                                             </td>
                                             <td>{{ $item->nomor_telepon }}</td>
                                             <td>{{ $item->alamat }}</td>
+                                            <td>Pecat</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

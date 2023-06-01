@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\company;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +15,13 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // $profile=auth()->user();
-
-        $profile = User::select('*')
-            ->join('jabatans','users.id_jabatan','=','jabatans.id_jabatan')
-            ->where('users.id_jabatan','=',auth()->user()->id_jabatan)
-            ->where('id','=',auth()->user()->id)
+        $profileAdmin = User::select()
+            ->join('companies', 'users.id_company', '=', 'companies.id_company')
+            ->where('id', '=', auth()->user()->id)
             ->get();
+        // dd($profileAdmin);
 
-        // dd($profile);
-
-        return view('landingpage.section.profile', compact('profile'));
+        return view('admin.profile.view', compact('profileAdmin'));
     }
 
     /**
@@ -79,22 +76,32 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
+        // dd($request->input());
         $validated = $request->validate([
-            'name' => 'required',
+            'company_name' => 'required',
             'email' => 'required|email',
-            'nomor_telepon' => 'required',
             'alamat' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
         ], [
-            'name.required' => 'Nama harus diisi',
+            'company_name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Email harus dengan format example@example.com',
-            'nomor_telepon.required' => 'Nomor Telepon harus diisi',
-            'alamat.required' => 'Alamat harus diisi',
+            'alamat.required' => 'Mohon sertakan alamat dengan cara Cari Lokasi',
         ]);
 
-        User::where('id', auth()->user()->id)->update($validated);
+        company::where('id_company', auth()->user()->id_company)->update([
+            'company_name' => $validated['company_name'],
+            'longitude' => $validated['longitude'],
+            'latitude' => $validated['latitude']
+        ]);
 
-        return redirect('/profile')->with('success', 'Profile berhasil di Update');
+        User::where('id', auth()->user()->id)->update([
+            'email' => $validated['email'],
+            'alamat' => $validated['alamat']
+        ]);
+
+        return redirect('/profileAdmin')->with('success', 'Profile berhasil di Update');
     }
 
     /**

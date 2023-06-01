@@ -8,6 +8,7 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -75,6 +76,10 @@ Route::middleware(['loginAs'])->group(function () {
     Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
     // arsipkan keuangan
     Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
+
+    // profile company
+    Route::get('/profileAdmin', [ProfileAdminController::class, 'index']);
+    Route::put('/profileAdmin', [ProfileAdminController::class, 'update']);
 
     // laporan keuangan
     Route::get('/laporan', [FinancialStatementController::class, 'index']);
