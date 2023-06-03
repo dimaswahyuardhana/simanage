@@ -22,13 +22,13 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h6 class="card-title mb-0 pb-0">Nama Karyawan : {{ $namaKaryawan->name }}</h6>
-                            <h6 class="card-title mb-0 pb-0">Jumlah Hadir : {{ $jumlahHadir }} </h6>
+                            <h6 class="card-title mb-0 pb-0">Jumlah Izin : {{ $jumlahIzin }} </h6>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Tabel Absent Hadir</h5>
+                            <h5 class="card-title">Tabel Absent Izin</h5>
 
                             <!-- Default Table -->
                             <table class="table">
@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hadir as $item)
+                                    @foreach ($izin as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->time_in }}</td>

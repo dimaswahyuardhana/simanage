@@ -106,7 +106,7 @@ class KaryawanController extends Controller
             ->where('id_company', $perusahaan)
             ->where('id', $id)
             ->get();
-            // dd($dataKaryawan);
+        // dd($dataKaryawan);
 
         $no = 1;
 
@@ -125,9 +125,78 @@ class KaryawanController extends Controller
             ->count();
         // dd($jumlahHadir);
 
-        $hadir = $dataAbsent[0]->absents;
+        $hadir = $dataAbsent[0]->absents
+            ->where('status', 'hadir');
         // dd($hadir);
 
         return view('admin.karyawan.absent_hadir', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahHadir', 'hadir'));
+    }
+
+    public function izin($id)
+    {
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::select()
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->where('id', $id)
+            ->get();
+        // dd($dataKaryawan);
+
+        $no = 1;
+
+        $namaKaryawan = User::select('name')
+            ->where('id_role', '!=', 1)
+            ->where('id', $id)
+            ->first();
+
+        $dataAbsent = User::with('absents')
+            ->where('id', $id)
+            ->get();
+        // dd($dataAbsent);
+
+        $jumlahIzin = $dataAbsent[0]->absents
+            ->where('status', 'izin')
+            ->count();
+        // dd($jumlahIzin);
+
+        $izin = $dataAbsent[0]->absents
+            ->where('status', 'izin');
+        // dd($izin);
+
+        return view('admin.karyawan.absent_izin', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahIzin', 'izin'));
+    }
+
+    public function alpha($id)
+    {
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::select()
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->where('id', $id)
+            ->get();
+        // dd($dataKaryawan);
+
+        $no = 1;
+
+        $namaKaryawan = User::select('name')
+            ->where('id_role', '!=', 1)
+            ->where('id', $id)
+            ->first();
+
+        $dataAbsent = User::with('absents')
+            ->where('id', $id)
+            ->get();
+        // dd($dataAbsent);
+
+        $jumlahAlpha = $dataAbsent[0]->absents
+            ->where('status', 'alpha')
+            ->count();
+        // dd($jumlahAlpha);
+
+        $alpha = $dataAbsent[0]->absents
+            ->where('status', 'alpha');
+        // dd($alpha);
+
+        return view('admin.karyawan.absent_alpha', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahAlpha', 'alpha'));
     }
 }
