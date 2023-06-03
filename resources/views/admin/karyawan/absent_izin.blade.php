@@ -44,7 +44,7 @@
                                     @foreach ($izin as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->time_in }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                         </tr>
                                     @endforeach
