@@ -36,6 +36,7 @@ function searchLocation() {
 
                 // Tampilkan marker pada lokasi yang ditemukan
                 marker.setLngLat(coordinates).addTo(map);
+
                 long = document.getElementById('longitude');
                 long.value = coordinates[0];
                 lat = document.getElementById('latitude');

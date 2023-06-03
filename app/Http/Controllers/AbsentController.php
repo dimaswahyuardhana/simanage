@@ -79,8 +79,7 @@ class AbsentController extends Controller
         } else {
             // dd('diupdate');
             $validated = $request->validate([
-                'status' => 'required',
-                'keterangan' => 'required'
+                'status' => 'required'
             ], [
                 'status.required' => 'Status harus dipilih'
             ]);
@@ -89,7 +88,11 @@ class AbsentController extends Controller
 
             Absent::where('id_user', $user->id)
                 ->whereRaw('date(created_at) = CURRENT_DATE()')
-                ->update($validated);
+                ->update([
+                    'time_in' => $validated['time_in'],
+                    'status' => $validated['status'],
+                    'keterangan' => request()->input('keterangan')
+                ]);
 
             return redirect('/absent')->with('success', 'Absent berhasil');
         }

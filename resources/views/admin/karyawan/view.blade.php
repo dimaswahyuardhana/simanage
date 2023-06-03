@@ -19,12 +19,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabel Karyawan</h5>
-                            <br>
 
                             <!-- Default Table -->
                             <table class="table">
                                 <thead>
-                                    <tr class>
+                                    <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama Karyawan</th>
                                         <th scope="col">Email</th>
@@ -59,7 +58,9 @@
                                             </td>
                                             <td>{{ $item->nomor_telepon }}</td>
                                             <td>{{ $item->alamat }}</td>
-                                            <td>Pecat</td>
+                                            <td><a href="{{ route('hadir', ['id' => $item->id]) }}"
+                                                    class="btn btn-xs btn-info"><i class="bi bi-info-circle-fill"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

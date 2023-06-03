@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absent;
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use app\Models\User;
@@ -18,15 +19,15 @@ class KaryawanController extends Controller
     {
         $no = 1;
         $perusahaan = Auth::user()->id_company;
-        $dataKaryawan = User::with('jabatan')
-            ->select()
+        // $dataKaryawan = User::with('jabatan')
+        $dataKaryawan = User::select()
             ->where('id_role', '!=', 1)
             ->where('id_company', $perusahaan)
             ->get();
 
         $jabatan = Jabatan::all();
-        // dd($dataKaryawan);
-        return view('admin.karyawan.view', compact('no', 'perusahaan', 'dataKaryawan', 'jabatan'));
+
+        return view('admin.karyawan.view', compact('no', 'dataKaryawan', 'jabatan'));
     }
 
     /**
@@ -36,7 +37,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('admin.karyawan.add');
+        //
     }
 
     /**
@@ -95,5 +96,38 @@ class KaryawanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function hadir($id)
+    {
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::select()
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->where('id', $id)
+            ->get();
+            // dd($dataKaryawan);
+
+        $no = 1;
+
+        $namaKaryawan = User::select('name')
+            ->where('id_role', '!=', 1)
+            ->where('id', $id)
+            ->first();
+
+        $dataAbsent = User::with('absents')
+            ->where('id', $id)
+            ->get();
+        // dd($dataAbsent);
+
+        $jumlahHadir = $dataAbsent[0]->absents
+            ->where('status', 'hadir')
+            ->count();
+        // dd($jumlahHadir);
+
+        $hadir = $dataAbsent[0]->absents;
+        // dd($hadir);
+
+        return view('admin.karyawan.absent_hadir', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahHadir', 'hadir'));
     }
 }
