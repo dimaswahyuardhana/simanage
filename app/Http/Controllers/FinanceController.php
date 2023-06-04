@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Finance;
 use App\Models\FinancialStatement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinanceController extends Controller
 {
@@ -17,9 +18,17 @@ class FinanceController extends Controller
     public function index()
     {
         $no = 1;
-        $data = Finance::with('category')->get();
+        $user = Auth::user()->id;
+        $data = Finance::with('category')
+            ->with('user')
+            ->where('id_user', $user)
+            ->get();
+        // dd($data);
 
-        $jumlah_uang = Finance::select('jumlah_uang')->get();
+        $jumlah_uang = Finance::select('jumlah_uang')
+            ->with('user')
+            ->where('id_user', $user)
+            ->get();
         $formatted_jumlah_uang = [];
         foreach ($jumlah_uang as $jumlah_uang) {
             $formatted_jumlah_uang[] = $this->formatMoney($jumlah_uang->jumlah_uang);
@@ -27,15 +36,21 @@ class FinanceController extends Controller
 
         $total_pemasukan = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pemasukan');
-        })->sum('jumlah_uang');
+        })
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
 
         $total_pengeluaran = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pengeluaran');
-        })->sum('jumlah_uang');
+        })
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
 
         $total_hutang = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'hutang');
-        })->sum('jumlah_uang');
+        })
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
 
         $total_uang = $total_pemasukan - $total_pengeluaran - $total_hutang;
 
@@ -82,7 +97,14 @@ class FinanceController extends Controller
             'id_kategori.required' => 'Kategori harus diisi',
         ]);
 
-        Finance::create($validated);
+        $user = Auth::user()->id;
+
+        Finance::create([
+            'keterangan' => $validated['keterangan'],
+            'jumlah_uang' => $validated['jumlah_uang'],
+            'id_kategori' => $validated['id_kategori'],
+            'id_user' => $user
+        ]);
 
         return redirect('/keuangan')->with('success', 'Data berhasil di Tambah');
     }
@@ -151,18 +173,31 @@ class FinanceController extends Controller
 
     public function arsipkan(Request $request)
     {
+        $user = Auth::user()->id;
+        // dd($user);
+
         // Mengambil data dari tabel finances
         $total_pemasukan = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pemasukan');
-        })->sum('jumlah_uang');
+        })
+            ->with('user')
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
+        // dd($total_pemasukan);
 
         $total_pengeluaran = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'pengeluaran');
-        })->sum('jumlah_uang');
+        })
+            ->with('user')
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
 
         $total_hutang = Finance::whereHas('category', function ($query) {
             $query->where('kategori', 'hutang');
-        })->sum('jumlah_uang');
+        })
+            ->with('user')
+            ->where('id_user', $user)
+            ->sum('jumlah_uang');
 
         $laba = $total_pemasukan - $total_pengeluaran - $total_hutang;
 
@@ -176,13 +211,17 @@ class FinanceController extends Controller
                 'total_pengeluaran' => $total_pengeluaran,
                 'total_hutang' => $total_hutang,
                 'laba' => $laba,
-                'tanggal' => now()
+                'tanggal' => now(),
+                'id_user' => $user
             ]);
 
             // Menghapus data yang telah diarsipkan dari tabel finances
             Finance::whereHas('category', function ($query) {
                 $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
-            })->delete();
+            })
+                ->with('user')
+                ->where('id_user', $user)
+                ->delete();
 
             return response()->json([
                 'total_pemasukan' => $total_pemasukan,

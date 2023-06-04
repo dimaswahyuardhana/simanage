@@ -18,5 +18,11 @@ class FinancialStatement extends Model
         'total_hutang',
         'laba',
         'tanggal',
+        'id_user',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

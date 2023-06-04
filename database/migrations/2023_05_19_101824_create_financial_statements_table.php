@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('total_hutang');
             $table->bigInteger('laba');
             $table->datetime('tanggal');
+            $table->foreignId('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -32,5 +34,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('financial_statements');
+
+        Schema::table('financial_statements', function (Blueprint $table) {
+            $table->dropColumn('id_user');
+        });
     }
 };

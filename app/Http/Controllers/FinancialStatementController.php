@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FinancialStatement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinancialStatementController extends Controller
 {
@@ -15,33 +16,45 @@ class FinancialStatementController extends Controller
     public function index()
     {
         $no = 1;
-        $data = FinancialStatement::all();
+        $user = Auth::user()->id;
+        $data = FinancialStatement::with('user')
+            ->where('id_user', $user)
+            ->get();
+        // dd($user);
 
-        $total_pemasukan = FinancialStatement::select('total_pemasukan')->get();
+        $total_pemasukan = FinancialStatement::select('total_pemasukan')
+            ->where('id_user', $user)
+            ->get();
         $formatted_total_pemasukan = [];
         foreach ($total_pemasukan as $total_pemasukan) {
             $formatted_total_pemasukan[] = $this->formatMoney($total_pemasukan->total_pemasukan);
         }
 
-        $total_pengeluaran = FinancialStatement::select('total_pengeluaran')->get();
+        $total_pengeluaran = FinancialStatement::select('total_pengeluaran')
+            ->where('id_user', $user)
+            ->get();
         $formatted_total_pengeluaran = [];
         foreach ($total_pengeluaran as $total_pengeluaran) {
             $formatted_total_pengeluaran[] = $this->formatMoney($total_pengeluaran->total_pengeluaran);
         }
 
-        $total_hutang = FinancialStatement::select('total_hutang')->get();
+        $total_hutang = FinancialStatement::select('total_hutang')
+            ->where('id_user', $user)
+            ->get();
         $formatted_total_hutang = [];
         foreach ($total_hutang as $total_hutang) {
             $formatted_total_hutang[] = $this->formatMoney($total_hutang->total_hutang);
         }
 
-        $laba = FinancialStatement::select('laba')->get();
+        $laba = FinancialStatement::select('laba')
+            ->where('id_user', $user)
+            ->get();
         $formatted_laba = [];
         foreach ($laba as $laba) {
             $formatted_laba[] = $this->formatMoney($laba->laba);
         }
 
-        return view('admin.laporan.view', compact('no', 'data', 'formatted_total_pemasukan', 'formatted_total_pengeluaran','formatted_total_hutang', 'formatted_laba'));
+        return view('admin.laporan.view', compact('no', 'data', 'formatted_total_pemasukan', 'formatted_total_pengeluaran', 'formatted_total_hutang', 'formatted_laba'));
     }
 
     public function formatMoney($amount)

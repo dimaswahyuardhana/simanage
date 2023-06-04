@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
+
+    public function finances()
+    {
+        return $this->hasMany(Finance::class, 'id_user');
+    }
+
+    public function financial_statements()
+    {
+        return $this->hasMany(FinancialStatement::class, 'id_user');
+    }
 }

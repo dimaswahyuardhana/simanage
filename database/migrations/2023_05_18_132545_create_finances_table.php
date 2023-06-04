@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('jumlah_uang');
             $table->foreignId('id_kategori');
             $table->foreign('id_kategori')->references('id_kategori')->on('categories');
+            $table->foreignId('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->datetime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -36,6 +38,10 @@ return new class extends Migration
 
         Schema::table('finances', function (Blueprint $table) {
             $table->dropColumn('id_kategori');
+        });
+
+        Schema::table('finances', function (Blueprint $table) {
+            $table->dropColumn('id_user');
         });
     }
 };
