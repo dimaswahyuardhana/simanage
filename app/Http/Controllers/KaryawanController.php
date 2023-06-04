@@ -121,12 +121,12 @@ class KaryawanController extends Controller
         // dd($dataAbsent);
 
         $jumlahHadir = $dataAbsent[0]->absents
-            ->where('status', 'hadir')
+            ->where('status', 'Hadir')
             ->count();
         // dd($jumlahHadir);
 
         $hadir = $dataAbsent[0]->absents
-            ->where('status', 'hadir');
+            ->where('status', 'Hadir');
         // dd($hadir);
 
         return view('admin.karyawan.absent_hadir', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahHadir', 'hadir'));
@@ -155,15 +155,49 @@ class KaryawanController extends Controller
         // dd($dataAbsent);
 
         $jumlahIzin = $dataAbsent[0]->absents
-            ->where('status', 'izin')
+            ->where('status', 'Izin')
             ->count();
         // dd($jumlahIzin);
 
         $izin = $dataAbsent[0]->absents
-            ->where('status', 'izin');
+            ->where('status', 'Izin');
         // dd($izin);
 
         return view('admin.karyawan.absent_izin', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahIzin', 'izin'));
+    }
+
+    public function sakit($id)
+    {
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::select()
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->where('id', $id)
+            ->get();
+        // dd($dataKaryawan);
+
+        $no = 1;
+
+        $namaKaryawan = User::select('name')
+            ->where('id_role', '!=', 1)
+            ->where('id', $id)
+            ->first();
+
+        $dataAbsent = User::with('absents')
+            ->where('id', $id)
+            ->get();
+        // dd($dataAbsent);
+
+        $jumlahSakit = $dataAbsent[0]->absents
+            ->where('status', 'Sakit')
+            ->count();
+        // dd($jumlahSakit);
+
+        $sakit = $dataAbsent[0]->absents
+            ->where('status', 'Sakit');
+        // dd($sakit);
+
+        return view('admin.karyawan.absent_sakit', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahSakit', 'sakit'));
     }
 
     public function alpha($id)
@@ -189,12 +223,12 @@ class KaryawanController extends Controller
         // dd($dataAbsent);
 
         $jumlahAlpha = $dataAbsent[0]->absents
-            ->where('status', 'alpha')
+            ->where('status', 'Alpha')
             ->count();
         // dd($jumlahAlpha);
 
         $alpha = $dataAbsent[0]->absents
-            ->where('status', 'alpha');
+            ->where('status', 'Alpha');
         // dd($alpha);
 
         return view('admin.karyawan.absent_alpha', compact('dataKaryawan', 'no', 'namaKaryawan', 'jumlahAlpha', 'alpha'));

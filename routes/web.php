@@ -65,7 +65,7 @@ Route::middleware(['loginAs'])->group(function () {
     Route::put('/karyawan/jabatan/edit/{id}', [KaryawanController::class, 'update']);
     Route::get('/karyawan/absent/{id}/hadir', [KaryawanController::class, 'hadir'])->name('hadir');
     Route::get('/karyawan/absent/{id}/izin', [KaryawanController::class, 'izin'])->name('izin');
-    // Route::get('/karyawan/absent/{id}/sakit', [KaryawanController::class, 'sakit'])->name('sakit');
+    Route::get('/karyawan/absent/{id}/sakit', [KaryawanController::class, 'sakit'])->name('sakit');
     Route::get('/karyawan/absent/{id}/alpha', [KaryawanController::class, 'alpha'])->name('alpha');
 
     // keuangan

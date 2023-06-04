@@ -22,13 +22,13 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h6 class="card-title mb-0 pb-0">Nama Karyawan : {{ $namaKaryawan->name }}</h6>
-                            <h6 class="card-title mb-0 pb-0">Jumlah Alpha : {{ $jumlahAlpha }} </h6>
+                            <h6 class="card-title mb-0 pb-0">Jumlah Sakit : {{ $jumlahSakit }} </h6>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Tabel Absent Alpha</h5>
+                            <h5 class="card-title">Tabel Absent Sakit</h5>
 
                             <!-- Default Table -->
                             <table class="table">
@@ -41,10 +41,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($alpha as $item)
+                                    @foreach ($sakit as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                         </tr>
                                     @endforeach

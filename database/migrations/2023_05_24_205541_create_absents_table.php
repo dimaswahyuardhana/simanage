@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->datetime('time_in')->nullable();
-            $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha'])->default('alpha');
+            $table->enum('status', ['Hadir', 'Izin', 'Sakit', 'Alpha'])->default('Alpha');
             $table->string('keterangan')->nullable();
             $table->timestamps();
 

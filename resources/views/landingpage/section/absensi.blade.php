@@ -29,15 +29,15 @@
                                 @method('PUT')
                                 @csrf
                                 <label>
-                                    <input type="radio" name="status" value="hadir">
+                                    <input type="radio" name="status" value="Hadir">
                                     Hadir
                                 </label>
                                 <label>
-                                    <input type="radio" name="status" value="izin">
+                                    <input type="radio" name="status" value="Izin">
                                     Izin
                                 </label>
                                 <label>
-                                    <input type="radio" name="status" value="sakit">
+                                    <input type="radio" name="status" value="Sakit">
                                     Sakit
                                 </label><br>
                                 <label>

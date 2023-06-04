@@ -11,7 +11,7 @@
                         href="{{ route('izin', ['id' => $dataKaryawan[0]->id]) }}">Izin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed me-3" href="#">Sakit</a>
+                    <a class="nav-link collapsed me-3" href="{{ route('sakit', ['id' => $dataKaryawan[0]->id]) }}">Sakit</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed me-3"
