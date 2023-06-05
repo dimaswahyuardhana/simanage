@@ -35,12 +35,12 @@
                                     @enderror
                                 </div>
                                 <div class="card-body py-2">
-                                    <p class="card-text mb-0 pb-0">Nama Karyawan : <span id="namaKaryawan"></span></p>
-                                    <p class="card-text mb-0 pb-0">Email : <span id="emailKaryawan"></span></p>
-                                    <p class="card-text mb-0 pb-0">Nomor Telepon : <span id="teleponKaryawan"></span></p>
-                                    <p class="card-text mb-0 pb-0">Alamat : <span id="alamatKaryawan"></span></p>
-                                    <p class="card-text mb-0 pb-0">Jabatan : <span id="jabatanKaryawan"></span></p>
-                                    <p class="card-text mb-0 pb-0">Gaji : <span id="gajiKaryawan"></span></p>
+                                    <p class="card-text mb-0">Nama Karyawan : <span id="namaKaryawan"></span></p>
+                                    <p class="card-text mb-0">Email : <span id="emailKaryawan"></span></p>
+                                    <p class="card-text mb-0">Nomor Telepon : <span id="teleponKaryawan"></span></p>
+                                    <p class="card-text mb-0">Alamat : <span id="alamatKaryawan"></span></p>
+                                    <p class="card-text mb-0">Jabatan : <span id="jabatanKaryawan"></span></p>
+                                    <p class="card-text mb-0">Gaji : <span id="gajiKaryawan"></span></p>
 
 
                                 </div>
