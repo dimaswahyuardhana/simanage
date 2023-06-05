@@ -12,7 +12,8 @@ class GajiKaryawan extends Model
     protected $fillable = [
         'nama_karyawan',
         'total_gaji',
-        'bukti_transfer_gaji'
+        'bukti_transfer_gaji',
+        'id_user'
     ];
 
     public function user()

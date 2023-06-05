@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GajiKaryawan;
+use App\Models\Jabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,10 +18,10 @@ class GajiKaryawanController extends Controller
     public function index()
     {
         $no = 1;
-        $user = Auth::user()->id_company;
+        $perusahaan = Auth::user()->id_company;
         $gajiKaryawan = User::with('jabatan')
             ->where('id_role', '!=', 1)
-            ->where('id_company', $user)
+            ->where('id_company', $perusahaan)
             ->get();
         // dd($gajiKaryawan);
 
@@ -34,9 +35,15 @@ class GajiKaryawanController extends Controller
      */
     public function create()
     {
-        $data = User::all();
+        $perusahaan = Auth::user()->id_company;
+        $dataKaryawan = User::with('jabatan')
+            ->with('absents')
+            ->where('id_role', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->get();
+        // dd($dataKaryawan);
 
-        return view('admin.gaji_karyawan.add', compact('data'));
+        return view('admin.gaji_karyawan.add', compact('dataKaryawan'));
     }
 
     /**
@@ -47,7 +54,43 @@ class GajiKaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Ambil nilai nama_karyawan dari request
+        $namaKaryawan = $request->input('nama_karyawan');
+
+        // Ambil nilai gaji_karyawan dari request
+        $gajiKaryawan = $request->input('gaji_karyawan');
+
+        // Ambil nilai jumlah_hadir dari request
+        $jumlahHadir = $request->input('jumlah_hadir');
+
+        // Ambil nilai jumlah_izin dari request
+        $jumlahIzin = $request->input('jumlah_izin');
+
+        // Ambil nilai jumlah_sakit dari request
+        $jumlahSakit = $request->input('jumlah_sakit');
+
+        // Ambil nilai jumlah_alpha dari request
+        $jumlahAlpha = $request->input('jumlah_alpha');
+
+        // Ambil nilai id_user dari request
+        $idUser = $request->input('id_user');
+
+        $totalGaji = ($jumlahHadir + $jumlahIzin + $jumlahSakit - $jumlahAlpha) / ($jumlahHadir + $jumlahIzin + $jumlahSakit) * $gajiKaryawan;
+
+        $validated = $request->validate([
+            'bukti_transfer_gaji' => 'required'
+        ], [
+            'bukti_transfer_gaji.required' => 'Bukti Transfer Gaji harus diisi'
+        ]);
+
+        GajiKaryawan::create([
+            'nama_karyawan' => $namaKaryawan,
+            'total_gaji' => $totalGaji,
+            'bukti_transfer_gaji' => $validated['bukti_transfer_gaji'],
+            'id_user' => $idUser
+        ]);
+
+        return redirect('/gaji_karyawan')->with('success', 'Data Gaji Karyawan berhasil di Tambah');
     }
 
     /**
