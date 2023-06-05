@@ -89,12 +89,12 @@ class FinanceController extends Controller
         $validated = $request->validate([
             'keterangan' => 'required',
             'jumlah_uang' => 'required|numeric',
-            'id_kategori' => 'required'
+            'id_kategori' => 'not_in:0'
         ], [
             'keterangan.required' => 'Keterangan harus diisi',
             'jumlah_uang.required' => 'Jumlah Uang harus diisi',
             'jumlah_uang.numeric' => 'Jumlah Uang harus berupa angka',
-            'id_kategori.required' => 'Kategori harus diisi',
+            'id_kategori.not_in' => 'Pilih Kategori yang sesuai',
         ]);
 
         $user = Auth::user()->id;
@@ -146,12 +146,12 @@ class FinanceController extends Controller
         $validated = $request->validate([
             'keterangan' => 'required',
             'jumlah_uang' => 'required|numeric',
-            'id_kategori' => 'required'
+            'id_kategori' => 'not_in:0'
         ], [
             'keterangan.required' => 'Keterangan harus diisi',
             'jumlah_uang.required' => 'Jumlah Uang harus diisi',
             'jumlah_uang.numeric' => 'Jumlah Uang harus berupa angka',
-            'id_kategori.required' => 'Kategori harus diisi',
+            'id_kategori.not_in' => 'Pilih Kategori yang sesuai',
         ]);
 
         Finance::where('id_finance', $id_finance)->update($validated);

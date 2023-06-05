@@ -51,12 +51,12 @@
                                     <div class="col-sm-10">
                                         <select class="form-select @error('id_kategori') is-invalid @enderror"
                                             aria-label="default select example" name="id_kategori">
-                                            <option selected>Pilih Kategori</option>
+                                            <option value="0" selected>Pilih Kategori</option>
                                             @foreach ($categories as $item)
                                                 <option value="{{ $item->id_kategori }}">{{ $item->kategori }}</option>
                                             @endforeach
                                         </select>
-                                        @error('kategori')
+                                        @error('id_kategori')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
