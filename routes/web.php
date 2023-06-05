@@ -6,6 +6,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DataAbsensiController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FinancialStatementController;
+use App\Http\Controllers\GajiKaryawanController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileAdminController;
@@ -68,6 +69,14 @@ Route::middleware(['loginAs'])->group(function () {
     Route::get('/karyawan/absent/{id}/sakit', [KaryawanController::class, 'sakit'])->name('sakit');
     Route::get('/karyawan/absent/{id}/alpha', [KaryawanController::class, 'alpha'])->name('alpha');
 
+    // gaji karyawan
+    Route::get('/gaji_karyawan', [GajiKaryawanController::class, 'index']);
+    // add gaji karyawan
+    Route::get('/gaji_karyawan/add', [GajiKaryawanController::class, 'create']);
+    Route::post('/gaji_karyawan', [GajiKaryawanController::class, 'store']);
+    // detail gaji karyawan
+    Route::get('/karyawan/absent/{id}/detail', [GajiKaryawanController::class, 'detail_gaji_karyawan'])->name('detail_gaji_karyawan');
+
     // keuangan
     Route::get('/keuangan', [FinanceController::class, 'index']);
     // add keuangan
@@ -81,12 +90,12 @@ Route::middleware(['loginAs'])->group(function () {
     // arsipkan keuangan
     Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
 
+    // laporan keuangan
+    Route::get('/laporan', [FinancialStatementController::class, 'index']);
+
     // profile company
     Route::get('/profileAdmin', [ProfileAdminController::class, 'index']);
     Route::put('/profileAdmin', [ProfileAdminController::class, 'update']);
-
-    // laporan keuangan
-    Route::get('/laporan', [FinancialStatementController::class, 'index']);
 });
 
 // employee

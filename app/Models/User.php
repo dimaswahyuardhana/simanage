@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(FinancialStatement::class, 'id_user');
     }
+
+    public function gaji_karyawans()
+    {
+        return $this->hasMany(GajiKaryawan::class, 'id_user');
+    }
 }

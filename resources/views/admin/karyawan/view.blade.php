@@ -21,7 +21,7 @@
                             <h5 class="card-title">Tabel Karyawan</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>

@@ -24,6 +24,13 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ url('/gaji_karyawan') }}">
+                <i class="bi bi-people-fill"></i>
+                <span>Data Gaji Karyawan</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{ url('/keuangan') }}">
                 <i class="bi bi-cash-coin"></i>
                 <span>Keuangan</span>
