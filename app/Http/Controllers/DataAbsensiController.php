@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataAbsensiController extends Controller
 {
@@ -15,10 +16,12 @@ class DataAbsensiController extends Controller
     public function index()
     {
         $no = 1;
-        $data = Absent::whereHas('user', function ($query) {
-            $query->where('id', auth()->id()); // Menggunakan user yang sedang digunakan saat ini
-        })->get();
-        return view('landingpage.section.data_absensi', compact('no', 'data'));
+        $user = Auth::user()->id;
+        $dataAbsensi = Absent::with('user')
+            ->where('id_user', $user)
+            ->get();
+
+        return view('landingpage.section.data_absensi', compact('no', 'dataAbsensi'));
     }
 
     /**

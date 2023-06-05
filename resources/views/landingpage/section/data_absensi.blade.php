@@ -25,10 +25,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $item)
+                        @foreach ($dataAbsensi as $item)
                             <tr>
                                 <th>{{ $no++ }}.</th>
-                                <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
+                                @if ($item->status == 'Alpha')
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}</td>
+                                @else
+                                    <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
+                                @endif
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->keterangan }}</td>
                             </tr>
