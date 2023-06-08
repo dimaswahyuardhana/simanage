@@ -11,6 +11,7 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatGajiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,8 @@ Route::middleware(['loginAsEmployee'])->group(function () {
     Route::put('/absent', [AbsentController::class, 'absent'])->name('absent');
 
     Route::get('/data_absensi', [DataAbsensiController::class, 'index']);
+
+    Route::get('/riwayat_gaji', [RiwayatGajiController::class, 'index']);
 
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::put('/profile', [ProfileController::class, 'update']);
