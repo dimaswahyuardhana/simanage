@@ -54,14 +54,6 @@
                                     <p class="card-text mb-0">Jumlah Alpha : <span id="jumlahAlpha"></span></p>
                                     <p class="card-text mb-0">Jumlah Hari Kerja : </p>
 
-                                    <br>
-                                    <b>
-                                        <p class="card-text mb-0">Total Gaji = (Jumlah Hadir + Jumlah Izin +
-                                            Jumlah Sakit - Jumlah Alpha) / (Jumlah Hadir + Jumlah Izin + Jumlah Sakit) *
-                                            Gaji Karyawan</p>
-                                    </b>
-                                    <br>
-
                                     <!-- General Form Elements -->
                                     <form method="POST" action="{{ url('/gaji_karyawan') }}" enctype="multipart/form-data">
                                         @csrf

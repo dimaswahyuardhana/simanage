@@ -24,8 +24,10 @@ class KaryawanController extends Controller
             ->where('id_role', '!=', 1)
             ->where('id_company', $perusahaan)
             ->get();
+        // dd($dataKaryawan);
 
-        $jabatan = Jabatan::all();
+        $jabatan = Jabatan::where('id_company', $perusahaan)
+            ->get();
 
         return view('admin.karyawan.view', compact('no', 'dataKaryawan', 'jabatan'));
     }

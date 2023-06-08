@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\company;
+use App\Models\Jabatan;
 use Faker\Provider\ar_EG\Company as Ar_EGCompany;
 
 class LoginController extends Controller
@@ -27,9 +28,10 @@ class LoginController extends Controller
         return view('employee.auth.register');
     }
 
-    public function registrasiAdmin(Request $request){
+    public function registrasiAdmin(Request $request)
+    {
         $id_role = 1;
-        $idCompany = Str::random(1).uniqid();
+        $idCompany = Str::random(1) . uniqid();
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'max:100', 'email', 'unique:users,email'],
@@ -38,57 +40,72 @@ class LoginController extends Controller
         ]);
 
         // if($request->validate()) {
-            $company = company::create([
-                'id_company' => $idCompany,
-                'company_name' => $request->input('company_name')
-            ]);
+        $company = company::create([
+            'id_company' => $idCompany,
+            'company_name' => $request->input('company_name')
+        ]);
+        $jabatan = Jabatan::create([
+            'id_company' => $idCompany
+        ]);
 
-            $user = User::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'id_company' => $idCompany,
-                'id_role'=> $id_role,
-                'password' => Hash::make($request['password']),
-                'id_jabatan' => 1,
-            ]);
+        $none = Jabatan::select('id_company', 'jabatan', 'id_jabatan')
+            ->where('id_company', $idCompany)
+            ->where('jabatan', 'none')
+            ->get();
+
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'id_company' => $idCompany,
+            'id_role' => $id_role,
+            'password' => Hash::make($request['password']),
+            'id_jabatan' => $none[0]->id_jabatan,
+        ]);
         // }
 
         return redirect('/login');
     }
 
-    public function registrasiEmployee(Request $request){
+    public function registrasiEmployee(Request $request)
+    {
         $id_role = 2;
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'max:100', 'email', 'unique:users,email'],
             'password' => ['required'],
             'id_company' => ['required', 'string', 'max:100', 'exists:companies,id_company']
         ]);
+
+        $none = Jabatan::select('id_company', 'jabatan', 'id_jabatan')
+            ->where('id_company', $validated['id_company'])
+            ->where('jabatan', 'none')
+            ->get();
         $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'id_company' => $request['id_company'],
-            'id_role'=> $id_role,
-            'password' => Hash::make($request['password']),
-            'id_jabatan' => 1,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'id_company' => $validated['id_company'],
+            'id_role' => $id_role,
+            'password' => Hash::make($validated['password']),
+            'id_jabatan' => $none[0]->id_jabatan,
         ]);
 
         return redirect('/login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         //dd($request);
         $credentials = $request->validate([
             'email' => ['required', 'string', 'max:100', 'email'],
             'password' => ['required']
         ]);
 
-        if (Auth::attempt($credentials)){
-            if(Auth::user()->id_role == 1){
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->id_role == 1) {
                 $request->session()->regenerate();
                 return redirect()->intended('/admin');
             }
-            if(Auth::user()->id_role == 2){
+            if (Auth::user()->id_role == 2) {
                 $request->session()->regenerate();
                 return redirect()->intended('/absent');
             }

@@ -17,14 +17,16 @@ class JabatanController extends Controller
     public function index()
     {
         $no = 1;
-
+        $perusahaan = Auth::user()->id_company;
         $data = Jabatan::select()
-            ->where('id_jabatan', '!=', 1)
+            ->where('id_company', $perusahaan)
+            ->where('jabatan', '!=', 'none')
             ->get();
 
-        $gaji = Jabatan::select('gaji')
-            ->where('gaji', '!=', NULL)
-            ->get();
+        // $gaji = Jabatan::select('gaji')
+        //     ->where('id_company', $perusahaan)
+        //     ->where('id_jabatan', '!=', 1)
+        //     ->get();
 
         // penyesuaian jabatan sesuai akun company ku comment dulu(masih salah)
         // uncomment aja kalo mau diubah
@@ -50,7 +52,7 @@ class JabatanController extends Controller
         // $gaji = $gaji1->merge($gaji2); //
 
         $formatted_gaji = [];
-        foreach ($gaji as $gaji) {
+        foreach ($data as $gaji) {
             // if ($gaji->jabatan) {
             $formatted_gaji[] = $this->formatMoney($gaji->gaji);
             // }
@@ -93,11 +95,11 @@ class JabatanController extends Controller
             'gaji.numeric' => 'Gaji harus berupa angka'
         ]);
 
-        $perusahaan = Auth::user()->id_company; //
+        $perusahaan = Auth::user()->id_company;
         Jabatan::create([
             'jabatan' => $validated['jabatan'],
             'gaji' => $validated['gaji'],
-            // 'id_company' => $perusahaan //
+            'id_company' => $perusahaan
         ]);
 
         return redirect('/jabatan')->with('success', 'Data berhasil di Tambah');
@@ -158,6 +160,14 @@ class JabatanController extends Controller
      */
     public function destroy($id_jabatan)
     {
+        $none = Jabatan::select('id_company', 'jabatan', 'id_jabatan')
+            ->where('id_company', auth()->user()->id_company)
+            ->where('jabatan', 'none')
+            ->get();
+        User::where('id_jabatan', $id_jabatan)->update([
+            'id_jabatan' => $none[0]->id_jabatan
+        ]);
+
         Jabatan::destroy($id_jabatan);
         return redirect('/jabatan')->with('success', 'Data berhasil di Hapus');
     }

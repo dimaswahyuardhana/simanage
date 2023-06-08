@@ -19,17 +19,20 @@ return new class extends Migration
             $table->string('jabatan')->default('none');
             $table->bigInteger('gaji')->default(0);
             // $table->string('id_company'); //
+            $table->string('id_company');
             $table->timestamps();
+
+            $table->foreign('id_company')->references('id_company')->on('companies')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('id_jabatan');
-            $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatans')->onUpdate('cascade');
+            $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatans')->onUpdate('cascade')->onDelete('cascade');
         });
 
-        DB::table('jabatans')->insert([
-            ['id_jabatan' => 1, 'jabatan' => 'none']
-        ]);
+        // DB::table('jabatans')->insert([
+        //     ['id_jabatan' => 1, 'jabatan' => 'none']
+        // ]);
     }
 
     /**
