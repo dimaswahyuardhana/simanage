@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('absents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
             $table->datetime('time_in')->nullable();
             $table->enum('status', ['Hadir', 'Izin', 'Sakit', 'Alpha'])->default('Alpha');
             $table->string('keterangan')->nullable();
+            $table->foreignId('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
-
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,5 +32,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('absents');
+
+        Schema::table('absents', function (Blueprint $table) {
+            $table->dropColumn('id_user');
+        });
     }
 };

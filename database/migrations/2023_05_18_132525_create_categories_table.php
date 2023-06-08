@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -17,6 +18,12 @@ return new class extends Migration
             $table->id('id_kategori');
             $table->string('kategori');
         });
+
+        DB::table('categories')->insert([
+            ['id_kategori' => 1, 'kategori' => 'Pemasukan'],
+            ['id_kategori' => 2, 'kategori' => 'Pengeluaran'],
+            ['id_kategori' => 3, 'kategori' => 'Hutang']
+        ]);
     }
 
     /**
