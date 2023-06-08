@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
@@ -15,6 +17,7 @@ class JabatanController extends Controller
     public function index()
     {
         $no = 1;
+
         $data = Jabatan::select()
             ->where('id_jabatan', '!=', 1)
             ->get();
@@ -22,9 +25,35 @@ class JabatanController extends Controller
         $gaji = Jabatan::select('gaji')
             ->where('gaji', '!=', NULL)
             ->get();
+
+        // penyesuaian jabatan sesuai akun company ku comment dulu(masih salah)
+        // uncomment aja kalo mau diubah
+        // $perusahaan = Auth::user()->id_company;
+        // $data1 = User::with('jabatan') //
+        //     ->where('id_company', $perusahaan)
+        //     ->where('id_jabatan', '!=', 1)
+        //     ->get();
+        // $data2 = Jabatan::where('id_company', $perusahaan) //
+        //     ->where('id_jabatan', '!=', 1)
+        //     ->get();
+        // $data = $data1->merge($data2); //
+
+        // // dd($data);
+
+        // $gaji1 = User::with('jabatan') //
+        //     ->where('id_company', $perusahaan)
+        //     ->where('id_jabatan', '!=', 1)
+        //     ->get();
+        // $gaji2 = Jabatan::where('id_company', $perusahaan) //
+        //     ->where('id_jabatan', '!=', 1)
+        //     ->get();
+        // $gaji = $gaji1->merge($gaji2); //
+
         $formatted_gaji = [];
         foreach ($gaji as $gaji) {
+            // if ($gaji->jabatan) {
             $formatted_gaji[] = $this->formatMoney($gaji->gaji);
+            // }
         }
 
         return view('admin.jabatan.view', compact('no', 'data', 'formatted_gaji'));
@@ -64,7 +93,12 @@ class JabatanController extends Controller
             'gaji.numeric' => 'Gaji harus berupa angka'
         ]);
 
-        Jabatan::create($validated);
+        $perusahaan = Auth::user()->id_company; //
+        Jabatan::create([
+            'jabatan' => $validated['jabatan'],
+            'gaji' => $validated['gaji'],
+            // 'id_company' => $perusahaan //
+        ]);
 
         return redirect('/jabatan')->with('success', 'Data berhasil di Tambah');
     }

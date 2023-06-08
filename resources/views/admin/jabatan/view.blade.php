@@ -44,7 +44,7 @@
                                     @foreach ($data as $key => $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->jabatan }}</td>
+                                            {{-- <td>{{ dd($item->jabatan->jabatan) }}</td> --}}
                                             <td>{{ $formatted_gaji[$key] }}</td>
                                             <td>
                                                 <a href="/jabatan/{{ $item->id_jabatan }}/edit"

@@ -13,7 +13,8 @@ class Jabatan extends Model
 
     protected $fillable = [
         'jabatan',
-        'gaji'
+        'gaji',
+        // 'id_company' //
     ];
 
     public function users()
