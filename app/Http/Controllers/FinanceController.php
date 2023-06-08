@@ -98,13 +98,25 @@ class FinanceController extends Controller
         ]);
 
         $user = Auth::user()->id;
-
-        Finance::create([
-            'keterangan' => $validated['keterangan'],
-            'jumlah_uang' => $validated['jumlah_uang'],
-            'id_kategori' => $validated['id_kategori'],
-            'id_user' => $user
-        ]);
+        $gaji_karyawan = Finance::where('keterangan', 'Gaji Karyawan')
+            ->get();
+        if (strtolower($validated['keterangan']) == 'gaji karyawan') {
+            if ($validated['id_kategori'] == 2) {
+                Finance::where('keterangan', 'Gaji Karyawan')->update([
+                    'jumlah_uang' => $gaji_karyawan[0]->jumlah_uang + $validated['jumlah_uang']
+                ]);
+            }
+            else {
+                return redirect()->back()->with('error', 'Gaji Karyawan harus kategori Pengeluaran');
+            }
+        } else {
+            Finance::create([
+                'keterangan' => $validated['keterangan'],
+                'jumlah_uang' => $validated['jumlah_uang'],
+                'id_kategori' => $validated['id_kategori'],
+                'id_user' => $user
+            ]);
+        }
 
         return redirect('/keuangan')->with('success', 'Data berhasil di Tambah');
     }

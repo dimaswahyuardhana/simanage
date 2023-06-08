@@ -63,7 +63,7 @@
                                     <br>
 
                                     <!-- General Form Elements -->
-                                    <form method="POST" action="{{ url('/gaji_karyawan') }}">
+                                    <form method="POST" action="{{ url('/gaji_karyawan') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row mb-3 me-2">
                                             <label for="bukti_transfer_gaji" class="col-sm-3 col-form-label">Bukti Transfer
@@ -79,13 +79,13 @@
                                             </div>
                                         </div>
 
-                                        nama <input name="nama_karyawan" id="namaKaryawanInput"><br>
-                                        gaji <input name="gaji_karyawan" id="gajiKaryawanInput"><br>
-                                        hadir <input name="jumlah_hadir" id="jumlahHadirInput"><br>
-                                        izin <input name="jumlah_izin" id="jumlahIzinInput"><br>
-                                        sakit <input name="jumlah_sakit" id="jumlahSakitInput"><br>
-                                        alpha <input name="jumlah_alpha" id="jumlahAlphaInput"><br>
-                                        id_user <input name="id_user" id="idUserInput"><br>
+                                        <input name="nama_karyawan" id="namaKaryawanInput" hidden>
+                                        <input name="gaji_karyawan" id="gajiKaryawanInput" hidden>
+                                        <input name="jumlah_hadir" id="jumlahHadirInput" hidden>
+                                        <input name="jumlah_izin" id="jumlahIzinInput" hidden>
+                                        <input name="jumlah_sakit" id="jumlahSakitInput" hidden>
+                                        <input name="jumlah_alpha" id="jumlahAlphaInput" hidden>
+                                        <input name="id_user" id="idUserInput" hidden>
 
                                         <div class="row mb-3">
                                             <div class="col-sm-10">

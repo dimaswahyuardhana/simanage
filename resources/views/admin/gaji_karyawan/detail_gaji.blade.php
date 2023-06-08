@@ -3,11 +3,12 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>DATA GAJI KARYAWAN</h1>
+            <h1>DETAIL GAJI KARYAWAN</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Gaji Karyawan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/gaji_karyawan') }}">Data Gaji Karyawan</a></li>
+                    <li class="breadcrumb-item active">Detail Gaji Karyawan</li>
                 </ol>
             </nav>
         </div>
@@ -18,34 +19,27 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Tabel Gaji Karyawan</h5>
-                            <div>
-                                <a href="{{ url('/gaji_karyawan/add') }}">
-                                    <button type="button" class="btn btn-success">
-                                        <i class="bi bi-cash-stack"></i> Bayar Karyawan
-                                    </button>
-                                </a>
-                            </div>
-                            <br>
+                            <h5 class="card-title">Detail Gaji Karyawan</h5>
+                            <h5>{{ $detail_gaji[0]->nama_karyawan }}</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Nama Karyawan</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Total Gaji</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col">Slip Gaji</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($gajiKaryawan as $item)
+                                    @foreach ($detail_gaji as $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->jabatan->gaji }}</td>
-                                            <td><a href="{{ route('detail_gaji', ['id_user' => $item->id]) }}"
-                                                    class="btn btn-xs btn-info"><i class="bi bi-info-circle-fill"></i></a>
+                                            <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}
+                                            <td>{{ $item->total_gaji }}</td>
+                                            <td><a
+                                                    href="/storage/{{ $item->bukti_transfer_gaji }}">{{ $item->bukti_transfer_gaji }}</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -59,5 +53,4 @@
             </div>
         </section>
     </main>
-
 @endsection

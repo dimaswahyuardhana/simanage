@@ -71,11 +71,11 @@ Route::middleware(['loginAs'])->group(function () {
 
     // gaji karyawan
     Route::get('/gaji_karyawan', [GajiKaryawanController::class, 'index']);
+    // detail gaji karyawan
+    Route::get('/detail_gaji_karyawan/{id_user}', [GajiKaryawanController::class, 'detail_gaji'])->name('detail_gaji');
     // add gaji karyawan
     Route::get('/gaji_karyawan/add', [GajiKaryawanController::class, 'create']);
     Route::post('/gaji_karyawan', [GajiKaryawanController::class, 'store']);
-    // detail gaji karyawan
-    Route::get('/karyawan/absent/{id}/detail', [GajiKaryawanController::class, 'detail_gaji_karyawan'])->name('detail_gaji_karyawan');
 
     // keuangan
     Route::get('/keuangan', [FinanceController::class, 'index']);

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Finance;
 use App\Models\GajiKaryawan;
-use App\Models\Jabatan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,10 +21,10 @@ class GajiKaryawanController extends Controller
         $no = 1;
         $perusahaan = Auth::user()->id_company;
         $gajiKaryawan = User::with('jabatan')
+            ->with('gaji_karyawans')
             ->where('id_role', '!=', 1)
             ->where('id_company', $perusahaan)
             ->get();
-        // dd($gajiKaryawan);
 
         return view('admin.gaji_karyawan.view', compact('no', 'gajiKaryawan'));
     }
@@ -60,14 +61,14 @@ class GajiKaryawanController extends Controller
         // Ambil nilai gaji_karyawan dari request
         $gajiKaryawan = $request->input('gaji_karyawan');
 
-        // Ambil nilai jumlah_hadir dari request
-        $jumlahHadir = $request->input('jumlah_hadir');
+        // // Ambil nilai jumlah_hadir dari request
+        // $jumlahHadir = $request->input('jumlah_hadir');
 
-        // Ambil nilai jumlah_izin dari request
-        $jumlahIzin = $request->input('jumlah_izin');
+        // // Ambil nilai jumlah_izin dari request
+        // $jumlahIzin = $request->input('jumlah_izin');
 
-        // Ambil nilai jumlah_sakit dari request
-        $jumlahSakit = $request->input('jumlah_sakit');
+        // // Ambil nilai jumlah_sakit dari request
+        // $jumlahSakit = $request->input('jumlah_sakit');
 
         // Ambil nilai jumlah_alpha dari request
         $jumlahAlpha = $request->input('jumlah_alpha');
@@ -75,13 +76,18 @@ class GajiKaryawanController extends Controller
         // Ambil nilai id_user dari request
         $idUser = $request->input('id_user');
 
-        $totalGaji = ($jumlahHadir + $jumlahIzin + $jumlahSakit - $jumlahAlpha) / ($jumlahHadir + $jumlahIzin + $jumlahSakit) * $gajiKaryawan;
+        // $totalGaji = ($jumlahHadir + $jumlahIzin + $jumlahSakit - $jumlahAlpha) / ($jumlahHadir + $jumlahIzin + $jumlahSakit) * $gajiKaryawan;
+        $totalGaji = $gajiKaryawan - ($jumlahAlpha * 50000);
 
         $validated = $request->validate([
             'bukti_transfer_gaji' => 'required'
         ], [
             'bukti_transfer_gaji.required' => 'Bukti Transfer Gaji harus diisi'
         ]);
+
+        $waktu = Carbon::now();
+        $month = $waktu->format('M-Y');
+        $validated['bukti_transfer_gaji'] = $request->file('bukti_transfer_gaji')->storeAs('bukti_gaji', 'bukti_transfer_gaji-' . $namaKaryawan . '-' . $month . '.jpg');
 
         GajiKaryawan::create([
             'nama_karyawan' => $namaKaryawan,
@@ -90,7 +96,44 @@ class GajiKaryawanController extends Controller
             'id_user' => $idUser
         ]);
 
+        $gaji_karyawan = Finance::where('keterangan', 'Gaji Karyawan')
+            ->get();
+
+        if (count($gaji_karyawan) == 0) {
+            Finance::create([
+                'keterangan' => 'Gaji Karyawan',
+                'jumlah_uang' => $totalGaji,
+                'id_kategori' => 2,
+                'id_user' => auth()->user()->id
+            ]);
+        } else {
+            Finance::where('keterangan', 'Gaji Karyawan')->update([
+                'jumlah_uang' => $gaji_karyawan[0]->jumlah_uang + $totalGaji
+            ]);
+        }
+
         return redirect('/gaji_karyawan')->with('success', 'Data Gaji Karyawan berhasil di Tambah');
+    }
+
+    public function detail_gaji($id_user)
+    {
+        $no = 1;
+        $detail_gaji = GajiKaryawan::select()
+            ->where('id_user', $id_user)
+            ->get();
+        // dd($detail_gaji);
+
+        // $gaji = User::with('gaji_karyawans')
+        //     ->where('id_role', '!=', 1)
+        //     ->where('id_company', $perusahaan)
+        //     ->where('id', $karyawan)
+        //     ->get();
+
+        if (count($detail_gaji) > 0) {
+            return view('admin.gaji_karyawan.detail_gaji', compact('no', 'detail_gaji'));
+        } else {
+            return redirect()->back()->with('error', 'Data Gaji masih Kosong');
+        }
     }
 
     /**
