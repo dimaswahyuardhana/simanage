@@ -48,6 +48,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="alamat" class="col-sm-2 col-form-label" >Company Code</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="company" name="company" value="{{ $profileAdmin[0]->id_company }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="alamat" class="col-sm-2 col-form-label" >Alamat</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror"
