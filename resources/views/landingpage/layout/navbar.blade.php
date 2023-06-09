@@ -11,20 +11,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">ABOUT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/absent') }}">ABSENSI</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/data_absensi') }}">DATA ABSENSI</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/riwayat_gaji') }}">RIWAYAT GAJI</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/profile') }}">PROFILE</a></li>
+
                     @if (auth()->check())
+                        @php $admin = auth()->user()->id_role @endphp
+                        {{-- {{  dd($admin) }} --}}
+                        @if ($admin == 1)
+                            <script>
+                                window.location.href = '{{ url('/admin') }}';
+                            </script>
+                        @endif
+
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">ABOUT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/absent') }}">ABSENSI</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/data_absensi') }}">DATA ABSENSI</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/riwayat_gaji') }}">RIWAYAT GAJI</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/profile') }}">PROFILE</a></li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="btn btn-primary" role="button">LOGOUT</button>
+                            <button class="btn btn-primary">LOGOUT</button>
                         </form>
                     @else
                         <a class="btn btn-primary" href="{{ url('/login') }}" role="a">LOGIN</a>
                     @endif
+
+                    {{-- @if (auth()->check())
+                    @else
+                    @endif --}}
                 </ul>
             </div>
         </div>
