@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('schedule:check-attendance')->dailyAt('22:17');
+        $schedule->command('schedule:notification-email')->dailyAt('22:17');
     }
 
     /**
