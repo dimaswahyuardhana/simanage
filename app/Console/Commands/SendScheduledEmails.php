@@ -35,7 +35,7 @@ class SendScheduledEmails extends Command
             ->get();
 
         foreach ($employees as $employee) {
-            Mail::raw('Jangan Lupa untuk Absen', function ($message) use ($employee) {
+            Mail::html(view('admin.karyawan.reminder_absent')->render(), function ($message) use ($employee) {
                 $message->to($employee->email);
                 $message->subject('Hai ' . $employee->name);
             });
