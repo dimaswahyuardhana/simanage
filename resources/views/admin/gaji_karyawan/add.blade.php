@@ -18,82 +18,124 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tambah Data Gaji Karyawan</h5>
-                            {{-- {{ dd($dataKaryawan) }} --}}
-                            <div class="card mb-3">
-                                <div class="col-sm-11 mx-4 mt-4">
-                                    <select class="form-select @error('id') is-invalid @enderror"
-                                        aria-label="default select example" name="id" id="selectKaryawan">
-                                        <option value="0" selected>Pilih Karyawan</option>
-                                        @foreach ($dataKaryawan as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('id')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                            <div class="col-sm-11">
+                                <select class="form-select" aria-label="default select example" name="id"
+                                    id="selectKaryawan">
+                                    <option value="0" selected>Pilih Karyawan</option>
+                                    @foreach ($dataKaryawan as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nama Karyawan</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="namaKaryawan"
+                                        value=":">
                                 </div>
-                                <div class="card-body py-2">
-                                    <p class="card-text mb-0">Nama Karyawan : <span id="namaKaryawan"></span></p>
-                                    <p class="card-text mb-0">Email : <span id="emailKaryawan"></span></p>
-                                    <p class="card-text mb-0">Nomor Telepon : <span id="teleponKaryawan"></span></p>
-                                    <p class="card-text mb-0">Alamat : <span id="alamatKaryawan"></span></p>
-                                    <p class="card-text mb-0">Jabatan : <span id="jabatanKaryawan"></span></p>
-                                    <p class="card-text mb-0">Gaji : <span id="gajiKaryawan"></span></p>
-
-
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="emailKaryawan"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nomor Telepon</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="teleponKaryawan"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Alamat</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="alamatKaryawan"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Jabatan</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="jabatanKaryawan"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Gaji Pokok</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="gajiKaryawan"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Jumlah Hadir</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="jumlahHadir"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Jumlah Izin</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="jumlahIzin"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Jumlah Sakit</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="jumlahSakit"
+                                        value=": ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Jumlah Alpha</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="jumlahAlpha"
+                                        value=": ">
                                 </div>
                             </div>
 
-                            <div class="card mb-3">
-                                <div class="card-body py-2">
-                                    <p class="card-text mb-0">Jumlah Hadir : <span id="jumlahHadir"></span></p>
-                                    <p class="card-text mb-0">Jumlah Izin : <span id="jumlahIzin"></span></p>
-                                    <p class="card-text mb-0">Jumlah Sakit : <span id="jumlahSakit"></span></p>
-                                    <p class="card-text mb-0">Jumlah Alpha : <span id="jumlahAlpha"></span></p>
-                                    <p class="card-text mb-0">Jumlah Hari Kerja : </p>
-
-                                    <!-- General Form Elements -->
-                                    <form method="POST" action="{{ url('/gaji_karyawan') }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row mb-3 me-2">
-                                            <label for="bukti_transfer_gaji" class="col-sm-3 col-form-label">Bukti Transfer
-                                                Gaji</label>
-                                            <div class="col-sm-9">
-                                                <input class="form-control" type="file" name="bukti_transfer_gaji"
-                                                    id="bukti_transfer_gaji">
-                                                @error('bukti_transfer_gaji')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                            <form method="POST" action="{{ url('/gaji_karyawan') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mb-3 me-2">
+                                    <label for="bukti_transfer_gaji" class="col-sm-3 col-form-label">Bukti Slip Gaji</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control @error('bukti_transfer_gaji') is-invalid @enderror"
+                                            type="file" name="bukti_transfer_gaji" id="bukti_transfer_gaji">
+                                        @error('bukti_transfer_gaji')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
                                             </div>
-                                        </div>
-
-                                        <input name="nama_karyawan" id="namaKaryawanInput" hidden>
-                                        <input name="gaji_karyawan" id="gajiKaryawanInput" hidden>
-                                        <input name="jumlah_hadir" id="jumlahHadirInput" hidden>
-                                        <input name="jumlah_izin" id="jumlahIzinInput" hidden>
-                                        <input name="jumlah_sakit" id="jumlahSakitInput" hidden>
-                                        <input name="jumlah_alpha" id="jumlahAlphaInput" hidden>
-                                        <input name="id_user" id="idUserInput" hidden>
-
-                                        <div class="row mb-3">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-info">Tambah</button>
-                                                <a class="btn btn-danger" href="{{ url('/gaji_karyawan') }}">Batal</a>
-                                            </div>
-                                        </div>
-
-                                    </form>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
+
+                                <input name="nama_karyawan" id="namaKaryawanInput" hidden>
+                                <input name="gaji_karyawan" id="gajiKaryawanInput" hidden>
+                                <input name="jumlah_hadir" id="jumlahHadirInput" hidden>
+                                <input name="jumlah_izin" id="jumlahIzinInput" hidden>
+                                <input name="jumlah_sakit" id="jumlahSakitInput" hidden>
+                                <input name="jumlah_alpha" id="jumlahAlphaInput" hidden>
+                                <input name="id_user" id="idUserInput" hidden>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-info">Tambah</button>
+                                        <a class="btn btn-danger" href="{{ url('/gaji_karyawan') }}">Batal</a>
+                                    </div>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
+
                 </div>
             </div>
+
         </section>
 
     </main>

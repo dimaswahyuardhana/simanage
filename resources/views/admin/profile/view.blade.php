@@ -48,29 +48,33 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="alamat" class="col-sm-2 col-form-label" >Company Code</label>
+                                    <label for="alamat" class="col-sm-2 col-form-label">Company Code</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="company" name="company" value="{{ $profileAdmin[0]->id_company }}" readonly>
+                                        <input type="text" class="form-control" id="company" name="company"
+                                            value="{{ $profileAdmin[0]->id_company }}" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="alamat" class="col-sm-2 col-form-label" >Alamat</label>
+                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror"
-                                            id="alamat" name="alamat" value="{{ $profileAdmin[0]->alamat }}" readonly>
+                                            name="alamat" id="alamat" value="{{ $profileAdmin[0]->alamat }}" disabled>
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="hidden" name="latitude" id="latitude">
-                                    <input type="hidden" name="longitude" id="longitude">
                                 </div>
+
+                                <input type="text" class="form-control" name="alamat" id="alamatHidden"
+                                    value="{{ $profileAdmin[0]->alamat }}" hidden>
+                                <input type="hidden" name="latitude" id="latitude">
+                                <input type="hidden" name="longitude" id="longitude">
+
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-info">Simpan</button>
-                                        <a class="btn btn-danger" href="{{ url('/profileAdmin') }}">Batal</a>
                                     </div>
                                 </div>
 

@@ -115,23 +115,3 @@ Route::middleware(['loginAsEmployee'])->group(function () {
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// test
-Route::get('/test', function () {
-    $employee = User::select('email', 'id_company')
-        ->where('id_role', '!=', 1)
-        ->get();
-    $test = [];
-    foreach ($employee as $email_employee) {
-        // if ($message->to($email_employee->email)) {
-            $company_name = company::select('companies.company_name', 'users.email')
-                ->join('users', 'users.id_company', '=', 'companies.id_company')
-                ->where('users.email', '=', $email_employee->email)
-                ->get();
-            $test[$email_employee->email] = $company_name;
-            // $message->subject($company_name, $email_employee);
-            // array_splice($company_name, 0, count($company_name));
-        // }
-    }
-    dd($test["fanielsianipar01@gmail.com"]);
-});

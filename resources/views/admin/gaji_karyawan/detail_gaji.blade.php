@@ -20,7 +20,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Detail Gaji Karyawan</h5>
-                            <h5>{{ $detail_gaji[0]->nama_karyawan }}</h5>
+                            <div class="form-group row" style="font-size:18px; font-weight:bolder">
+                                <label class="col-sm-1 col-form-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="namaKaryawan"
+                                        style="font-size:18px; font-weight:bolder"
+                                        value=": {{ $detail_gaji[0]->nama_karyawan }}">
+                                </div>
+                            </div>
 
                             <!-- Default Table -->
                             <table class="table" style="vertical-align: middle">
@@ -28,18 +35,18 @@
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Tanggal</th>
-                                        <th scope="col">Total Gaji</th>
+                                        <th scope="col">Gaji Bersih</th>
                                         <th scope="col">Slip Gaji</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($detail_gaji as $item)
+                                    @foreach ($detail_gaji as $key => $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}
-                                            <td>{{ $item->total_gaji }}</td>
-                                            <td><a
-                                                    href="/storage/{{ $item->bukti_transfer_gaji }}">{{ $item->bukti_transfer_gaji }}</a>
+                                            <td>{{ $formatted_gaji_bersih[$key] }}</td>
+                                            <td><a href="/storage/{{ $item->bukti_transfer_gaji }}"
+                                                    class="btn btn-xs btn-info"><b>Lihat Slip Gaji</b></a>
                                             </td>
                                         </tr>
                                     @endforeach

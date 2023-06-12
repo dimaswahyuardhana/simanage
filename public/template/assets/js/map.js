@@ -18,6 +18,8 @@ function searchLocation() {
 
     var alamat = document.getElementById('alamat');
     alamat.value = searchInput;
+    var alamat = document.getElementById('alamatHidden');
+    alamatHidden.value = searchInput;
 
     // Permintaan geokoding menggunakan Mapbox Geocoding API
     fetch(

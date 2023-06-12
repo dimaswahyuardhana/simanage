@@ -59,7 +59,7 @@
                                             <td>{{ $item->nomor_telepon }}</td>
                                             <td>{{ $item->alamat }}</td>
                                             <td><a href="{{ route('hadir', ['id' => $item->id]) }}"
-                                                    class="btn btn-xs btn-info"><i class="bi bi-info-circle-fill"></i></a>
+                                                    class="btn btn-xs btn-info"><b>Lihat Absen</b></a>
                                             </td>
                                         </tr>
                                     @endforeach

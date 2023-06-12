@@ -22,30 +22,30 @@
                             <div>
                                 <a href="{{ url('/gaji_karyawan/add') }}">
                                     <button type="button" class="btn btn-success">
-                                        <i class="bi bi-cash-stack"></i> Bayar Karyawan
+                                        <i class="bi bi-cash-stack"></i> Bayar Gaji
                                     </button>
                                 </a>
                             </div>
                             <br>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama Karyawan</th>
-                                        <th scope="col">Total Gaji</th>
+                                        <th scope="col">Gaji Pokok</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($gajiKaryawan as $item)
+                                    @foreach ($karyawan as $key => $item)
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->jabatan->gaji }}</td>
+                                            <td>{{ $formatted_gaji[$key] }}</td>
                                             <td><a href="{{ route('detail_gaji', ['id_user' => $item->id]) }}"
-                                                    class="btn btn-xs btn-info"><i class="bi bi-info-circle-fill"></i></a>
+                                                    class="btn btn-xs btn-info"><b>Riwayat Gaji</b></a>
                                             </td>
                                         </tr>
                                     @endforeach

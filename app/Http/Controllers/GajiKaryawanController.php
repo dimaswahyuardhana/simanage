@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class GajiKaryawanController extends Controller
 {
+    public function formatMoney($amount)
+    {
+        $formattedAmount = 'Rp ' . number_format($amount, 2, ',', '.');
+
+        return $formattedAmount;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,13 +27,17 @@ class GajiKaryawanController extends Controller
     {
         $no = 1;
         $perusahaan = Auth::user()->id_company;
-        $gajiKaryawan = User::with('jabatan')
-            ->with('gaji_karyawans')
+        $karyawan = User::with('jabatan')
             ->where('id_role', '!=', 1)
             ->where('id_company', $perusahaan)
             ->get();
 
-        return view('admin.gaji_karyawan.view', compact('no', 'gajiKaryawan'));
+        $formatted_gaji = [];
+        foreach ($karyawan as $gaji) {
+            $formatted_gaji[] = $this->formatMoney($gaji->jabatan->gaji);
+        }
+
+        return view('admin.gaji_karyawan.view', compact('no', 'karyawan', 'formatted_gaji'));
     }
 
     /**
@@ -80,14 +91,18 @@ class GajiKaryawanController extends Controller
         $totalGaji = $gajiKaryawan - ($jumlahAlpha * 50000);
 
         $validated = $request->validate([
-            'bukti_transfer_gaji' => 'required'
+            'bukti_transfer_gaji' => 'required|mimes:jpeg,png,jpg,pdf'
         ], [
-            'bukti_transfer_gaji.required' => 'Bukti Transfer Gaji harus diisi'
+            'bukti_transfer_gaji.required' => 'Bukti Slip Gaji harus diisi',
+            'bukti_transfer_gaji.mimes' => 'Bukti Slip Gaji harus dalam format gambar (jpeg, png, jpg) atau PDF',
         ]);
 
         $waktu = Carbon::now();
         $month = $waktu->format('M-Y');
-        $validated['bukti_transfer_gaji'] = $request->file('bukti_transfer_gaji')->storeAs('bukti_gaji', 'bukti_transfer_gaji-' . $namaKaryawan . '-' . $month . '.jpg');
+        $file = $request->file('bukti_transfer_gaji');
+        $extension = $file->getClientOriginalExtension();
+        $filename = 'bukti_slip_gaji-' . $namaKaryawan . '-' . $month . '.' . $extension;
+        $validated['bukti_transfer_gaji'] = $file->storeAs('bukti_gaji', $filename);
 
         GajiKaryawan::create([
             'nama_karyawan' => $namaKaryawan,
@@ -118,10 +133,8 @@ class GajiKaryawanController extends Controller
     public function detail_gaji($id_user)
     {
         $no = 1;
-        $detail_gaji = GajiKaryawan::select()
-            ->where('id_user', $id_user)
+        $detail_gaji = GajiKaryawan::where('id_user', $id_user)
             ->get();
-        // dd($detail_gaji);
 
         // $gaji = User::with('gaji_karyawans')
         //     ->where('id_role', '!=', 1)
@@ -129,8 +142,14 @@ class GajiKaryawanController extends Controller
         //     ->where('id', $karyawan)
         //     ->get();
 
+        $formatted_gaji_bersih = [];
+
+        foreach ($detail_gaji as $gaji_bersih) {
+            $formatted_gaji_bersih[] = $this->formatMoney($gaji_bersih->total_gaji);
+        }
+
         if (count($detail_gaji) > 0) {
-            return view('admin.gaji_karyawan.detail_gaji', compact('no', 'detail_gaji'));
+            return view('admin.gaji_karyawan.detail_gaji', compact('no', 'detail_gaji', 'formatted_gaji_bersih'));
         } else {
             return redirect()->back()->with('error', 'Data Gaji masih Kosong');
         }

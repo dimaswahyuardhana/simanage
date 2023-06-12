@@ -87,7 +87,7 @@ class ProfileAdminController extends Controller
             'company_name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Email harus dengan format example@example.com',
-            'alamat.required' => 'Mohon sertakan alamat dengan cara Cari Lokasi',
+            'alamat.required' => 'Mohon isi alamat melalui Cari Lokasi pada Peta di bawah',
         ]);
 
         company::where('id_company', auth()->user()->id_company)->update([

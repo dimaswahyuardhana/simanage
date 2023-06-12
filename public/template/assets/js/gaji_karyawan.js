@@ -10,12 +10,23 @@ $(document).ready(function () {
         });
 
         // Perbarui nilai elemen HTML dengan data Karyawan yang sesuai
-        $('#namaKaryawan').text(selectedKaryawan[0].name);
-        $('#emailKaryawan').text(selectedKaryawan[0].email);
-        $('#teleponKaryawan').text(selectedKaryawan[0].telepon);
-        $('#alamatKaryawan').text(selectedKaryawan[0].alamat);
-        $('#jabatanKaryawan').text(selectedKaryawan[0].jabatan.jabatan);
-        $('#gajiKaryawan').text(selectedKaryawan[0].jabatan.gaji);
+        $('#namaKaryawan').val(': ' + selectedKaryawan[0].name);
+        $('#emailKaryawan').val(': ' + selectedKaryawan[0].email);
+        $('#teleponKaryawan').val(': ' + (selectedKaryawan[0].nomor_telepon ? selectedKaryawan[0].nomor_telepon : '-'));
+        $('#alamatKaryawan').val(': ' + (selectedKaryawan[0].alamat ? selectedKaryawan[0].alamat : '-'));
+        $('#jabatanKaryawan').val(': ' + selectedKaryawan[0].jabatan.jabatan);
+
+        function formatMoney(amount) {
+            var formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+            });
+
+            return formatter.format(amount);
+        }
+        $('#gajiKaryawan').val(': ' + formatMoney(selectedKaryawan[0].jabatan.gaji));
+
 
         // Hitung jumlah Hadir, Izin, Sakit, dan Alpha
         var jumlahHadir = 0;
@@ -36,10 +47,10 @@ $(document).ready(function () {
         });
 
         // Perbarui nilai elemen HTML dengan jumlah Hadir, Izin, Sakit, dan Alpha
-        $('#jumlahHadir').text(jumlahHadir);
-        $('#jumlahIzin').text(jumlahIzin);
-        $('#jumlahSakit').text(jumlahSakit);
-        $('#jumlahAlpha').text(jumlahAlpha);
+        $('#jumlahHadir').val(': ' + jumlahHadir);
+        $('#jumlahIzin').val(': ' + jumlahIzin);
+        $('#jumlahSakit').val(': ' + jumlahSakit);
+        $('#jumlahAlpha').val(': ' + jumlahAlpha);
 
         // Isi nilai namaKaryawanInput ke dalam input hidden
         $('#namaKaryawanInput').val(selectedKaryawan[0].name);
