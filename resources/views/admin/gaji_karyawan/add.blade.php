@@ -18,89 +18,96 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tambah Data Gaji Karyawan</h5>
-                            <div class="col-sm-11">
-                                <select class="form-select" aria-label="default select example" name="id"
-                                    id="selectKaryawan">
-                                    <option value="0" selected>Pilih Karyawan</option>
-                                    @foreach ($dataKaryawan as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Nama Karyawan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="namaKaryawan"
-                                        value=":">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="emailKaryawan"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Nomor Telepon</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="teleponKaryawan"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Alamat</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="alamatKaryawan"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Jabatan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="jabatanKaryawan"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Gaji Pokok</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="gajiKaryawan"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Jumlah Hadir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="jumlahHadir"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Jumlah Izin</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="jumlahIzin"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Jumlah Sakit</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="jumlahSakit"
-                                        value=": ">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Jumlah Alpha</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="jumlahAlpha"
-                                        value=": ">
-                                </div>
-                            </div>
 
                             <form method="POST" action="{{ url('/gaji_karyawan') }}" enctype="multipart/form-data">
                                 @csrf
+                                <div class="col-sm-11">
+                                    <select class="form-select @error('id_user') is-invalid @enderror"
+                                        aria-label="default select example" name="id_user" id="selectKaryawan">
+                                        <option value="0" selected>Pilih Karyawan*</option>
+                                        @foreach ($dataKaryawan as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p class="tutorial-note">Pilih Karyawan untuk menampilkan Data Karyawan</p>
+                                    @error('id_user')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nama Karyawan</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="namaKaryawan"
+                                            value=":">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="emailKaryawan"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nomor Telepon</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="teleponKaryawan"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Alamat</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="alamatKaryawan"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jabatan</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="jabatanKaryawan"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Gaji Pokok</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="gajiKaryawan"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jumlah Hadir</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="jumlahHadir"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jumlah Izin</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="jumlahIzin"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jumlah Sakit</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="jumlahSakit"
+                                            value=": ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Jumlah Alpha</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="jumlahAlpha"
+                                            value=": ">
+                                    </div>
+                                </div>
+
                                 <div class="row mb-3 me-2">
                                     <label for="bukti_transfer_gaji" class="col-sm-3 col-form-label">Bukti Slip Gaji</label>
                                     <div class="col-sm-9">

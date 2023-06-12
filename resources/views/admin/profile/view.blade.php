@@ -22,7 +22,7 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="company_name" class="col-sm-2 col-form-label">Nama Company</label>
+                                    <label for="company_name" class="col-sm-2 col-form-label">Nama Company*</label>
                                     <div class="col-sm-10">
                                         <input type="text"
                                             class="form-control @error('company_name') is-invalid @enderror"
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                    <label for="email" class="col-sm-2 col-form-label">Email*</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" value="{{ $profileAdmin[0]->email }}">
@@ -48,17 +48,19 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="alamat" class="col-sm-2 col-form-label">Company Code</label>
+                                    <label for="alamat" class="col-sm-2 col-form-label">Company Code*</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="company" name="company"
                                             value="{{ $profileAdmin[0]->id_company }}" disabled>
+                                        <p class="tutorial-note">Kode ini untuk register 'Employee / Karyawan'</p>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat*</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror"
                                             name="alamat" id="alamat" value="{{ $profileAdmin[0]->alamat }}" disabled>
+                                        <p class="tutorial-note">Cari Alamat pada Peta di bawah melalui kolom 'Cari lokasi'</p>
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

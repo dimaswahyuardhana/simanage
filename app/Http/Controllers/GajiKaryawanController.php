@@ -91,10 +91,12 @@ class GajiKaryawanController extends Controller
         $totalGaji = $gajiKaryawan - ($jumlahAlpha * 50000);
 
         $validated = $request->validate([
-            'bukti_transfer_gaji' => 'required|mimes:jpeg,png,jpg,pdf'
+            'bukti_transfer_gaji' => 'required|mimes:jpeg,png,jpg,pdf',
+            'id_user' => 'required'
         ], [
             'bukti_transfer_gaji.required' => 'Bukti Slip Gaji harus diisi',
             'bukti_transfer_gaji.mimes' => 'Bukti Slip Gaji harus dalam format gambar (jpeg, png, jpg) atau PDF',
+            'id_user.required' => 'Karyawan harus dipilih',
         ]);
 
         $waktu = Carbon::now();
