@@ -12,8 +12,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatGajiController;
-use App\Models\company;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------

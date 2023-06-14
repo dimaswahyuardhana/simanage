@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absent;
+use App\Models\company;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,12 @@ class AbsentController extends Controller
      */
     public function index()
     {
-        return view('landingpage.section.absensi');
+        $user = Auth::user();
+        $company = company::select('longitude', 'latitude', 'id_company')
+            ->where('id_company', $user->id_company)
+            ->get();
+
+        return view('landingpage.section.absensi', compact('company'));
     }
 
     /**
@@ -71,37 +77,88 @@ class AbsentController extends Controller
             ->where('time_in', '!=', NULL)
             ->first();
 
-        if ($absent) {
-            // dd('tidak diupdate');
-            // Jika sudah absent, kirimkan respons dengan pesan error
-            // return response()->json(['error' => 'Anda sudah Absent hari ini']);
-            return redirect('/absent')->with('error', 'Anda sudah Absent hari ini');
+        if ($request->input('status') == 'Hadir') {
+            if (intval($request->input('distance')) < 1000) {
+                if ($absent) {
+                    // Jika sudah absent, kirimkan respons dengan pesan error
+                    // return response()->json(['error' => 'Anda sudah Absent hari ini']);
+                    return redirect('/absent')->with('error', 'Anda sudah Absent hari ini');
+                } else {
+                    $validated = $request->validate([
+                        'status' => 'required',
+                        'lampiran' => 'mimes:pdf',
+                    ], [
+                        'status.required' => 'Status harus dipilih',
+                        'lampiran.mimes' => 'Lampiran Surat harus dalam format PDF'
+                    ]);
+
+                    $validated['time_in'] = Carbon::now();
+
+                    $waktu = $validated['time_in']->format('d-m-y');
+                    $file = $request->file('lampiran');
+                    // $extension = $file->getClientOriginalExtension();
+                    $filename = 'lampiran_' . $user->name . '_' . $waktu . '.' . 'pdf';
+
+                    if ($file != null) {
+                        $validated['lampiran'] = $file->storeAs('lampiran', $filename);
+                    } else {
+                        $validated['lampiran'] = null;
+                    }
+
+                    Absent::where('id_user', $user->id)
+                        ->whereRaw('date(created_at) = CURRENT_DATE()')
+                        ->update([
+                            'time_in' => $validated['time_in'],
+                            'status' => $validated['status'],
+                            'keterangan' => request()->input('keterangan'),
+                            'lampiran' => $validated['lampiran']
+                        ]);
+
+                    return redirect('/absent')->with('success', 'Absent berhasil');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Jarak Anda terlalu jauh');
+            }
         } else {
-            // dd('diupdate');
-            $validated = $request->validate([
-                'status' => 'required'
-            ], [
-                'status.required' => 'Status harus dipilih'
-            ]);
-
-            $validated['time_in'] = Carbon::now();
-
-            Absent::where('id_user', $user->id)
-                ->whereRaw('date(created_at) = CURRENT_DATE()')
-                ->update([
-                    'time_in' => $validated['time_in'],
-                    'status' => $validated['status'],
-                    'keterangan' => request()->input('keterangan')
+            if ($absent) {
+                // Jika sudah absent, kirimkan respons dengan pesan error
+                // return response()->json(['error' => 'Anda sudah Absent hari ini']);
+                return redirect('/absent')->with('error', 'Anda sudah Absent hari ini');
+            } else {
+                $validated = $request->validate([
+                    'status' => 'required',
+                    'lampiran' => 'required|mimes:pdf',
+                ], [
+                    'status.required' => 'Status harus dipilih',
+                    'lampiran.required' => 'Izin atau Sakit harus mengisi Lampiran Surat',
+                    'lampiran.mimes' => 'Lampiran Surat harus dalam format PDF'
                 ]);
 
-            return redirect('/absent')->with('success', 'Absent berhasil');
+                $validated['time_in'] = Carbon::now();
+
+                $waktu = $validated['time_in']->format('d-m-y');
+                $file = $request->file('lampiran');
+                // $extension = $file->getClientOriginalExtension();
+                $filename = 'lampiran_' . $user->name . '_' . $waktu . '.' . 'pdf';
+
+                if ($file != null) {
+                    $validated['lampiran'] = $file->storeAs('lampiran', $filename);
+                } else {
+                    $validated['lampiran'] = null;
+                }
+
+                Absent::where('id_user', $user->id)
+                    ->whereRaw('date(created_at) = CURRENT_DATE()')
+                    ->update([
+                        'time_in' => $validated['time_in'],
+                        'status' => $validated['status'],
+                        'keterangan' => request()->input('keterangan'),
+                        'lampiran' => $validated['lampiran']
+                    ]);
+
+                return redirect('/absent')->with('success', 'Absent berhasil');
+            }
         }
-
-        // $data = Absent::select('*')
-        //     ->where('id_user', $user->id)->get()
-        //     ->where('date(created_at) = CURRENT_DATE()');
-
-        // dd(Carbon::parse($data[0]->created_at)->format('Y-m-d') == $today);
     }
 
     /**
