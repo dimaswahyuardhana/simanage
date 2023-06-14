@@ -107,6 +107,7 @@
                                             value=": ">
                                     </div>
                                 </div>
+                                <p class="tutorial-note" style="color:red">Setiap kali Alpha maka Gaji Pokok dikurangin Rp 50.000,00</p>
 
                                 <div class="row mb-3 me-2">
                                     <label for="bukti_transfer_gaji" class="col-sm-3 col-form-label">Bukti Slip Gaji</label>
@@ -129,7 +130,7 @@
                                 <input name="jumlah_alpha" id="jumlahAlphaInput" hidden>
                                 <input name="id_user" id="idUserInput" hidden>
 
-                                <div class="row mb-3">
+                                <div class="row mt-3">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-info">Tambah</button>
                                         <a class="btn btn-danger" href="{{ url('/gaji_karyawan') }}">Batal</a>

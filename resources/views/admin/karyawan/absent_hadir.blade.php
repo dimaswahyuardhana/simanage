@@ -31,13 +31,12 @@
                             <h5 class="card-title">Tabel Absent Hadir</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Keterangan</th>
-                                        <th scope="col">Lampiran</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +44,6 @@
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
-                                            <td>{{ $item->keterangan }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

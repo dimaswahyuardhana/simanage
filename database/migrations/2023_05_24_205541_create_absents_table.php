@@ -18,6 +18,7 @@ return new class extends Migration
             $table->datetime('time_in')->nullable();
             $table->enum('status', ['Hadir', 'Izin', 'Sakit', 'Alpha'])->default('Alpha');
             $table->string('keterangan')->nullable();
+            $table->string('lampiran')->nullable();
             $table->foreignId('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

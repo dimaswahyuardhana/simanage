@@ -31,13 +31,13 @@
                             <h5 class="card-title">Tabel Absent Izin</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
+                            <table class="table" style="vertical-align: middle">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Keterangan</th>
-                                        <th scope="col">Lampiran</th>
+                                        <th scope="col">Lampiran Surat</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,6 +46,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
                                             <td>{{ $item->keterangan }}</td>
+                                            <td><a href="/storage/{{ $item->lampiran }}" target="_blank" class="btn btn-info"><b>Lihat Lampiran Surat</b></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

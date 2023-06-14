@@ -14,6 +14,7 @@ class Absent extends Model
         'time_in',
         'status',
         'keterangan',
+        'lampiran',
     ];
 
     public function user()

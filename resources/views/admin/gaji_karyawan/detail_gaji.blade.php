@@ -45,7 +45,7 @@
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}
                                             <td>{{ $formatted_gaji_bersih[$key] }}</td>
-                                            <td><a href="/storage/{{ $item->bukti_transfer_gaji }}"
+                                            <td><a href="/storage/{{ $item->bukti_transfer_gaji }}" target="_blank"
                                                     class="btn btn-xs btn-info"><b>Lihat Slip Gaji</b></a>
                                             </td>
                                         </tr>

@@ -1,10 +1,5 @@
 @extends('landingpage.layout.index')
 @section('content')
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-heading">Profile</div>
-        </div>
-    </header>
 
     <section class="page-section " id="contact">
         <div class="container">

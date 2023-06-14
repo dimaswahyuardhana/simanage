@@ -1,27 +1,21 @@
 @extends('landingpage.layout.index')
 @section('content')
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-heading">Manajemen Data</div>
-        </div>
-    </header>
-    <section class="page-section bg-light" id="team">
+
+    <section class="page-section bg-light" id="contact">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Data Anda</h2>
+                <h2 class="section-heading text-uppercase">Data Absensi</h2>
             </div>
-            <a href="">
-                <button class="btn btn-dark mb-3">Cetak Slip Gaji <i class="fas fa-file-pdf fa-lg"
-                        style="color: #f01939;"></i></button>
-            </a>
+
             <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered table-light ">
+                <table class="table table-striped table-hover table-bordered table-light" style="vertical-align: middle">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Lampiran</th>
+                            <th scope="col">Keterangan</th>
+                            <th scope="col">Lampiran Surat</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +29,7 @@
                                 @endif
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->keterangan }}</td>
+                                <td><a href="/storage/{{ $item->lampiran }}" target="_blank" class="btn btn-info"><b>Lihat Lampiran Surat</b></a></td>
                             </tr>
                         @endforeach
                     </tbody>
