@@ -89,7 +89,10 @@ Route::middleware(['loginAs'])->group(function () {
     // delete keuangan
     Route::get('keuangan/{id_finance}/delete', [FinanceController::class, 'destroy']);
     // arsipkan keuangan
-    Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
+    // Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])->name('keuangan.arsipkan');
+    Route::post('/keuangan/arsipkan', [FinanceController::class, 'arsipkan'])
+        ->name('keuangan.arsipkan')
+        ->middleware('https');
 
     // laporan keuangan
     Route::get('/laporan', [FinancialStatementController::class, 'index']);
