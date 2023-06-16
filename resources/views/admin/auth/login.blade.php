@@ -10,8 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('/template/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('/template/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link src="{{ asset('landing/assets/img/logo-simanage.png') }}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -50,7 +49,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="{{ url('/admin') }}" class="logo d-flex align-items-center w-auto">
-                  <img src="{{ asset('template/assets/img/logo.png') }}" alt="">
+                  <img src="{{ asset('landing/assets/img/logo-simanage.png') }}" alt="" style="width: 7em">
                 </a>
               </div><!-- End Logo -->
 
@@ -94,13 +93,6 @@
                 </div>
               </div>
 
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
 
             </div>
           </div>

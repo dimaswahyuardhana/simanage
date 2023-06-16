@@ -10,8 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('template/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('template/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link src="{{ asset('landing/assets/img/logo-simanage.png') }}" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -65,7 +64,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ url('/admin') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('template/assets/img/logo.png') }}" alt="">
+                <img src="{{ asset('landing/assets/img/logo-simanage.png') }}" alt="">
                 <span class="d-none d-lg-block">siManage</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
