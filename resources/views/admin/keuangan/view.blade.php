@@ -29,7 +29,7 @@
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-success" id="arsipkanDataBtn"
-                                        data-url="{{ route('keuangan.arsipkan') }}">
+                                        data-url="https://sib413.eudeka.my.id/keuangan/arsipkan">
                                         Arsipkan Data <i class="fa-regular fa-folder-open"></i>
                                     </button>
                                 </div>
@@ -58,13 +58,14 @@
                                             <td>{{ \Carbon\Carbon::parse($item->updated_at)->locale('id')->isoFormat('LLL') }}
                                             </td>
                                             <td>
-                                                @if($item->keterangan != 'Gaji Karyawan')
-                                                <a href="/keuangan/{{ $item->id_finance }}/edit"
-                                                    class="btn btn-xs btn-warning"><i
-                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/keuangan/{{ $item->id_finance }}/delete"
-                                                    class="btn btn-xs btn-danger"
-                                                    onclick="return confirm('Are u Sure?');"><i class="fa fa-trash"></i></a>
+                                                @if ($item->keterangan != 'Gaji Karyawan')
+                                                    <a href="/keuangan/{{ $item->id_finance }}/edit"
+                                                        class="btn btn-xs btn-warning"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="/keuangan/{{ $item->id_finance }}/delete"
+                                                        class="btn btn-xs btn-danger"
+                                                        onclick="return confirm('Are u Sure?');"><i
+                                                            class="fa fa-trash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>

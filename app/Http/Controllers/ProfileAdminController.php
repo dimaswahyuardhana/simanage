@@ -79,19 +79,22 @@ class ProfileAdminController extends Controller
         // dd($request->input());
         $validated = $request->validate([
             'company_name' => 'required',
-            'email' => 'required|email',
+            // 'name' => ['required', 'string', 'max:100'],
+            'email' => 'required|string|max:100|unique:email|email',
             'alamat' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
         ], [
             'company_name.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah digunakan',
             'email.email' => 'Email harus dengan format example@example.com',
             'alamat.required' => 'Mohon isi alamat melalui Cari Lokasi pada Peta di bawah',
         ]);
 
         company::where('id_company', auth()->user()->id_company)->update([
             'company_name' => $validated['company_name'],
+            'email' => $validated['email'],
             'longitude' => $validated['longitude'],
             'latitude' => $validated['latitude']
         ]);
