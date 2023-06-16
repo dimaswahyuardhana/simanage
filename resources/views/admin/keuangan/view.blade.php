@@ -28,6 +28,10 @@
                                     </a>
                                 </div>
                                 <div>
+                                    {{-- <button type="button" class="btn btn-success" id="arsipkanDataBtn"
+                                        data-url="{{ route('keuangan.arsipkan') }}">
+                                        Arsipkan Data <i class="fa-regular fa-folder-open"></i>
+                                    </button> --}}
                                     <button type="button" class="btn btn-success" id="arsipkanDataBtn"
                                         data-url="https://sib413.eudeka.my.id/keuangan/arsipkan">
                                         Arsipkan Data <i class="fa-regular fa-folder-open"></i>
