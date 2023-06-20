@@ -1,6 +1,5 @@
 @extends('landingpage.layout.index')
 @section('content')
-
     <section class="page-section bg-light" id="contact">
         <div class="container">
             <div class="text-center">
@@ -29,7 +28,12 @@
                                 @endif
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->keterangan }}</td>
-                                <td><a href="/storage/{{ $item->lampiran }}" target="_blank" class="btn btn-info"><b>Lihat Lampiran Surat</b></a></td>
+                                @if ($item->lampiran == NULL)
+                                    <td>-</td>
+                                @else
+                                    <td><a href="/storage/{{ $item->lampiran }}" target="_blank"
+                                            class="btn btn-info"><b>Lihat Lampiran Surat</b></a></td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

@@ -78,6 +78,12 @@ class AbsentController extends Controller
             ->whereRaw('date(created_at) = CURRENT_DATE()')
             ->first();
 
+        $x = $request->validate([
+            'status' => 'required'
+        ], [
+            'status.required' => 'Status harus dipilih'
+        ]);
+
         if ($request->input('status') == 'Hadir') {
             if (intval($request->input('distance')) < 1000) {
                 if ($absent) {
@@ -131,7 +137,7 @@ class AbsentController extends Controller
                     'lampiran' => 'required|mimes:pdf',
                 ], [
                     'status.required' => 'Status harus dipilih',
-                    'lampiran.required' => 'Izin atau Sakit harus mengisi Lampiran Surat',
+                    'lampiran.required' => 'Lampiran Surat harus diisi',
                     'lampiran.mimes' => 'Lampiran Surat harus dalam format PDF'
                 ]);
 

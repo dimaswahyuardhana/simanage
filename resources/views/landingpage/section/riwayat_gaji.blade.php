@@ -18,11 +18,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($dataGaji as $item)
+                        @foreach ($dataGaji as $key => $item)
                             <tr>
                                 <th>{{ $no++ }}.</th>
                                 <td>{{ \Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('LLL') }}</td>
-                                <td>{{ $item->total_gaji }}</td>
+                                <td>{{ $formatted_dataGaji[$key] }}</td>
                                 <td><a href="/storage/{{ $item->bukti_transfer_gaji }}" target="_blank"
                                         class="btn btn-info"><b>Lihat Slip Gaji</b></a></td>
                             </tr>

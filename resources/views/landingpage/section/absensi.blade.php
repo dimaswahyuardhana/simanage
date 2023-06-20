@@ -1,6 +1,5 @@
 @extends('landingpage.layout.index')
 @section('content')
-
     <section class="page-section " id="contact">
         <div class="container">
             <div class="text-center">
@@ -18,7 +17,7 @@
                                     @method('PUT')
                                     @csrf
                                     <label>
-                                        <input type="radio" name="status" value="Hadir">
+                                        <input type="radio" name="status" value="Hadir" checked>
                                         Hadir
                                     </label>
                                     <label>

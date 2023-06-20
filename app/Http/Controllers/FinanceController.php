@@ -190,7 +190,7 @@ class FinanceController extends Controller
 
         // Mengambil data dari tabel finances
         $total_pemasukan = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'pemasukan');
+            $query->where('kategori', 'Pemasukan ( + )');
         })
             ->with('user')
             ->where('id_user', $user)
@@ -198,14 +198,14 @@ class FinanceController extends Controller
         // dd($total_pemasukan);
 
         $total_pengeluaran = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'pengeluaran');
+            $query->where('kategori', 'Pengeluaran ( - )');
         })
             ->with('user')
             ->where('id_user', $user)
             ->sum('jumlah_uang');
 
         $total_hutang = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'hutang');
+            $query->where('kategori', 'Hutang ( - )');
         })
             ->with('user')
             ->where('id_user', $user)
