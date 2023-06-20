@@ -114,7 +114,8 @@ class GajiKaryawanController extends Controller
         ]);
 
         $gaji_karyawan = Finance::where('keterangan', 'Gaji Karyawan')
-            ->get();
+                                ->where('id_user',Auth()->user()->id)
+                                ->get();
 
         if (count($gaji_karyawan) == 0) {
             Finance::create([
