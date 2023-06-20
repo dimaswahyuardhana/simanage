@@ -71,8 +71,8 @@
 
                                 <input type="text" class="form-control" name="alamat" id="alamatHidden"
                                     value="{{ $profileAdmin[0]->alamat }}" hidden>
-                                <input type="hidden" name="latitude" id="latitude">
-                                <input type="hidden" name="longitude" id="longitude">
+                                <input type="hidden" name="latitude" id="latitude" value="{{ $profileAdmin[0]->latitude }}">
+                                <input type="hidden" name="longitude" id="longitude" value="{{ $profileAdmin[0]->longitude }}">
 
                                 <div class="row mb-3">
                                     <div class="col-sm-10">

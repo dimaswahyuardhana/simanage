@@ -20,9 +20,9 @@ return new class extends Migration
         });
 
         DB::table('categories')->insert([
-            ['id_kategori' => 1, 'kategori' => 'Pemasukan'],
-            ['id_kategori' => 2, 'kategori' => 'Pengeluaran'],
-            ['id_kategori' => 3, 'kategori' => 'Hutang']
+            ['id_kategori' => 1, 'kategori' => 'Pemasukan ( + )'],
+            ['id_kategori' => 2, 'kategori' => 'Pengeluaran ( - )'],
+            ['id_kategori' => 3, 'kategori' => 'Hutang ( - )']
         ]);
     }
 

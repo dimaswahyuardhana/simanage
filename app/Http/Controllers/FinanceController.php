@@ -35,19 +35,19 @@ class FinanceController extends Controller
         }
 
         $total_pemasukan = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'pemasukan');
+            $query->where('kategori', 'Pemasukan ( + )');
         })
             ->where('id_user', $user)
             ->sum('jumlah_uang');
 
         $total_pengeluaran = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'pengeluaran');
+            $query->where('kategori', 'Pengeluaran ( - )');
         })
             ->where('id_user', $user)
             ->sum('jumlah_uang');
 
         $total_hutang = Finance::whereHas('category', function ($query) {
-            $query->where('kategori', 'hutang');
+            $query->where('kategori', 'Hutang ( - )');
         })
             ->where('id_user', $user)
             ->sum('jumlah_uang');
@@ -229,7 +229,7 @@ class FinanceController extends Controller
 
             // Menghapus data yang telah diarsipkan dari tabel finances
             Finance::whereHas('category', function ($query) {
-                $query->whereIn('kategori', ['pemasukan', 'pengeluaran', 'hutang']);
+                $query->whereIn('kategori', ['Pemasukan ( + )', 'Pengeluaran ( - )', 'Hutang ( - )']);
             })
                 ->with('user')
                 ->where('id_user', $user)

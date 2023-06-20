@@ -17,7 +17,7 @@ class ProfileAdminController extends Controller
     {
         $profileAdmin = User::select()
             ->join('companies', 'users.id_company', '=', 'companies.id_company')
-            ->where('id', '=', auth()->user()->id)
+            ->where('id', auth()->user()->id)
             ->get();
         // dd($profileAdmin);
 
@@ -79,8 +79,7 @@ class ProfileAdminController extends Controller
         // dd($request->input());
         $validated = $request->validate([
             'company_name' => 'required',
-            // 'name' => ['required', 'string', 'max:100'],
-            'email' => 'required|string|max:100|unique:email|email',
+            'email' => 'required|email|string|max:100', 'unique:users,emails,except,id,'.auth()->user()->id,
             'alamat' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
@@ -91,10 +90,9 @@ class ProfileAdminController extends Controller
             'email.email' => 'Email harus dengan format example@example.com',
             'alamat.required' => 'Mohon isi alamat melalui Cari Lokasi pada Peta di bawah',
         ]);
-
+        // dd($validated['company_name']);
         company::where('id_company', auth()->user()->id_company)->update([
             'company_name' => $validated['company_name'],
-            'email' => $validated['email'],
             'longitude' => $validated['longitude'],
             'latitude' => $validated['latitude']
         ]);
@@ -103,6 +101,16 @@ class ProfileAdminController extends Controller
             'email' => $validated['email'],
             'alamat' => $validated['alamat']
         ]);
+        // company::where('id_company', auth()->user()->id_company)->update([
+        //     'company_name' => $request->input('company_name'),
+        //     'longitude' => $request->input('longitude'),
+        //     'latitude' => $request->input('latitude')
+        // ]);
+
+        // User::where('id', auth()->user()->id)->update([
+        //     'email' => $request->input('email'),
+        //     'alamat' => $request->input('alamat')
+        // ]);
 
         return redirect('/profileAdmin')->with('success', 'Profile berhasil di Update');
     }

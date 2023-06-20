@@ -75,6 +75,7 @@ class AbsentController extends Controller
         // Cek apakah user sudah absent hari ini
         $absent = Absent::where('id_user', $user->id)
             ->where('time_in', '!=', NULL)
+            ->whereRaw('date(created_at) = CURRENT_DATE()')
             ->first();
 
         if ($request->input('status') == 'Hadir') {
