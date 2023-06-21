@@ -21,7 +21,19 @@ class RiwayatGajiController extends Controller
             ->where('id_user', $user)
             ->get();
 
-        return view('landingpage.section.riwayat_gaji', compact('no', 'dataGaji'));
+        $formatted_dataGaji = [];
+        foreach ($dataGaji as $gaji) {
+            $formatted_dataGaji[] = $this->formatMoney($gaji->total_gaji);
+        }
+
+        return view('landingpage.section.riwayat_gaji', compact('no', 'dataGaji', 'formatted_dataGaji'));
+    }
+
+    public function formatMoney($amount)
+    {
+        $formattedAmount = 'Rp ' . number_format($amount, 2, ',', '.');
+
+        return $formattedAmount;
     }
 
     /**
