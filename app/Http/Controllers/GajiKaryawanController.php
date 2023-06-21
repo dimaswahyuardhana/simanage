@@ -125,9 +125,9 @@ class GajiKaryawanController extends Controller
                 'id_user' => auth()->user()->id
             ]);
         } else {
-            Finance::where('keterangan', 'Gaji Karyawan')->update([
-                'jumlah_uang' => $gaji_karyawan[0]->jumlah_uang + $totalGaji
-            ]);
+            Finance::where('keterangan', 'Gaji Karyawan')
+                    ->where('id_user',Auth()->user()->id)
+                    ->update(['jumlah_uang' => $gaji_karyawan[0]->jumlah_uang + $totalGaji]);
         }
 
         return redirect('/gaji_karyawan')->with('success', 'Data Gaji Karyawan berhasil di Tambah');
