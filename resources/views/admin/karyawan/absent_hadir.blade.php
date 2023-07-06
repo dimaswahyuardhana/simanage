@@ -44,6 +44,7 @@
                                         <tr>
                                             <th>{{ $no++ }}.</th>
                                             <td>{{ \Carbon\Carbon::parse($item->time_in)->locale('id')->isoFormat('LLL') }}</td>
+                                            <td>{{ $item->keterangan }}.</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
